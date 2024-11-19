@@ -1,0 +1,5 @@
+grpcio==1.56.2            # gRPC核心库，用于与Master Node通信
+grpcio-tools==1.56.2      # 用于生成 gRPC 的 Python 文件
+numpy==1.24.3             # 用于数值计算（梯度计算、模型权重更新等）
+pandas==2.0.3             # 用于本地数据处理
+scikit-learn==1.3.0       # 提供逻辑回归模型及其他机器学习工具
