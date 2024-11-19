@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  master-node:
+    build:
+      context: ./master_node  # 指向 master_node 目录
+    container_name: master-node
+    ports:
+      - "50051:50051"  # 暴露 gRPC 服务端口
+    networks:
+      - federated-network
+    environment:
+      - AGGREGATION_METHOD=mean  # 聚合策略
+
+  worker-node:
+    build:
+      context: ./worker_node  # 指向 worker_node 目录
+    depends_on:
+      - master-node
+    networks:
+      - federated-network
+    environment:
+      - MASTER_ADDRESS=master-node:50051  # 指定 Master Node 地址
+    deploy:
+      replicas: 3  # 启动 3 个 Worker Nodes
+
+networks:
+  federated-network:
+    driver: bridge
