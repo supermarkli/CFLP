@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package federated;
+
+// Service definition for Federated Learning
+service FederatedLearning {
+  // Sends gradients from a Worker Node to the Master Node and receives updated global weights
+  rpc SendGradient (Gradient) returns (GlobalWeights);
+}
+
+// Message to represent gradients sent by Worker Nodes
+message Gradient {
+  repeated float gradient = 1; // List of gradient values
+}
+
+// Message to represent global weights sent back to Worker Nodes
+message GlobalWeights {
+  repeated float weights = 1; // List of updated global weight values
+}
