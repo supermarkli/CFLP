@@ -2,7 +2,7 @@
 
 一个开源的分布式联邦计算平台，支持多个参与方在保护数据隐私的前提下进行联合建模。该平台采用模块化设计，具备高扩展性，支持多种联邦学习算法。
 
----
+
 
 ## **功能特性**
 
@@ -22,7 +22,7 @@
 - **安全与隐私**：
   - 支持 PSI 数据对齐，保护数据隐私。
 
----
+
 
 ## **目录结构**
 
@@ -64,7 +64,7 @@ CFLP/
 └── README.md                     # 项目说明
 ```
 
----
+
 
 ## **安装与运行**
 
@@ -118,7 +118,7 @@ CFLP/
    python worker_node/worker_node.py
    ```
 
----
+
 
 ## **用法**
 
@@ -146,7 +146,7 @@ target_column = "target"
 
 通过 Docker Compose 或手动启动 Master Node 和 Worker Nodes，完成联邦学习。
 
----
+
 
 ## **测试**
 
@@ -168,7 +168,7 @@ target_column = "target"
 python test_integration.py
 ```
 
----
+
 
 ## **扩展与优化**
 
@@ -184,12 +184,10 @@ python test_integration.py
 - **监控**：
   - 添加 Prometheus 和 Grafana 实现节点监控和系统性能分析。
 
----
+
 
 ## **贡献**
 
 欢迎提交 Issues 和 Pull Requests 来改进本项目！
-
----
 
 如果需要进一步修改或扩展内容，请告诉我！
