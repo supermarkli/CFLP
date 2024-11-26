@@ -1,50 +1,82 @@
 import grpc
 from concurrent import futures
 import numpy as np
+import logging
 from proto import federated_pb2, federated_pb2_grpc
+from master_node.aggregation import Aggregator
 
+# 设置日志配置
+logging.basicConfig(
+    level=logging.DEBUG,  # 设置默认日志级别为 DEBUG，确保所有日志都能输出
+    format='%(asctime)s - %(levelname)s - %(message)s',  # 日志格式
+    handlers=[
+        logging.StreamHandler(),  # 将日志输出到控制台
+        logging.FileHandler("federated_learning.log")  # 同时将日志写入文件
+    ]
+)
 
-class MasterNode(federated_pb2_grpc.FederatedLearningServicer):
+class FederatedLearningService(federated_pb2_grpc.FederatedLearningServicer):
     """
-    Central Master Node for Federated Learning.
-    Responsible for aggregating gradients and updating global model weights.
+    Federated Learning gRPC Service Implementation for Master Node.
+    Handles receiving gradients from Worker Nodes and returning global weights.
     """
-    def __init__(self):
-        self.global_weights = None  # Global model weights, initialized as None
-        self.learning_rate = 0.01  # Learning rate for model updates
-        print("Master Node initialized.")
+
+    def __init__(self, aggregation_method="mean", learning_rate=0.01):
+        """
+        Initialize the service with an aggregator and learning rate.
+        :param aggregation_method: Aggregation strategy to be used.
+        :param learning_rate: Learning rate for weight updates.
+        """
+        self.aggregator = Aggregator(method=aggregation_method)
+        self.global_weights = None
+        self.learning_rate = learning_rate
+        logging.info(f"Federated Learning Service initialized with aggregation method '{aggregation_method}' and learning rate {learning_rate}.")
 
     def SendGradient(self, request, context):
         """
-        gRPC endpoint to receive gradients from worker nodes and return updated global weights.
+        Handle the gRPC request to send gradients from worker nodes.
+        :param request: Gradient message containing gradients from a worker.
+        :param context: gRPC context object.
+        :return: GlobalWeights message containing updated global weights.
         """
         gradient = np.array(request.gradient)
-        print(f"Received gradient: {gradient}")
+        logging.info(f"Received gradient from Worker Node: {gradient}")
 
         # Initialize global weights if this is the first round
         if self.global_weights is None:
-            self.global_weights = np.zeros_like(gradient)
-            print("Initialized global weights.")
+            self.global_weights = self.aggregator.initialize_global_weights(gradient.shape)
+            logging.info(f"Initialized global weights: {self.global_weights}")
+
+        # Aggregate gradients (this can be extended for multi-worker aggregation)
+        aggregated_gradient = self.aggregator.aggregate([gradient])
+        logging.info(f"Aggregated gradient: {aggregated_gradient}")
 
         # Update global weights using gradient descent
-        self.global_weights -= self.learning_rate * gradient
-        print(f"Updated global weights: {self.global_weights}")
+        self.global_weights -= self.learning_rate * aggregated_gradient
+        logging.info(f"Updated global weights: {self.global_weights}")
 
-        # Return the updated global weights to the worker
+        # Return updated global weights to the worker
         return federated_pb2.GlobalWeights(weights=self.global_weights.tolist())
 
 
-def start_server():
+def start_server(aggregation_method="mean", learning_rate=0.01, port=50051):
     """
     Start the gRPC server for the Master Node.
+    :param aggregation_method: Aggregation strategy to use ("mean", "weighted", "secure").
+    :param learning_rate: Learning rate for weight updates (default: 0.01).
+    :param port: Port to run the server on (default: 50051).
     """
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))  # Multi-threaded gRPC server
-    federated_pb2_grpc.add_FederatedLearningServicer_to_server(MasterNode(), server)
-    server.add_insecure_port('[::]:50051')  # Listen on port 50051
-    print("Master Node gRPC server running on port 50051...")
+    federated_service = FederatedLearningService(aggregation_method=aggregation_method, learning_rate=learning_rate)
+    federated_pb2_grpc.add_FederatedLearningServicer_to_server(federated_service, server)
+
+    # Bind the server to the specified port
+    server.add_insecure_port(f"[::]:{port}")
+    logging.info(f"gRPC server running on port {port}.")
     server.start()
     server.wait_for_termination()
 
 
 if __name__ == "__main__":
-    start_server()
+    # Start the server with default aggregation method and learning rate
+    start_server(aggregation_method="mean", learning_rate=0.01)

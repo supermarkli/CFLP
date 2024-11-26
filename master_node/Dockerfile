@@ -14,4 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 50051
 
 # Step 6: Define the command to run the gRPC server
-CMD ["python", "grpc_server.py"]
+CMD ["python", "-m", "master_node.master_node"]
+
