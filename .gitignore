@@ -1,2 +1,6 @@
 # 忽略虚拟环境文件夹
 venv/
+
+# 忽略 __pycache__ 目录及其内容
+__pycache__/
+*.pyc
