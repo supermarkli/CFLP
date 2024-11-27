@@ -2,3 +2,69 @@
 2024-11-26 23:20:19,598 - INFO - gRPC server running on port 50051.
 2024-11-27 15:36:28,103 - INFO - Federated Learning Service initialized with aggregation method 'paillier' and learning rate 0.01.
 2024-11-27 15:36:28,104 - INFO - gRPC server running on port 50051.
+2024-11-27 15:37:17,268 - INFO - Starting the test suite...
+2024-11-27 15:37:17,272 - INFO - Starting the gRPC server for testing...
+2024-11-27 15:37:18,568 - INFO - Federated Learning Service initialized with aggregation method 'paillier' and learning rate 0.01.
+2024-11-27 15:37:18,570 - INFO - Test gRPC server started on port 50051.
+2024-11-27 15:37:18,571 - INFO - Starting test_multiple_gradients...
+2024-11-27 15:37:18,571 - DEBUG - Sending gradients: [[0.1, 0.2, 0.3], [0.2, 0.1, 0.4], [0.3, 0.3, 0.2]]
+2024-11-27 15:37:18,571 - DEBUG - MockWorkerNode sending gradient: [0.1, 0.2, 0.3]
+2024-11-27 15:37:18,575 - INFO - Starting test_send_gradient...
+2024-11-27 15:37:18,575 - DEBUG - MockWorkerNode sending gradient: [0.1, 0.2, 0.3]
+2024-11-27 15:37:18,575 - INFO - Stopping the test gRPC server...
+2024-11-27 15:37:18,576 - INFO - Test gRPC server stopped.
+2024-11-27 15:39:43,566 - INFO - Starting the test suite...
+2024-11-27 15:39:43,571 - INFO - Starting the gRPC server for testing...
+2024-11-27 15:39:45,978 - INFO - Federated Learning Service initialized with aggregation method 'paillier' and learning rate 0.01.
+2024-11-27 15:39:45,982 - INFO - Test gRPC server started on port 50051.
+2024-11-27 15:39:45,982 - INFO - Starting test_multiple_gradients...
+2024-11-27 15:39:45,982 - DEBUG - Sending gradients: [[0.1, 0.2, 0.3], [0.2, 0.1, 0.4], [0.3, 0.3, 0.2]]
+2024-11-27 15:39:45,982 - DEBUG - MockWorkerNode sending gradient: [0.1, 0.2, 0.3]
+2024-11-27 15:39:46,053 - INFO - Received gradient from Worker Node: [0.1        0.2        0.30000001]
+2024-11-27 15:39:46,053 - DEBUG - Initializing global weights with shape (3,).
+2024-11-27 15:39:46,054 - INFO - Initialized global weights: [0. 0. 0.]
+2024-11-27 15:39:46,054 - DEBUG - Starting Paillier homomorphic encryption aggregation...
+2024-11-27 15:39:46,358 - DEBUG - Encrypting gradient: [0.10000000149011612, 0.20000000298023224, 0.30000001192092896]
+2024-11-27 15:39:47,269 - DEBUG - Encrypted aggregated result: <phe.paillier.EncryptedNumber object at 0x7f46f39dcd30>
+2024-11-27 15:39:47,358 - DEBUG - Decrypted aggregated result: 0.6000000163912773
+2024-11-27 15:39:47,411 - INFO - Updated global weights: [-0.006 -0.006 -0.006]
+2024-11-27 15:39:47,412 - DEBUG - MockWorkerNode received updated global weights: [-0.006000000052154064, -0.006000000052154064, -0.006000000052154064]
+2024-11-27 15:39:47,413 - DEBUG - MockWorkerNode sending gradient: [0.2, 0.1, 0.4]
+2024-11-27 15:39:47,459 - INFO - Received gradient from Worker Node: [0.2        0.1        0.40000001]
+2024-11-27 15:39:47,459 - DEBUG - Starting Paillier homomorphic encryption aggregation...
+2024-11-27 15:39:47,773 - DEBUG - Encrypting gradient: [0.20000000298023224, 0.10000000149011612, 0.4000000059604645]
+2024-11-27 15:39:48,686 - DEBUG - Encrypted aggregated result: <phe.paillier.EncryptedNumber object at 0x7f46f39dcc70>
+2024-11-27 15:39:48,776 - DEBUG - Decrypted aggregated result: 0.7000000104308128
+2024-11-27 15:39:48,777 - INFO - Updated global weights: [-0.013 -0.013 -0.013]
+2024-11-27 15:39:48,778 - DEBUG - MockWorkerNode received updated global weights: [-0.013000000268220901, -0.013000000268220901, -0.013000000268220901]
+2024-11-27 15:39:48,778 - DEBUG - MockWorkerNode sending gradient: [0.3, 0.3, 0.2]
+2024-11-27 15:39:48,793 - INFO - Received gradient from Worker Node: [0.30000001 0.30000001 0.2       ]
+2024-11-27 15:39:48,793 - DEBUG - Initializing global weights with shape (3,).
+2024-11-27 15:39:48,794 - INFO - Initialized global weights: [0. 0. 0.]
+2024-11-27 15:39:48,794 - DEBUG - Starting Paillier homomorphic encryption aggregation...
+2024-11-27 15:39:49,098 - DEBUG - Encrypting gradient: [0.30000001192092896, 0.30000001192092896, 0.20000000298023224]
+2024-11-27 15:39:50,027 - DEBUG - Encrypted aggregated result: <phe.paillier.EncryptedNumber object at 0x7fbdafd60430>
+2024-11-27 15:39:50,112 - DEBUG - Decrypted aggregated result: 0.8000000268220901
+2024-11-27 15:39:50,113 - INFO - Updated global weights: [-0.008 -0.008 -0.008]
+2024-11-27 15:39:50,114 - DEBUG - MockWorkerNode received updated global weights: [-0.00800000037997961, -0.00800000037997961, -0.00800000037997961]
+2024-11-27 15:39:50,115 - INFO - Expected aggregated weights: [-0.006 -0.006 -0.009]
+2024-11-27 15:39:50,115 - DEBUG - MockWorkerNode sending gradient: [0, 0, 0]
+2024-11-27 15:39:50,139 - INFO - Received gradient from Worker Node: [0. 0. 0.]
+2024-11-27 15:39:50,139 - DEBUG - Starting Paillier homomorphic encryption aggregation...
+2024-11-27 15:39:50,442 - DEBUG - Encrypting gradient: [0.0, 0.0, 0.0]
+2024-11-27 15:39:51,361 - DEBUG - Encrypted aggregated result: <phe.paillier.EncryptedNumber object at 0x7fbdafd60250>
+2024-11-27 15:39:51,448 - DEBUG - Decrypted aggregated result: 0.0
+2024-11-27 15:39:51,448 - INFO - Updated global weights: [-0.008 -0.008 -0.008]
+2024-11-27 15:39:51,449 - DEBUG - MockWorkerNode received updated global weights: [-0.00800000037997961, -0.00800000037997961, -0.00800000037997961]
+2024-11-27 15:39:51,522 - INFO - Starting test_send_gradient...
+2024-11-27 15:39:51,522 - DEBUG - MockWorkerNode sending gradient: [0.1, 0.2, 0.3]
+2024-11-27 15:39:51,539 - INFO - Received gradient from Worker Node: [0.1        0.2        0.30000001]
+2024-11-27 15:39:51,539 - DEBUG - Starting Paillier homomorphic encryption aggregation...
+2024-11-27 15:39:51,858 - DEBUG - Encrypting gradient: [0.10000000149011612, 0.20000000298023224, 0.30000001192092896]
+2024-11-27 15:39:52,775 - DEBUG - Encrypted aggregated result: <phe.paillier.EncryptedNumber object at 0x7fbdafd60430>
+2024-11-27 15:39:52,861 - DEBUG - Decrypted aggregated result: 0.6000000163912773
+2024-11-27 15:39:52,862 - INFO - Updated global weights: [-0.014 -0.014 -0.014]
+2024-11-27 15:39:52,863 - DEBUG - MockWorkerNode received updated global weights: [-0.014000000432133675, -0.014000000432133675, -0.014000000432133675]
+2024-11-27 15:39:52,864 - INFO - Expected weights: [-0.001, -0.002, -0.003]
+2024-11-27 15:39:52,865 - INFO - Stopping the test gRPC server...
+2024-11-27 15:39:52,866 - INFO - Test gRPC server stopped.

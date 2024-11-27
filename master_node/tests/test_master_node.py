@@ -37,7 +37,7 @@ class MockWorkerNode:
         logger.debug(f"MockWorkerNode sending gradient: {gradient}")
         with grpc.insecure_channel(self.server_address) as channel:
             stub = federated_pb2_grpc.FederatedLearningStub(channel)
-            request = federated_pb2.Gradient(gradient=gradient.tolist())
+            request = federated_pb2.Gradient(gradient=gradient)
             response = stub.SendGradient(request)
             logger.debug(f"MockWorkerNode received updated global weights: {response.weights}")
             return response.weights
