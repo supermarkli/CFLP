@@ -6,7 +6,7 @@ import logging
 
 # Import the generated gRPC modules and the server implementation
 from proto import federated_pb2, federated_pb2_grpc
-from master_node.grpc_server import FederatedLearningService
+from master_node.master_node import FederatedLearningService
 
 
 # Set up logging to capture detailed information

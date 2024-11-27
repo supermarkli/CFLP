@@ -1,2 +1,4 @@
 2024-11-26 23:20:19,597 - INFO - Federated Learning Service initialized with aggregation method 'mean' and learning rate 0.01.
 2024-11-26 23:20:19,598 - INFO - gRPC server running on port 50051.
+2024-11-27 15:36:28,103 - INFO - Federated Learning Service initialized with aggregation method 'paillier' and learning rate 0.01.
+2024-11-27 15:36:28,104 - INFO - gRPC server running on port 50051.
