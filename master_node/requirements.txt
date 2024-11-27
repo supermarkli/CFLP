@@ -2,3 +2,4 @@ grpcio==1.53.0          # gRPC 库
 grpcio-tools==1.53.0     # 用于生成 gRPC 服务的工具
 numpy==1.24.3           # 数值计算库
 protobuf==4.25.0        # 用于编译和处理 Protobuf 文件
+phe==1.5.0

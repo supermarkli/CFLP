@@ -5,13 +5,13 @@ import logging
 from proto import federated_pb2, federated_pb2_grpc
 from master_node.aggregation import Aggregator
 
-# 设置日志配置
+
 logging.basicConfig(
-    level=logging.DEBUG,  # 设置默认日志级别为 DEBUG，确保所有日志都能输出
-    format='%(asctime)s - %(levelname)s - %(message)s',  # 日志格式
+    level=logging.DEBUG,  
+    format='%(asctime)s - %(levelname)s - %(message)s',  
     handlers=[
-        logging.StreamHandler(),  # 将日志输出到控制台
-        logging.FileHandler("federated_learning.log")  # 同时将日志写入文件
+        logging.StreamHandler(),  
+        logging.FileHandler("federated_learning.log")  
     ]
 )
 
@@ -21,12 +21,13 @@ class FederatedLearningService(federated_pb2_grpc.FederatedLearningServicer):
     Handles receiving gradients from Worker Nodes and returning global weights.
     """
 
-    def __init__(self, aggregation_method="mean", learning_rate=0.01):
+    def __init__(self, aggregation_method="secure", learning_rate=0.01):
         """
         Initialize the service with an aggregator and learning rate.
-        :param aggregation_method: Aggregation strategy to be used.
+        :param aggregation_method: Aggregation strategy to be used (e.g., "mean", "weighted", "secure").
         :param learning_rate: Learning rate for weight updates.
         """
+        # Initialize aggregator with the specified method
         self.aggregator = Aggregator(method=aggregation_method)
         self.global_weights = None
         self.learning_rate = learning_rate
@@ -49,7 +50,11 @@ class FederatedLearningService(federated_pb2_grpc.FederatedLearningServicer):
 
         # Aggregate gradients (this can be extended for multi-worker aggregation)
         aggregated_gradient = self.aggregator.aggregate([gradient])
-        logging.info(f"Aggregated gradient: {aggregated_gradient}")
+
+        # Check if we are using encryption or secret sharing, and handle appropriately
+        if self.aggregator.method == "paillier":
+            # For Paillier encryption, the result is encrypted, so we need to decrypt it
+            aggregated_gradient = self.aggregator.decrypt(aggregated_gradient)
 
         # Update global weights using gradient descent
         self.global_weights -= self.learning_rate * aggregated_gradient
@@ -59,7 +64,7 @@ class FederatedLearningService(federated_pb2_grpc.FederatedLearningServicer):
         return federated_pb2.GlobalWeights(weights=self.global_weights.tolist())
 
 
-def start_server(aggregation_method="mean", learning_rate=0.01, port=50051):
+def start_server(aggregation_method="paillier", learning_rate=0.01, port=50051):
     """
     Start the gRPC server for the Master Node.
     :param aggregation_method: Aggregation strategy to use ("mean", "weighted", "secure").
@@ -78,5 +83,5 @@ def start_server(aggregation_method="mean", learning_rate=0.01, port=50051):
 
 
 if __name__ == "__main__":
-    # Start the server with default aggregation method and learning rate
-    start_server(aggregation_method="mean", learning_rate=0.01)
+    # Start the server with a secure aggregation method (e.g., Paillier encryption or secret sharing)
+    start_server(aggregation_method="paillier", learning_rate=0.01)

@@ -1,106 +1,88 @@
 import numpy as np
 import logging
+from phe import paillier  # Using Paillier homomorphic encryption library
 
-# 设置日志记录器
+# Setting up logger
+logging.basicConfig(
+    level=logging.DEBUG,  # Set log level to DEBUG to ensure all logs are output
+    format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
+    handlers=[
+        logging.StreamHandler(),  # Output logs to console
+        logging.FileHandler("federated_learning.log")  # Write logs to file
+    ]
+)
+
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
 
 class Aggregator:
     """
-    Aggregator class for handling model parameter or gradient aggregation in Federated Learning.
-    Supports various aggregation methods including mean, weighted, and secure aggregation.
+    Aggregator class for handling secure aggregation in Federated Learning using various techniques.
+    Supports Paillier homomorphic encryption.
     """
 
-    def __init__(self, method="mean"):
+    def __init__(self, method="paillier"):
         """
-        Initialize the aggregator with a specific aggregation method.
-        :param method: The aggregation method. Options: "mean", "weighted", "secure", "min", "max", "quantile".
+        Initialize the aggregator with a specific security method.
+        :param method: The security aggregation method. Options: "paillier".
         """
         self.method = method
+        
+        if self.method == "paillier":
+            # Generate Paillier public and private keys
+            self.public_key, self.private_key = paillier.generate_paillier_keypair()
+        else:
+            raise ValueError(f"Unsupported method: {self.method}")
 
-    def aggregate(self, gradients_list, weights_list=None):
+    def aggregate(self, gradients_list):
         """
-        Perform aggregation based on the chosen method.
-        :param gradients_list: List of gradients from worker nodes (numpy arrays).
-        :param weights_list: List of weights (for weighted aggregation).
-        :return: Aggregated gradient or parameter update.
+        Perform secure aggregation using the chosen method.
+        :param gradients_list: List of gradients from worker nodes (in plaintext).
+        :return: Aggregated result (encrypted).
         """
-        if self.method == "mean":
-            return self._mean_aggregate(gradients_list)
-        elif self.method == "weighted":
-            if weights_list is None or len(weights_list) != len(gradients_list):
-                raise ValueError("The length of weights_list must match the length of gradients_list.")
-            return self._weighted_aggregate(gradients_list, weights_list)
-        elif self.method == "secure":
-            return self._secure_aggregate(gradients_list)
-        elif self.method == "min":
-            return self._min_aggregate(gradients_list)
-        elif self.method == "max":
-            return self._max_aggregate(gradients_list)
-        elif self.method == "quantile":
-            return self._quantile_aggregate(gradients_list)
+        if self.method == "paillier":
+            return self._paillier_aggregate(gradients_list)
         else:
             raise ValueError(f"Unsupported aggregation method: {self.method}")
 
-    def _mean_aggregate(self, gradients_list):
+    def _paillier_aggregate(self, gradients_list):
         """
-        Perform simple mean aggregation of gradients.
+        Perform aggregation using Paillier homomorphic encryption.
         """
-        logger.debug(f"Performing mean aggregation with {len(gradients_list)} gradients.")
-        aggregated_gradient = np.mean(gradients_list, axis=0)
-        logger.debug(f"Aggregated gradient: {aggregated_gradient}")
-        return aggregated_gradient
+        logger.debug("Starting Paillier homomorphic encryption aggregation...")
 
-    def _weighted_aggregate(self, gradients_list, weights_list):
-        """
-        Perform weighted aggregation of gradients.
-        :param gradients_list: List of gradients from worker nodes (numpy arrays).
-        :param weights_list: List of weights for each gradient.
-        :return: Aggregated weighted gradient.
-        """
-        logger.debug(f"Performing weighted aggregation with {len(gradients_list)} gradients and {len(weights_list)} weights.")
-        total_weight = sum(weights_list)
-        if total_weight == 0:
-            raise ValueError("The total weight must be greater than 0.")
-        weighted_sum = sum(g * w for g, w in zip(gradients_list, weights_list))
-        result = weighted_sum / total_weight
-        logger.debug(f"Aggregated weighted gradient: {result}")
-        return result
+        # Initialize encrypted sum to zero
+        encrypted_sum = self.public_key.encrypt(0)
 
-    def _secure_aggregate(self, gradients_list):
-        """
-        Placeholder for secure aggregation (to be implemented).
-        """
-        logger.warning("Secure aggregation has not been implemented yet. This may be a work in progress.")
-        raise NotImplementedError("Secure aggregation is not yet implemented. Please refer to documentation.")
+        # Encrypt each gradient and sum them homomorphically
+        for gradient in gradients_list:
+            # Ensure gradient is a flat list of floats (not numpy ndarray)
+            if isinstance(gradient, np.ndarray):
+                gradient = gradient.tolist()  # Convert numpy array to list of floats
+            if not isinstance(gradient, list):
+                gradient = [float(gradient)]  # Ensure it's a list of floats
 
-    def _min_aggregate(self, gradients_list):
-        """
-        Perform aggregation by taking the minimum value for each parameter across all gradients.
-        """
-        logger.debug(f"Performing min aggregation with {len(gradients_list)} gradients.")
-        result = np.min(gradients_list, axis=0)
-        logger.debug(f"Aggregated min gradient: {result}")
-        return result
+            logger.debug(f"Encrypting gradient: {gradient}")
+            
+            # Encrypt each element in the gradient list
+            for g in gradient:
+                encrypted_gradient = self.public_key.encrypt(g)  # Encrypt the individual value
+                encrypted_sum += encrypted_gradient
 
-    def _max_aggregate(self, gradients_list):
-        """
-        Perform aggregation by taking the maximum value for each parameter across all gradients.
-        """
-        logger.debug(f"Performing max aggregation with {len(gradients_list)} gradients.")
-        result = np.max(gradients_list, axis=0)
-        logger.debug(f"Aggregated max gradient: {result}")
-        return result
+        logger.debug(f"Encrypted aggregated result: {encrypted_sum}")
+        return encrypted_sum
 
-    def _quantile_aggregate(self, gradients_list, quantile=0.5):
+    def decrypt(self, encrypted_data):
         """
-        Perform aggregation using a quantile (default 0.5 for median).
-        :param quantile: The quantile value (e.g., 0.5 for median, 0.9 for 90th percentile).
+        Decrypt the aggregated encrypted result.
+        :param encrypted_data: The aggregated encrypted data.
+        :return: Decrypted gradient (after aggregation).
         """
-        logger.debug(f"Performing quantile aggregation with {len(gradients_list)} gradients at quantile {quantile}.")
-        result = np.quantile(gradients_list, quantile, axis=0)
-        logger.debug(f"Aggregated quantile gradient: {result}")
-        return result
+        if self.method == "paillier":
+            decrypted_result = self.private_key.decrypt(encrypted_data)
+            logger.debug(f"Decrypted aggregated result: {decrypted_result}")
+            return decrypted_result
+        else:
+            raise ValueError("Decryption is only supported for Paillier encryption.")
 
     def initialize_global_weights(self, gradient_shape):
         """
