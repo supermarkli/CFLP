@@ -35,7 +35,6 @@ class StandardExperiment(BaseExperiment):
             # 加载数据
             df = self.load_data()
             
-            # 使用tqdm显示进度
             for name, model in tqdm(self.models.items(), desc="训练模型"):
                 logger.info(f"处理模型数据: {name}")
                 

@@ -21,10 +21,9 @@ class BaseDataPreprocessor(ABC):
         """Add preprocessing step"""
         self.preprocessors.append(preprocessor)
         
-    def fit_transform(self, df):
+    def fit_transform(self, X, y):
         """通用的预处理流程"""
         try:
-            X, y = self.split_features_target(df)
             self.feature_columns = X.columns
             
             # 首先划分训练集和测试集
@@ -50,7 +49,6 @@ class BaseDataPreprocessor(ABC):
                 X_train_processed = preprocessor.fit_transform(X_train_processed)
                 X_val_processed = preprocessor.transform(X_val_processed)
                 X_test_processed = preprocessor.transform(X_test_processed)
-            
             
             logger.info(f"Training set size: {len(X_train)}")
             logger.info(f"X_train_processed first 5 rows:\n{pd.DataFrame(X_train_processed)[:5]}")
