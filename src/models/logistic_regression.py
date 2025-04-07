@@ -8,19 +8,17 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score
 from utils.metrics import ModelMetrics
-from data_process.credit_card import CreditCardDataPreprocessor
 from imblearn.over_sampling import SMOTE
 
 class LogisticRegressionModel(BaseModel):
-    def __init__(self, config=None):
-        super().__init__(config)
+    def __init__(self):
+        super().__init__()
         self.param_tuning = False
         self.model = None
         self.metrics = ModelMetrics()
         self.name = "LogisticRegression"
         self.normalize = True
         self.best_threshold = 0.5
-        self.preprocessor = CreditCardDataPreprocessor(config=config, model=self)
         self.use_smote = False
         
     def train_model(self, X_train, y_train):

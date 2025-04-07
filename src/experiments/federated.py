@@ -5,14 +5,15 @@ from federation.fed_server import FederatedServer
 from tqdm import tqdm
 import numpy as np
 import pandas as pd
+import os
 
 logger = get_logger()
 
 class FederatedExperiment(BaseExperiment):
     """联邦学习实验类"""
     
-    def __init__(self, config_path):
-        super().__init__(config_path)
+    def __init__(self):
+        super().__init__()
         self.fed_server = None
         
     def _split_data_for_clients(self, X, y, n_clients):
@@ -61,7 +62,7 @@ class FederatedExperiment(BaseExperiment):
             
             for i, data in enumerate(data_splits):
                 # 为每个客户端创建独立的模型实例
-                client_model = type(model_template)(config=self.config)
+                client_model = type(model_template)()
                 client = FederatedClient(
                     client_id=f"client_{i}",
                     model=client_model,
@@ -123,18 +124,105 @@ class FederatedExperiment(BaseExperiment):
             logger.error(f"模型对比失败: {str(e)}")
             raise
             
+
+        """加载数据"""
+        try:
+            # 直接读取处理好的CSV文件
+            data_dir = os.path.join(self.PROJECT_ROOT, 'data', 'credit_card')
+            
+            # 读取标准化数据
+            train_norm_path = os.path.join(data_dir, 'credit_card_train_normalized.csv')
+            test_norm_path = os.path.join(data_dir, 'credit_card_test_normalized.csv')
+            
+            # 读取非标准化数据
+            train_raw_path = os.path.join(data_dir, 'credit_card_train_raw.csv')
+            test_raw_path = os.path.join(data_dir, 'credit_card_test_raw.csv')
+            
+            # 检查文件是否存在
+            if not os.path.exists(train_norm_path) or not os.path.exists(test_norm_path):
+                logger.warning("标准化数据文件不存在")
+                X_train_norm = None
+                X_test_norm = None
+                y_train_norm = None
+                y_test_norm = None
+            else:
+                # 读取标准化训练集和测试集
+                train_norm_df = pd.read_csv(train_norm_path)
+                test_norm_df = pd.read_csv(test_norm_path)
+                
+                # 分离特征和目标变量
+                X_train_norm = train_norm_df.drop('target', axis=1)
+                y_train_norm = train_norm_df['target']
+                X_test_norm = test_norm_df.drop('target', axis=1)
+                y_test_norm = test_norm_df['target']
+                
+                logger.info(f"成功加载标准化数据: 训练集 {X_train_norm.shape}, 测试集 {X_test_norm.shape}")
+            
+            if not os.path.exists(train_raw_path) or not os.path.exists(test_raw_path):
+                logger.warning("非标准化数据文件不存在")
+                X_train_raw = None
+                X_test_raw = None
+                y_train_raw = None
+                y_test_raw = None
+            else:
+                # 读取非标准化训练集和测试集
+                train_raw_df = pd.read_csv(train_raw_path)
+                test_raw_df = pd.read_csv(test_raw_path)
+                
+                # 分离特征和目标变量
+                X_train_raw = train_raw_df.drop('target', axis=1)
+                y_train_raw = train_raw_df['target']
+                X_test_raw = test_raw_df.drop('target', axis=1)
+                y_test_raw = test_raw_df['target']
+                
+                logger.info(f"成功加载非标准化数据: 训练集 {X_train_raw.shape}, 测试集 {X_test_raw.shape}")
+            
+            # 检查是否至少有一套数据可用
+            if X_train_norm is None and X_train_raw is None:
+                raise FileNotFoundError("找不到处理好的数据文件，请先运行数据生成脚本")
+                
+            return X_train_norm, X_test_norm, y_train_norm, y_test_norm, X_train_raw, X_test_raw, y_train_raw, y_test_raw
+            
+        except Exception as e:
+            logger.error(f"加载数据失败: {str(e)}")
+            raise
+            
     def run(self, n_clients=3, n_rounds=10):
         """运行联邦学习实验"""
         try:
             logger.info("开始联邦学习实验...")
-            df = self.load_data()
+            
+            # 加载数据
+            X_train_norm, X_test_norm, y_train_norm, y_test_norm, X_train_raw, X_test_raw, y_train_raw, y_test_raw = self.load_data()
+            
             federated_results = {}
             
             for name, model_template in self.models.items():
                 logger.info(f"\n=== 开始 {name} 的联邦学习 ===")
                 
-                # 数据预处理,只分训练集和测试集
-                X_train, X_test, y_train, y_test = model_template.preprocess_data(df)
+                # 根据模型的normalize值选择合适的数据集
+                if hasattr(model_template, 'normalize') and model_template.normalize:
+                    if X_train_norm is None:
+                        logger.warning(f"模型 {name} 需要标准化数据，但标准化数据不可用，跳过该模型")
+                        continue
+                    X_train, X_test, y_train, y_test = X_train_norm, X_test_norm, y_train_norm, y_test_norm
+                    logger.info(f"使用标准化数据训练模型 {name}")
+                else:
+                    if X_train_raw is None:
+                        logger.warning(f"模型 {name} 需要非标准化数据，但非标准化数据不可用，跳过该模型")
+                        continue
+                    X_train, X_test, y_train, y_test = X_train_raw, X_test_raw, y_train_raw, y_test_raw
+                    logger.info(f"使用非标准化数据训练模型 {name}")
+                
+                # 将DataFrame转换为NumPy数组
+                if isinstance(X_train, pd.DataFrame):
+                    X_train = X_train.to_numpy()
+                if isinstance(X_test, pd.DataFrame):
+                    X_test = X_test.to_numpy()
+                if isinstance(y_train, pd.Series):
+                    y_train = y_train.to_numpy()
+                if isinstance(y_test, pd.Series):
+                    y_test = y_test.to_numpy()
                 
                 # 分割训练数据给客户端
                 data_splits = self._split_data_for_clients(X_train, y_train, n_clients)
@@ -149,7 +237,6 @@ class FederatedExperiment(BaseExperiment):
                 logger.info(f"\n{name} 在测试集上的最终评估:")
                 global_model = list(self.fed_server.clients.values())[0].model
                 test_metrics = global_model.evaluate_model(X_test, y_test)
-
                 
                 # 存储结果
                 federated_results[name] = {
@@ -158,11 +245,6 @@ class FederatedExperiment(BaseExperiment):
                     'global_model': global_model
                 }
                 
-                    
-                # 保存模型
-                if self.config.get('save_models', False):
-                    model_path = f"{self.config['model_save_path']}/{name}_federated.model"
-                    self.save_model(global_model, model_path)
             
             # 比较所有模型的性能
             self.compare_models(federated_results)

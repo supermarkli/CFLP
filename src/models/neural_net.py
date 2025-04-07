@@ -5,7 +5,6 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from models.base_model import BaseModel
 import logging
-from data_process.credit_card import CreditCardDataPreprocessor
 from utils.metrics import ModelMetrics
 from sklearn.metrics import f1_score, accuracy_score
 from torch.utils.data import TensorDataset, DataLoader
@@ -52,8 +51,8 @@ class NeuralNetwork(nn.Module):
         return self.output(x3)
 
 class NeuralNetModel(BaseModel):
-    def __init__(self, config=None):
-        super().__init__(config)
+    def __init__(self):
+        super().__init__()
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.network = None
         self.epochs = 100
@@ -62,8 +61,6 @@ class NeuralNetModel(BaseModel):
         self.best_loss = float('inf')
         self.no_improvement_count = 0
         self.normalize = True
-        self.preprocessor = CreditCardDataPreprocessor(config=config, model=self)
-
         self.name = "NeuralNet"
         self.metrics = ModelMetrics()
         self.best_threshold = 0.5

@@ -1,9 +1,9 @@
 data:
-  test_size: 0.3  
+  test_size: 0.2
 base:
   random_seed: 42  # 随机种子,默认42
 
 # 数据路径
-data_path: ../data/default of credit card clients.csv 
+data_path: data/default of credit card clients.csv 
 
 

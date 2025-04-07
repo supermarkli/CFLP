@@ -3,30 +3,15 @@ import numpy as np
 from typing import Dict, List, Tuple, Optional, Any
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import logging
-from data_process.credit_card import CreditCardDataPreprocessor
 from abc import ABC, abstractmethod
 
 class BaseModel(ABC):
 
-    def __init__(self, config: Dict[str, Any]) -> None:
-        self.config = config
-        self.preprocessor: Optional[CreditCardDataPreprocessor] = None
+    def __init__(self) -> None:
         self.model: Optional[Any] = None
         self.feature_names: Optional[List[str]] = None
         self.normalize: Optional[bool] = None
         
-    def preprocess_data(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, 
-                                                        pd.Series, pd.Series]:            
-        # 先保存特征名称
-        X, y = self.preprocessor.split_features_target(df)
-        self.feature_names = X.columns.tolist()
-        
-        # 数据清理 
-        X = self.preprocessor.clean_data(X)
-        
-        # 进行数据预处理(划分数据集和特征工程)
-        return self.preprocessor.fit_transform(X, y)
-    
     @abstractmethod
     def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
         """预测样本属于正类的概率

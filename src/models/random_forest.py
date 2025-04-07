@@ -5,17 +5,15 @@ import logging
 import numpy as np
 import pandas as pd
 from models.base_model import BaseModel
-from data_process.credit_card import CreditCardDataPreprocessor
 from utils.metrics import ModelMetrics
 class RandomForestModel(BaseModel):
-    def __init__(self, config=None):
-        super().__init__(config)
+    def __init__(self):
+        super().__init__()
         self.param_tuning = False
         self.model = RandomForestClassifier()
         self.name = "RandomForest"
         self.normalize = False
         self.metrics = ModelMetrics()  # 添加这行
-        self.preprocessor = CreditCardDataPreprocessor(config=config, model=self)
         self.best_threshold = 0.5  # 添加最佳阈值属性
         
     def grid_search_cv(self, X, y, param_grid):

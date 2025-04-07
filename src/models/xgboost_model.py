@@ -6,20 +6,18 @@ from models.base_model import BaseModel
 from utils.metrics import ModelMetrics  
 import numpy as np
 from sklearn.metrics import f1_score, accuracy_score
-from data_process.credit_card import CreditCardDataPreprocessor
 
 class XGBoostModel(BaseModel):
     
-    def __init__(self, config):
+    def __init__(self):
 
-        super().__init__(config)
+        super().__init__()
         self.param_tuning = False
         self.model = None
         self.metrics = ModelMetrics()  # 初始化评估器
         self.name = "XGBoost"  # 添加模型名称属性
         self.best_threshold = 0.5  # 添加最优阈值属性
         self.normalize = False
-        self.preprocessor = CreditCardDataPreprocessor(config=config, model=self)
         
         # 调整参数以提高召回率
         self.params = {
