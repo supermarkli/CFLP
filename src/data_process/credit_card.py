@@ -1,4 +1,4 @@
-from .base import BaseDataPreprocessor
+from .base_data_processor import BaseDataPreprocessor
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 

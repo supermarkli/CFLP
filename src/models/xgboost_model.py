@@ -5,29 +5,13 @@ import logging
 from models.base_model import BaseModel
 from utils.metrics import ModelMetrics  
 import numpy as np
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, accuracy_score
 from data_process.credit_card import CreditCardDataPreprocessor
 
 class XGBoostModel(BaseModel):
-    """XGBoost模型类
     
-    实现了基于XGBoost的二分类模型,包含:
-    1. 模型训练与预测
-    2. 参数优化
-    3. 模型评估
-    4. 特征重要性分析
-    """
     def __init__(self, config):
-        """初始化XGBoost模型
-        
-        Args:
-            config: 配置字典,包含模型参数等配置信息
-            
-        初始化内容:
-        1. 基础参数设置
-        2. 模型实例创建
-        3. 训练参数配置
-        """
+
         super().__init__(config)
         self.param_tuning = False
         self.model = None
@@ -44,23 +28,19 @@ class XGBoostModel(BaseModel):
             'objective': 'binary:logistic',
             'eval_metric': ['auc'],  
             'min_child_weight': 2,      # 降低以允许更多分裂
-            # 'gamma': 0.1,               # 降低分裂阈值
             'subsample': 0.8,           # 增加采样比例
             'colsample_bytree': 0.7,   # 增加特征采样
         }
         
-    def train_model(self, X_train, y_train, X_val=None, y_val=None):
+    def train_model(self, X_train, y_train):
         """训练XGBoost模型
         
         Args:
             X_train: 训练集特征
             y_train: 训练集标签
-            X_val: 验证集特征,可选
-            y_val: 验证集标签,可选
-            param_tuning: 是否进行参数调优,默认False
         """
         # 如果需要参数调优
-        if self.param_tuning :
+        if self.param_tuning:
             param_grid = {
                 'max_depth': [3, 4, 5],
                 'min_child_weight': [1, 2, 3],
@@ -77,11 +57,7 @@ class XGBoostModel(BaseModel):
         self.params['scale_pos_weight'] = neg_pos_ratio
         
         dtrain = xgb.DMatrix(X_train, label=y_train)
-        if X_val is not None and y_val is not None:
-            dval = xgb.DMatrix(X_val, label=y_val)
-            evals = [(dtrain, 'train'), (dval, 'validation')]
-        else:
-            evals = [(dtrain, 'train')]
+        evals = [(dtrain, 'train')]
         
         logging.info("\n=== Training Start ===")
         logging.info(f"Training data size: {X_train.shape}")
@@ -90,61 +66,16 @@ class XGBoostModel(BaseModel):
         logging.info(f"  Negative samples: {np.sum(y_train == 0)}")
         logging.info(f"  Scale pos weight: {self.params['scale_pos_weight']}")
         
-        if X_val is not None:
-            logging.info(f"Validation data size: {X_val.shape}")
-        
         # 训练模型
         self.model = xgb.train(
             self.params,
             dtrain,
             num_boost_round=500,
             evals=evals,
-            early_stopping_rounds=20,
             verbose_eval=50
         )
-        
-        # 在验证集上找最优阈值
-        if X_val is not None and y_val is not None:
-            self.find_best_threshold(X_val, y_val)
-
-    def find_best_threshold(self, X_val, y_val):
-        """找到最优的预测阈值"""
-        dval = xgb.DMatrix(X_val)
-        y_pred_proba = self.model.predict(dval)
-        
-        # 尝试不同的阈值
-        thresholds = np.arange(0.2, 0.7, 0.05)
-        best_f1 = 0
-        best_threshold = 0.5
-        
-        for threshold in thresholds:
-            y_pred = (y_pred_proba > threshold).astype(int)
-            f1 = f1_score(y_val, y_pred)
-            
-            if f1 > best_f1:
-                best_f1 = f1
-                best_threshold = threshold
-        
-        self.best_threshold = best_threshold
-        logging.info(f"Best threshold: {best_threshold:.2f} (F1: {best_f1:.4f})")
 
     def grid_search_cv(self, X, y, param_grid):
-        """网格搜索寻找最优参数
-        
-        Args:
-            X: 特征数据
-            y: 标签数据
-            param_grid: 参数网格,包含待搜索的参数值范围
-            
-        Returns:
-            dict: 最优参数组合
-            
-        实现步骤:
-        1. 将数据转换为DMatrix格式
-        2. 对参数组合进行网格搜索
-        3. 使用5折交叉验证评估每组参数
-        4. 记录并返回最优参数组合
-        """
         logging.info("Starting grid search...")
         
         best_score = 0
@@ -195,6 +126,22 @@ class XGBoostModel(BaseModel):
         
         return best_params
         
+    def find_best_threshold(self, y_test, y_pred_proba):
+        thresholds = np.arange(0.1, 0.9, 0.05)
+        best_accuracy = 0
+        best_threshold = 0.5
+        
+        for threshold in thresholds:
+            y_pred = (y_pred_proba > threshold).astype(int)
+            accuracy = accuracy_score(y_test, y_pred)
+            
+            if accuracy > best_accuracy:
+                best_accuracy = accuracy
+                best_threshold = threshold
+        
+        logging.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        return best_threshold
+        
     def evaluate_model(self, X_test, y_test):
         """评估模型性能"""
         if self.model is None:
@@ -202,85 +149,56 @@ class XGBoostModel(BaseModel):
         
         logging.info("\n=== Model Evaluation ===")
         logging.info(f"Test data size: {X_test.shape}")
+        
+        # 获取预测概率
+        dtest = xgb.DMatrix(X_test)
+        y_pred_proba = self.model.predict(dtest)
+        
+        # 找到最优阈值
+        self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
         logging.info(f"Using threshold: {self.best_threshold}")
         
         # 使用最优阈值进行预测
-        dtest = xgb.DMatrix(X_test)
-        y_pred_proba = self.model.predict(dtest)
         y_pred = (y_pred_proba > self.best_threshold).astype(int)
         
         test_metrics = self.metrics.calculate_metrics(y_test, y_pred, y_pred_proba)
-
-        # 分析并输出特征重要性
-        # self.analyze_feature_importance()
         
         return test_metrics
-        
-    def analyze_feature_importance(self):
-        """分析特征重要性"""
-        if self.model is None or self.feature_names is None:
-            logging.error("Model not trained or feature names not set")
-            return
-            
-        # 直接使用get_score()获取特征重要性
-        importance_dict = self.model.get_score(importance_type='weight')
-        
-        # 创建特征重要性DataFrame
-        importance_df = pd.DataFrame({
-            'feature': list(importance_dict.keys()),
-            'importance': list(importance_dict.values())
-        })
-        
-        # 按重要性排序
-        importance_df = importance_df.sort_values('importance', ascending=False)
-        
-        # 输出前10个重要特征
-        logging.info("Top 10 important features:")
-        for idx, row in importance_df.head(10).iterrows():
-            logging.info(f"{row['feature']}: {row['importance']:.4f}")
-            
-    @staticmethod
-    def load_model(model_path):
-        """加载已保存的模型
-        
-        Args:
-            model_path: 模型文件路径
-            
-        Returns:
-            XGBoost模型实例
-            
-        异常处理:
-        捕获并记录加载过程中的任何错误
-        """
-        try:
-            model = xgb.Booster()
-            model.load_model(model_path)
-            return model
-        except Exception as e:
-            logging.error(f"Failed to load model: {str(e)}")
-            raise
-
+                
     def predict(self, X_test):
-        """预测类别
-        
-        Args:
-            X_test: 测试数据特征矩阵
-            
-        Returns:
-            预测的类别标签(0或1)
-        """
+        """预测类别"""
         dtest = xgb.DMatrix(X_test)
-        return (self.model.predict(dtest) > 0.5).astype(int)
+        y_pred_proba = self.model.predict(dtest)
+        return (y_pred_proba > self.best_threshold).astype(int)
         
     def predict_proba(self, X_test):
-        """预测概率
-        
-        Args:
-            X_test: 测试数据特征矩阵
-            
-        Returns:
-            预测的正类概率
-        """
+        """预测概率"""
         dtest = xgb.DMatrix(X_test)
         return self.model.predict(dtest)
+
+    def get_parameters(self):
+        """获取模型参数"""
+        if self.model is None:
+            raise ValueError("Model not initialized")
+        
+        # 保存XGBoost模型的关键参数
+        return {
+            'booster': self.model.save_raw(),  # 保存模型的原始数据
+            'best_threshold': self.best_threshold,
+            'params': self.params  # 保存训练参数
+        }
+
+    def set_parameters(self, parameters):
+        """设置模型参数"""
+        if 'booster' not in parameters:
+            raise ValueError("Missing booster parameters")
+        
+        # 创建新的XGBoost模型
+        self.model = xgb.Booster()
+        # 从原始数据加载模型
+        self.model.load_model(bytearray(parameters['booster']))
+        
+        # 恢复其他参数
+        self.best_threshold = parameters.get('best_threshold', 0.5)
+        self.params = parameters.get('params', self.params)
 

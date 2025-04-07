@@ -1,6 +1,5 @@
 data:
-  test_size: 0.2  # 测试集占比,默认0.2
-  val_size: 0.2  # 验证集占比,默认0.2
+  test_size: 0.3  
 base:
   random_seed: 42  # 随机种子,默认42
 

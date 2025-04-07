@@ -13,17 +13,17 @@ def run_standard_experiment(config_path):
     """运行标准训练实验"""
     experiment = StandardExperiment(config_path)
     
-    # logger.info("添加XGBoost模型...")
-    # experiment.add_model('xgboost', XGBoostModel(config=experiment.config))
+    logger.info("添加XGBoost模型...")
+    experiment.add_model('xgboost', XGBoostModel(config=experiment.config))
     
-    # logger.info("添加随机森林模型...")
-    # experiment.add_model('random_forest', RandomForestModel(config=experiment.config))
+    logger.info("添加随机森林模型...")
+    experiment.add_model('random_forest', RandomForestModel(config=experiment.config))
     
     logger.info("添加逻辑回归模型...")
     experiment.add_model('logistic', LogisticRegressionModel(config=experiment.config))
     
-    # logger.info("添加神经网络模型...")
-    # experiment.add_model('neural_net', NeuralNetModel(config=experiment.config))
+    logger.info("添加神经网络模型...")
+    experiment.add_model('neural_net', NeuralNetModel(config=experiment.config))
     
     # 运行实验
     experiment.run()
@@ -47,9 +47,7 @@ def run_federated_experiment(config_path):
 def main():
     config_path = 'config/default.yaml'
     setup_logging()
-    
-    logger.info("\n=== 开始实验 ===")
-    
+        
     # 运行标准训练实验
     logger.info("\n=== 运行标准训练实验 ===")
     run_standard_experiment(config_path)

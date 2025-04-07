@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, cross_val_score
-from sklearn.metrics import f1_score, roc_auc_score
+from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 import logging
 import numpy as np
 import pandas as pd
@@ -16,6 +16,7 @@ class RandomForestModel(BaseModel):
         self.normalize = False
         self.metrics = ModelMetrics()  # 添加这行
         self.preprocessor = CreditCardDataPreprocessor(config=config, model=self)
+        self.best_threshold = 0.5  # 添加最佳阈值属性
         
     def grid_search_cv(self, X, y, param_grid):
         """网格搜索寻找最优参数
@@ -77,14 +78,12 @@ class RandomForestModel(BaseModel):
         
         return best_model, best_params
 
-    def train_model(self, X_train, y_train, X_val=None, y_val=None):
+    def train_model(self, X_train, y_train):
         """训练随机森林模型
         
         Args:
             X_train: 训练集特征矩阵
             y_train: 训练集标签
-            X_val: 验证集特征矩阵,用于寻找最优阈值
-            y_val: 验证集标签,用于寻找最优阈值
         """
         # 输出训练开始的基本信息
         logging.info("\n=== Random Forest Training Start ===")
@@ -94,9 +93,6 @@ class RandomForestModel(BaseModel):
         logging.info(f"Class Distribution in Training Set:")
         logging.info(f"- Positive samples: {np.sum(y_train == 1)}")
         logging.info(f"- Negative samples: {np.sum(y_train == 0)}")
-        
-        if X_val is not None:
-            logging.info(f"- Validation data shape: {X_val.shape}")
         
         if self.param_tuning:
             # 定义参数网格
@@ -130,98 +126,72 @@ class RandomForestModel(BaseModel):
         logging.info("Cross-validation Results:")
         logging.info(f"- Mean AUC: {cv_scores.mean():.4f}")
         logging.info(f"- Standard deviation: {cv_scores.std() * 2:.4f}")
-        
-        # 在验证集上寻找最优阈值
-        if X_val is not None and y_val is not None:
-            self.find_best_threshold(X_val, y_val)
-
-    def find_best_threshold(self, X_val, y_val):
-        """寻找最优预测阈值
-        
-        通过在验证集上尝试不同的阈值,找到使F1分数最高的阈值
-        
-        Args:
-            X_val: 验证集特征矩阵
-            y_val: 验证集标签
-        """
-        y_pred_proba = self.predict_proba(X_val)
-        
-        # 在不同阈值范围内搜索
-        thresholds = np.arange(0.2, 0.7, 0.05)
-        best_f1 = 0
-        best_threshold = 0.5
-        
-        for threshold in thresholds:
-            y_pred = (y_pred_proba > threshold).astype(int)
-            f1 = f1_score(y_val, y_pred)
-            
-            if f1 > best_f1:
-                best_f1 = f1
-                best_threshold = threshold
-        
-        self.best_threshold = best_threshold
-        logging.info("Threshold Optimization Results:")
-        logging.info(f"- Best threshold: {best_threshold:.2f}")
-        logging.info(f"- Best F1 score: {best_f1:.4f}")
-
-    def analyze_feature_importance(self):
-        """分析特征重要性
-        
-        计算并输出模型中各个特征的重要性得分,
-        按重要性从高到低排序并展示前10个最重要的特征
-        """
-        if self.model is None or self.feature_names is None:
-            logging.error("Error: Model not trained or feature names not set")
-            return
-            
-        # 获取特征重要性得分
-        importances = self.model.feature_importances_
-        indices = np.argsort(importances)[::-1]
-        
-        # 输出特征重要性排名
-        logging.info("\nFeature Importance Analysis:")
-        logging.info("Top 10 Most Important Features:")
-        for f in range(min(10, len(self.feature_names))):
-            logging.info(f"- {self.feature_names[indices[f]]}: {importances[indices[f]]:.4f}")
 
     def predict(self, X_test):
-        # 添加predict方法
-        return self.model.predict(X_test)
+        y_pred_proba = self.predict_proba(X_test)
+        return (y_pred_proba > self.best_threshold).astype(int)
 
     def predict_proba(self, X_test):
         return self.model.predict_proba(X_test)[:, 1]  # 取正类概率
 
+    def find_best_threshold(self, y_test, y_pred_proba):
+        thresholds = np.arange(0.1, 0.9, 0.05)
+        best_accuracy = 0
+        best_threshold = 0.5
+        
+        for threshold in thresholds:
+            y_pred = (y_pred_proba > threshold).astype(int)
+            accuracy = accuracy_score(y_test, y_pred)
+            
+            if accuracy > best_accuracy:
+                best_accuracy = accuracy
+                best_threshold = threshold
+        
+        logging.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        return best_threshold
+
     def evaluate_model(self, X_test, y_test):
-        """评估模型性能
-        
-        在测试集上评估模型的各项指标,包括:
-        - 准确率、精确率、召回率
-        - F1分数
-        - AUC-ROC分数
-        - 特征重要性分析
-        
-        Args:
-            X_test: 测试集特征矩阵
-            y_test: 测试集标签
-        
-        Returns:
-            dict: 包含各项评估指标的字典
-        """
         if self.model is None:
             raise ValueError("Error: Model not trained")
         
         logging.info("\n=== Model Evaluation ===")
         logging.info(f"Test Data Shape: {X_test.shape}")
-        logging.info(f"Using Threshold: {self.best_threshold}")
         
         # 获取预测结果
-        y_pred = self.predict(X_test)
         y_pred_proba = self.predict_proba(X_test)
+        
+        # 找到最优阈值
+        self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
+        logging.info(f"Using threshold: {self.best_threshold}")
+        
+        # 使用最优阈值进行预测
+        y_pred = (y_pred_proba > self.best_threshold).astype(int)
         
         # 计算评估指标
         test_metrics = self.metrics.calculate_metrics(y_test, y_pred, y_pred_proba)
         
-        # 分析特征重要性
-        # self.analyze_feature_importance()
-        
         return test_metrics
+
+    def get_parameters(self):
+        """获取模型参数"""
+        if self.model is None:
+            raise ValueError("Model not initialized")
+        
+        return {
+            'estimators': self.model.estimators_,
+            'n_features': self.model.n_features_in_,
+            'n_classes': self.model.n_classes_,
+            'n_outputs': self.model.n_outputs_,
+            'feature_importances': self.model.feature_importances_
+        }
+
+    def set_parameters(self, parameters):
+        """设置模型参数"""
+        if self.model is None:
+            raise ValueError("Model not initialized")
+        
+        self.model.estimators_ = parameters['estimators']
+        self.model.n_features_in_ = parameters['n_features']
+        self.model.n_classes_ = parameters['n_classes']
+        self.model.n_outputs_ = parameters['n_outputs']
+        self.model.feature_importances_ = parameters['feature_importances']

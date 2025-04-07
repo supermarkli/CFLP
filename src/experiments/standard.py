@@ -1,4 +1,4 @@
-from experiments.base import BaseExperiment
+from experiments.base_experiment import BaseExperiment
 from utils.logging_config import get_logger
 from tqdm import tqdm
 
@@ -10,15 +10,13 @@ class StandardExperiment(BaseExperiment):
     def __init__(self, config_path):
         super().__init__(config_path)
         
-    def train_and_evaluate_model(self, model, X_train, y_train, X_val, y_val, X_test, y_test):
+    def train_and_evaluate_model(self, model, X_train, y_train, X_test, y_test):
         """训练并评估单个模型"""
         try:
             # 训练模型
             model.train_model(
                 X_train=X_train, 
-                y_train=y_train,
-                X_val=X_val,
-                y_val=y_val
+                y_train=y_train
             )
             
             # 评估模型
@@ -34,24 +32,19 @@ class StandardExperiment(BaseExperiment):
         try:
             # 加载数据
             df = self.load_data()
+            # df = df.sample(n=10000, random_state=42)
             
             for name, model in tqdm(self.models.items(), desc="训练模型"):
                 logger.info(f"处理模型数据: {name}")
                 
-                X_train, X_val, X_test, y_train, y_val, y_test = model.preprocess_data(df)
+                X_train, X_test, y_train, y_test = model.preprocess_data(df)
                 
                 metrics = self.train_and_evaluate_model(
                     model,
                     X_train, y_train,
-                    X_val, y_val,
                     X_test, y_test
                 )
                 self.metrics.add_model_metrics(name, metrics)
-                
-                # 保存模型
-                if self.config.get('save_models', False):
-                    model_path = f"{self.config['model_save_path']}/{name}.model"
-                    self.save_model(model, model_path)
                 
         except Exception as e:
             logger.error(f"实验运行失败: {str(e)}")

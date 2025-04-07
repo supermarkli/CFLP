@@ -7,32 +7,16 @@ from data_process.credit_card import CreditCardDataPreprocessor
 from abc import ABC, abstractmethod
 
 class BaseModel(ABC):
-    """机器学习模型的基类
-    
-    实现了基本的模型训练、评估和特征分析功能。
-    所有具体的模型实现都应该继承这个基类。
-    """
-    
+
     def __init__(self, config: Dict[str, Any]) -> None:
-        """初始化基础模型类
-        
-        参数:
-            config: 配置字典,包含模型参数等配置信息。可以包含:
-                - 数据相关配置(数据路径、划分比例等)
-                - 模型相关配置(学习率、迭代次数等)
-                - 训练相关配置(批次大小、验证比例等)
-        """
         self.config = config
         self.preprocessor: Optional[CreditCardDataPreprocessor] = None
         self.model: Optional[Any] = None
         self.feature_names: Optional[List[str]] = None
         self.normalize: Optional[bool] = None
         
-    def preprocess_data(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
-                                                        pd.Series, pd.Series, pd.Series]:
-        if self.preprocessor is None:
-            raise ValueError("Preprocessor must be initialized before calling preprocess_data")
-            
+    def preprocess_data(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, 
+                                                        pd.Series, pd.Series]:            
         # 先保存特征名称
         X, y = self.preprocessor.split_features_target(df)
         self.feature_names = X.columns.tolist()
@@ -84,17 +68,6 @@ class BaseModel(ABC):
             
         返回:
             包含各项评估指标的字典
-        """
-        pass
-        
-    @abstractmethod
-    def analyze_feature_importance(self) -> Dict[str, float]:
-        """分析特征重要性
-        
-        计算并返回各个特征的重要性分数。
-        
-        返回:
-            特征名称到重要性分数的映射字典
         """
         pass
         
