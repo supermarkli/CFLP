@@ -1,11 +1,20 @@
-import xgboost as xgb
-import pandas as pd  
-from sklearn.model_selection import cross_val_score
-import logging
-from models.base_model import BaseModel
-from utils.metrics import ModelMetrics  
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
 import numpy as np
-from sklearn.metrics import f1_score, accuracy_score
+import pandas as pd
+import xgboost as xgb
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import accuracy_score
+
+from src.models.base_model import BaseModel
+from src.utils.metrics import ModelMetrics
+from src.utils.logging_config import get_logger
+
+logger = get_logger()
 
 class XGBoostModel(BaseModel):
     
@@ -48,7 +57,7 @@ class XGBoostModel(BaseModel):
             }
             best_params = self.grid_search_cv(X_train, y_train, param_grid)
             self.params.update(best_params)
-            logging.info("Using optimized parameters from grid search")
+            logger.info("Using optimized parameters from grid search")
         
         # 计算正负类比例,用于scale_pos_weight
         neg_pos_ratio = np.sum(y_train == 0) / np.sum(y_train == 1)
@@ -57,12 +66,12 @@ class XGBoostModel(BaseModel):
         dtrain = xgb.DMatrix(X_train, label=y_train)
         evals = [(dtrain, 'train')]
         
-        logging.info("\n=== Training Start ===")
-        logging.info(f"Training data size: {X_train.shape}")
-        logging.info(f"Class distribution in training set:")
-        logging.info(f"  Positive samples: {np.sum(y_train == 1)}")
-        logging.info(f"  Negative samples: {np.sum(y_train == 0)}")
-        logging.info(f"  Scale pos weight: {self.params['scale_pos_weight']}")
+        logger.info("\n=== Training Start ===")
+        logger.info(f"Training data size: {X_train.shape}")
+        logger.info(f"Class distribution in training set:")
+        logger.info(f"  Positive samples: {np.sum(y_train == 1)}")
+        logger.info(f"  Negative samples: {np.sum(y_train == 0)}")
+        logger.info(f"  Scale pos weight: {self.params['scale_pos_weight']}")
         
         # 训练模型
         self.model = xgb.train(
@@ -74,7 +83,7 @@ class XGBoostModel(BaseModel):
         )
 
     def grid_search_cv(self, X, y, param_grid):
-        logging.info("Starting grid search...")
+        logger.info("Starting grid search...")
         
         best_score = 0
         best_params = None
@@ -116,11 +125,11 @@ class XGBoostModel(BaseModel):
                                 best_score = mean_score
                                 best_params = params
                                 
-                            logging.info(f"Parameters: {params}")
-                            logging.info(f"Cross-validation score: {mean_score:.4f}")
+                            logger.info(f"Parameters: {params}")
+                            logger.info(f"Cross-validation score: {mean_score:.4f}")
         
-        logging.info(f"Grid search completed. Best parameters: {best_params}")
-        logging.info(f"Best cross-validation score: {best_score:.4f}")
+        logger.info(f"Grid search completed. Best parameters: {best_params}")
+        logger.info(f"Best cross-validation score: {best_score:.4f}")
         
         return best_params
         
@@ -137,7 +146,7 @@ class XGBoostModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logging.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold
         
     def evaluate_model(self, X_test, y_test):
@@ -145,8 +154,8 @@ class XGBoostModel(BaseModel):
         if self.model is None:
             raise ValueError("Model not trained")
         
-        logging.info("\n=== Model Evaluation ===")
-        logging.info(f"Test data size: {X_test.shape}")
+        logger.info("\n=== Model Evaluation ===")
+        logger.info(f"Test data size: {X_test.shape}")
         
         # 获取预测概率
         dtest = xgb.DMatrix(X_test)
@@ -154,7 +163,7 @@ class XGBoostModel(BaseModel):
         
         # 找到最优阈值
         self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-        logging.info(f"Using threshold: {self.best_threshold}")
+        logger.info(f"Using threshold: {self.best_threshold}")
         
         # 使用最优阈值进行预测
         y_pred = (y_pred_proba > self.best_threshold).astype(int)

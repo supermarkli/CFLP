@@ -1,8 +1,12 @@
-import yaml
-import pandas as pd
 import os
-from utils.logging_config import get_logger
-from utils.metrics import ModelMetrics
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
+import pandas as pd
+from src.utils.logging_config import get_logger
+from src.utils.metrics import ModelMetrics
 
 logger = get_logger()
 

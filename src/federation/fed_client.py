@@ -1,6 +1,12 @@
-from utils.metrics import ModelMetrics
-from utils.logging_config import get_logger
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
 from sklearn.model_selection import train_test_split
+from src.utils.metrics import ModelMetrics
+from src.utils.logging_config import get_logger
 
 logger = get_logger()
 
@@ -17,7 +23,6 @@ class FederatedClient:
         self.model = model
         self.metrics = ModelMetrics()
         
-        # 在初始化时划分训练集和测试集
         if data is not None:
             X_train, X_test, y_train, y_test = train_test_split(
                 data['X'], data['y'], test_size=0.2, random_state=42
@@ -28,12 +33,12 @@ class FederatedClient:
             self.train_data = None
             self.test_data = None
         
-    def train(self, epochs):
+    def train(self, epochs=10):
         """本地训练模型"""
         if self.train_data is None:
-            raise ValueError("No data available for training")
-        
-        # 根据模型类型设置训练轮数
+            logger.warning(f"Client {self.client_id}: No training data available.")
+            return self.metrics.get_metrics()
+
         if hasattr(self.model, 'epochs'):  # 神经网络模型
             self.model.epochs = epochs
         elif hasattr(self.model, 'max_iter'):  # 逻辑回归模型
@@ -42,13 +47,9 @@ class FederatedClient:
             self.model.num_boost_round = epochs
         elif hasattr(self.model, 'n_estimators'):  # 随机森林模型
             self.model.n_estimators = epochs
-        
-        # 使用训练集训练模型
+
         self.model.train_model(self.train_data['X'], self.train_data['y'])
-        
-        # 使用测试集评估模型
         metrics = self.model.evaluate_model(self.test_data['X'], self.test_data['y'])
-        
         return metrics
         
     def get_parameters(self):
@@ -57,4 +58,6 @@ class FederatedClient:
         
     def set_parameters(self, parameters):
         """设置模型参数"""
-        self.model.set_parameters(parameters) 
+        self.model.set_parameters(parameters)
+        logger.info(f"Client {self.client_id}: Model parameters updated.")
+        

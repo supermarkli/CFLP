@@ -1,25 +1,41 @@
-from sklearn.linear_model import SGDClassifier
-import logging
-from models.base_model import BaseModel
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
 import numpy as np
 import pandas as pd
+from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score
-from utils.metrics import ModelMetrics
 from imblearn.over_sampling import SMOTE
+
+from src.models.base_model import BaseModel
+from src.utils.metrics import ModelMetrics
+from src.utils.logging_config import get_logger
+
+logger = get_logger() 
 
 class LogisticRegressionModel(BaseModel):
     def __init__(self):
         super().__init__()
         self.param_tuning = False
-        self.model = None
         self.metrics = ModelMetrics()
         self.name = "LogisticRegression"
         self.normalize = True
         self.best_threshold = 0.5
         self.use_smote = False
+        
+        self.model = SGDClassifier(
+            loss='log_loss',
+            eta0=0.1,
+            learning_rate='adaptive',
+            max_iter=1000,
+            class_weight='balanced'
+        )
+        self.model.coef_ = np.zeros((1, 26))  
+        self.model.intercept_ = np.zeros(1)
         
     def train_model(self, X_train, y_train):
         """训练逻辑回归模型"""
@@ -32,41 +48,33 @@ class LogisticRegressionModel(BaseModel):
             }
             best_params = self.grid_search_cv(X_train, y_train, param_grid)
             self.model = SGDClassifier(loss='log_loss', **best_params)
-        else:
-            self.model = SGDClassifier(
-                loss='log_loss',
-                eta0=0.1,
-                learning_rate='adaptive',
-                max_iter=1000,
-                class_weight='balanced'
-            )
         
-        logging.info("\n=== Training Start ===")
-        logging.info(f"Original training data size: {X_train.shape}")
-        logging.info(f"Original class distribution:")
-        logging.info(f"  Positive samples: {np.sum(y_train == 1)}")
-        logging.info(f"  Negative samples: {np.sum(y_train == 0)}")
+        logger.info("\n=== Training Start ===")
+        logger.info(f"Original training data size: {X_train.shape}")
+        logger.info(f"Original class distribution:")
+        logger.info(f"  Positive samples: {np.sum(y_train == 1)}")
+        logger.info(f"  Negative samples: {np.sum(y_train == 0)}")
         
         # 应用SMOTE进行过采样
         if self.use_smote:
             smote = SMOTE(random_state=42)
             X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
             
-            logging.info(f"After SMOTE - training data size: {X_train_resampled.shape}")
-            logging.info(f"After SMOTE - class distribution:")
-            logging.info(f"  Positive samples: {np.sum(y_train_resampled == 1)}")
-            logging.info(f"  Negative samples: {np.sum(y_train_resampled == 0)}")
+            logger.info(f"After SMOTE - training data size: {X_train_resampled.shape}")
+            logger.info(f"After SMOTE - class distribution:")
+            logger.info(f"  Positive samples: {np.sum(y_train_resampled == 1)}")
+            logger.info(f"  Negative samples: {np.sum(y_train_resampled == 0)}")
             
             # 使用重采样后的数据训练模型
             self.model.fit(X_train_resampled, y_train_resampled)
         else:
             self.model.fit(X_train, y_train)
             
-        logging.info("Model training completed")
+        logger.info("Model training completed")
         
     def grid_search_cv(self, X, y, param_grid):
         """网格搜索寻找最优参数"""
-        logging.info("Starting grid search...")
+        logger.info("Starting grid search...")
         
         best_score = 0
         best_params = None
@@ -96,15 +104,15 @@ class LogisticRegressionModel(BaseModel):
                         mean_score = cv_scores.mean()
                         
                         # 输出当前参数组合的结果
-                        logging.info(f"Parameters: {params}")
-                        logging.info(f"Cross-validation score: {mean_score:.4f}")
+                        logger.info(f"Parameters: {params}")
+                        logger.info(f"Cross-validation score: {mean_score:.4f}")
                         
                         if mean_score > best_score:
                             best_score = mean_score
                             best_params = params
         
-        logging.info(f"Grid search completed. Best parameters: {best_params}")
-        logging.info(f"Best cross-validation score: {best_score:.4f}")
+        logger.info(f"Grid search completed. Best parameters: {best_params}")
+        logger.info(f"Best cross-validation score: {best_score:.4f}")
         
         return best_params
         
@@ -121,7 +129,7 @@ class LogisticRegressionModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logging.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold
 
     def evaluate_model(self, X_test, y_test):
@@ -129,14 +137,14 @@ class LogisticRegressionModel(BaseModel):
         if self.model is None:
             raise ValueError("Model not trained")
             
-        logging.info("\n=== Model Evaluation ===")
+        logger.info("\n=== Model Evaluation ===")
         
         # 获取预测概率
         y_pred_proba = self.model.predict_proba(X_test)[:, 1]
         
         # 找到最优阈值
         self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-        logging.info(f"Using threshold: {self.best_threshold}")
+        logger.info(f"Using threshold: {self.best_threshold}")
         
         # 使用最优阈值进行预测
         y_pred = (y_pred_proba > self.best_threshold).astype(int)
@@ -151,10 +159,16 @@ class LogisticRegressionModel(BaseModel):
         return (y_pred_proba > self.best_threshold).astype(int)
 
     def predict_proba(self, X_test):
-        return self.model.predict_proba(X_test)[:, 1]  #
+        return self.model.predict_proba(X_test)[:, 1]
 
     def get_parameters(self):
         """获取模型参数"""
+        if not hasattr(self.model, 'coef_'):
+            # 如果模型还没有参数，返回初始化的零参数
+            return {
+                'coef': np.zeros((1, 26)),
+                'intercept': np.zeros(1)
+            }
         return {
             'coef': self.model.coef_.copy(),
             'intercept': self.model.intercept_.copy()
@@ -162,5 +176,17 @@ class LogisticRegressionModel(BaseModel):
         
     def set_parameters(self, parameters):
         """设置模型参数"""
-        self.model.coef_ = parameters['coef']
-        self.model.intercept_ = parameters['intercept']
+        if not parameters:
+            return
+            
+        if 'coef' in parameters:
+            if not hasattr(self.model, 'coef_'):
+                self.model.coef_ = parameters['coef']
+            else:
+                self.model.coef_ = parameters['coef']
+                
+        if 'intercept' in parameters:
+            if not hasattr(self.model, 'intercept_'):
+                self.model.intercept_ = parameters['intercept']
+            else:
+                self.model.intercept_ = parameters['intercept']

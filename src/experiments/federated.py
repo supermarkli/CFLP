@@ -1,11 +1,17 @@
-from experiments.base_experiment import BaseExperiment
-from utils.logging_config import get_logger
-from federation.fed_client import FederatedClient
-from federation.fed_server import FederatedServer
-from tqdm import tqdm
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
 import numpy as np
 import pandas as pd
-import os
+from tqdm import tqdm
+
+from src.experiments.base_experiment import BaseExperiment
+from src.federation.fed_client import FederatedClient
+from src.federation.fed_server import FederatedServer
+from src.utils.logging_config import get_logger
 
 logger = get_logger()
 
@@ -190,9 +196,7 @@ class FederatedExperiment(BaseExperiment):
     def run(self, n_clients=3, n_rounds=10):
         """运行联邦学习实验"""
         try:
-            logger.info("开始联邦学习实验...")
             
-            # 加载数据
             X_train_norm, X_test_norm, y_train_norm, y_test_norm, X_train_raw, X_test_raw, y_train_raw, y_test_raw = self.load_data()
             
             federated_results = {}
@@ -200,7 +204,6 @@ class FederatedExperiment(BaseExperiment):
             for name, model_template in self.models.items():
                 logger.info(f"\n=== 开始 {name} 的联邦学习 ===")
                 
-                # 根据模型的normalize值选择合适的数据集
                 if hasattr(model_template, 'normalize') and model_template.normalize:
                     if X_train_norm is None:
                         logger.warning(f"模型 {name} 需要标准化数据，但标准化数据不可用，跳过该模型")
@@ -235,7 +238,7 @@ class FederatedExperiment(BaseExperiment):
                 
                 # 最终在测试集上评估
                 logger.info(f"\n{name} 在测试集上的最终评估:")
-                global_model = list(self.fed_server.clients.values())[0].model
+                global_model = self.fed_server.clients[0].model
                 test_metrics = global_model.evaluate_model(X_test, y_test)
                 
                 # 存储结果

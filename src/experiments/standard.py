@@ -1,8 +1,14 @@
-from experiments.base_experiment import BaseExperiment
-from utils.logging_config import get_logger
-from tqdm import tqdm
 import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
 import pandas as pd
+from tqdm import tqdm
+
+from src.experiments.base_experiment import BaseExperiment
+from src.utils.logging_config import get_logger
 
 logger = get_logger()
 
@@ -15,13 +21,11 @@ class StandardExperiment(BaseExperiment):
     def train_and_evaluate_model(self, model, X_train, y_train, X_test, y_test):
         """训练并评估单个模型"""
         try:
-            # 训练模型
             model.train_model(
                 X_train=X_train, 
                 y_train=y_train
             )
             
-            # 评估模型
             metrics = model.evaluate_model(X_test, y_test)
             return metrics
             

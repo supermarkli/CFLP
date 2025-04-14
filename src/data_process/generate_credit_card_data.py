@@ -1,9 +1,8 @@
 import os
 import sys
+import yaml
 
-# 获取项目根目录
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-# 添加项目根目录到Python路径
 sys.path.append(PROJECT_ROOT)
 
 import pandas as pd
@@ -12,7 +11,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 from src.utils.logging_config import setup_logging, get_logger
-import yaml
+
 
 logger = get_logger()
 
@@ -161,5 +160,77 @@ def generate_credit_card_data():
     logger.info(f"训练集大小: {train_size_raw}")
     logger.info(f"测试集大小: {test_size_raw}")
 
+def split_data_for_federation(num_clients=3):
+    """将标准化训练数据分割成多个部分，为联邦学习做准备"""
+    logger.info(f"开始为 {num_clients} 个客户端分割标准化训练数据...")
+
+    # 定义路径
+    base_data_dir = os.path.join(PROJECT_ROOT, 'data')
+    source_file_path = os.path.join(base_data_dir, 'credit_card', 'credit_card_train_normalized.csv')
+
+    # 加载数据
+    try:
+        df_train_norm = pd.read_csv(source_file_path)
+        logger.info(f"成功加载标准化训练数据: {source_file_path}, 形状: {df_train_norm.shape}")
+    except FileNotFoundError:
+        logger.error(f"源文件未找到: {source_file_path}。请先运行 generate_credit_card_data()")
+        return
+    except Exception as e:
+        logger.error(f"加载数据时出错: {e}")
+        return
+
+    # 检查数据是否为空
+    if df_train_norm.empty:
+        logger.error("加载的数据为空，无法进行分割。")
+        return
+
+    # 计算分割点
+    n_samples = len(df_train_norm)
+    indices = np.arange(n_samples)
+    # 可以选择随机打乱数据再分割
+    np.random.shuffle(indices) 
+    split_indices = np.array_split(indices, num_clients)
+    logger.info(f"数据将被分割成 {len(split_indices)} 份。")
+
+
+    # 分割并保存数据
+    for i in range(num_clients):
+        client_id = i + 1
+        client_dir = os.path.join(base_data_dir, f'client{client_id}')
+        os.makedirs(client_dir, exist_ok=True) # 创建客户端数据目录
+
+        # 获取当前客户端的数据子集
+        client_data_indices = split_indices[i]
+        if len(client_data_indices) == 0:
+             logger.warning(f"客户端 {client_id} 分配到的数据为空，跳过保存。")
+             continue
+
+        client_df = df_train_norm.iloc[client_data_indices]
+
+        # 定义客户端数据保存路径 (使用相同的文件名)
+        client_output_path = os.path.join(client_dir, 'credit_card_train_normalized.csv')
+
+        # 保存数据
+        try:
+            client_df.to_csv(client_output_path, index=False)
+            file_size = os.path.getsize(client_output_path) / (1024 * 1024) # MB
+            logger.info(f"成功保存客户端 {client_id} 的数据到: {client_output_path}, 形状: {client_df.shape}, 大小: {file_size:.2f}MB")
+        except Exception as e:
+            logger.error(f"保存客户端 {client_id} 数据时出错: {e}")
+
+
+    logger.info(f"为 {num_clients} 个客户端分割数据完成。")
+
+
 if __name__ == '__main__':
-    generate_credit_card_data() 
+    # 配置日志记录 (新增)
+    setup_logging()
+    logger.info("开始执行数据处理脚本...") # (新增)
+
+    # 1. 生成信用卡数据（调用你原有的函数）
+    generate_credit_card_data()
+
+    # 2. 将标准化训练数据分割给客户端 (新增调用)
+    split_data_for_federation(num_clients=3)
+
+    logger.info("数据处理脚本执行完毕。") # (新增) 

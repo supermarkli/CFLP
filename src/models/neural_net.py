@@ -1,14 +1,22 @@
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from models.base_model import BaseModel
-import logging
-from utils.metrics import ModelMetrics
-from sklearn.metrics import f1_score, accuracy_score
 from torch.utils.data import TensorDataset, DataLoader
-import copy
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
+
+from src.models.base_model import BaseModel
+from src.utils.metrics import ModelMetrics
+from src.utils.logging_config import get_logger
+
+logger = get_logger()
 
 class NeuralNetwork(nn.Module):
     def __init__(self, input_dim):
@@ -66,13 +74,13 @@ class NeuralNetModel(BaseModel):
         self.best_threshold = 0.5
 
     def train_model(self, X_train, y_train):
-        logging.info("\n=== Training Start ===")
-        logging.info(f"Training data size: {X_train.shape}")
+        logger.info("\n=== Training Start ===")
+        logger.info(f"Training data size: {X_train.shape}")
         
         if self.network is None:
             input_dim = X_train.shape[1]
             self.network = NeuralNetwork(input_dim=input_dim).to(self.device)
-            logging.info(f"Initialized neural network with input dimension: {input_dim}")
+            logger.info(f"Initialized neural network with input dimension: {input_dim}")
         
         if hasattr(X_train, 'values'):
             X_train = X_train.values
@@ -82,9 +90,9 @@ class NeuralNetModel(BaseModel):
         # 打印类别分布
         pos_count = np.sum(y_train == 1)
         neg_count = np.sum(y_train == 0)
-        logging.info("Class distribution in training set:")
-        logging.info(f"  Positive samples: {pos_count}")
-        logging.info(f"  Negative samples: {neg_count}")
+        logger.info("Class distribution in training set:")
+        logger.info(f"  Positive samples: {pos_count}")
+        logger.info(f"  Negative samples: {neg_count}")
         
         # 转换为tensor并移动到正确的device
         X_train_tensor = torch.FloatTensor(X_train).to(self.device)
@@ -115,9 +123,9 @@ class NeuralNetModel(BaseModel):
                 
             # 计算平均损失
             avg_loss = total_loss / len(train_loader)
-            logging.info(f'Epoch [{epoch+1}/{self.epochs}], Loss: {avg_loss:.4f}')
+            logger.info(f'Epoch [{epoch+1}/{self.epochs}], Loss: {avg_loss:.4f}')
         
-        logging.info("Model training completed")
+        logger.info("Model training completed")
 
     def predict(self, X_test):
         """预测类别"""
@@ -147,7 +155,7 @@ class NeuralNetModel(BaseModel):
         if self.network is None:
             raise ValueError("模型未训练")
         
-        logging.info("\n=== Model Evaluation ===")
+        logger.info("\n=== Model Evaluation ===")
 
         self.network.eval()
         X_test_tensor = torch.FloatTensor(X_test).to(self.device)
@@ -158,7 +166,7 @@ class NeuralNetModel(BaseModel):
             
             # 找到最优阈值
             self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-            logging.info(f"Using threshold: {self.best_threshold}")
+            logger.info(f"Using threshold: {self.best_threshold}")
             
             # 使用最优阈值进行预测
             y_pred = (y_pred_proba > self.best_threshold).astype(int).reshape(-1)
@@ -170,20 +178,31 @@ class NeuralNetModel(BaseModel):
     def get_parameters(self):
         """获取模型参数"""
         if self.network is None:
-            raise ValueError("模型未初始化")
+            return {}
         return {
             name: param.data.clone().detach()
             for name, param in self.network.named_parameters()
         }
 
     def set_parameters(self, parameters):
-        """设置模型参数"""
+        """设置模型参数
+        
+        Args:
+            parameters: 模型参数字典，可以是 PyTorch tensor 或 numpy 数组
+        """
+        if not parameters:
+            return
+            
         if self.network is None:
-            raise ValueError("模型未初始化")
+            raise ValueError("模型网络未初始化，请先训练模型")
+            
         with torch.no_grad():
             for name, param in self.network.named_parameters():
                 if name in parameters:
-                    param.data = parameters[name].clone().detach()
+                    if isinstance(parameters[name], np.ndarray):
+                        param.data = torch.from_numpy(parameters[name]).float()
+                    else:
+                        param.data = parameters[name].clone().detach()
 
     def find_best_threshold(self, y_test, y_pred_proba):
         thresholds = np.arange(0.1, 0.9, 0.05)
@@ -198,5 +217,5 @@ class NeuralNetModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logging.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold

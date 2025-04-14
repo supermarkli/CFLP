@@ -1,0 +1,66 @@
+# Docker Compose configuration for federated learning 
+
+version: '3'
+
+services:
+  server:
+    build:
+      context: ../..
+      dockerfile: docker-federated/docker/Dockerfile.server
+    ports:
+      - "50051:50051"
+    environment:
+      - GRPC_SERVER_PORT=50051
+    volumes:
+      - ../../data/credit_card:/app/data
+    networks:
+      - federated-network
+
+  client1:
+    build:
+      context: ../..
+      dockerfile: docker-federated/docker/Dockerfile.client
+    environment:
+      - CLIENT_ID=1
+      - GRPC_SERVER_HOST=server
+      - GRPC_SERVER_PORT=50051
+    volumes:
+      - ../../data/client1:/app/data
+    depends_on:
+      - server
+    networks:
+      - federated-network
+
+  client2:
+    build:
+      context: ../..
+      dockerfile: docker-federated/docker/Dockerfile.client
+    environment:
+      - CLIENT_ID=2
+      - GRPC_SERVER_HOST=server
+      - GRPC_SERVER_PORT=50051
+    volumes:
+      - ../../data/client2:/app/data
+    depends_on:
+      - server
+    networks:
+      - federated-network
+
+  client3:
+    build:
+      context: ../..
+      dockerfile: docker-federated/docker/Dockerfile.client
+    environment:
+      - CLIENT_ID=3
+      - GRPC_SERVER_HOST=server
+      - GRPC_SERVER_PORT=50051
+    volumes:
+      - ../../data/client3:/app/data
+    depends_on:
+      - server
+    networks:
+      - federated-network
+
+networks:
+  federated-network:
+    driver: bridge 

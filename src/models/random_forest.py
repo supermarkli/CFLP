@@ -1,11 +1,21 @@
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV, cross_val_score
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
-import logging
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(PROJECT_ROOT)
+
 import numpy as np
 import pandas as pd
-from models.base_model import BaseModel
-from utils.metrics import ModelMetrics
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV, cross_val_score
+from sklearn.metrics import accuracy_score
+
+from src.models.base_model import BaseModel
+from src.utils.metrics import ModelMetrics
+from src.utils.logging_config import get_logger
+
+logger = get_logger()
+
 class RandomForestModel(BaseModel):
     def __init__(self):
         super().__init__()
@@ -13,8 +23,8 @@ class RandomForestModel(BaseModel):
         self.model = RandomForestClassifier()
         self.name = "RandomForest"
         self.normalize = False
-        self.metrics = ModelMetrics()  # 添加这行
-        self.best_threshold = 0.5  # 添加最佳阈值属性
+        self.metrics = ModelMetrics()
+        self.best_threshold = 0.5
         
     def grid_search_cv(self, X, y, param_grid):
         """网格搜索寻找最优参数
@@ -27,7 +37,7 @@ class RandomForestModel(BaseModel):
         Returns:
             tuple: (最优模型, 最优参数)
         """
-        logging.info("\n=== Starting grid search ===")
+        logger.info("\n=== Starting grid search ===")
         
         best_score = 0
         best_params = None
@@ -59,8 +69,8 @@ class RandomForestModel(BaseModel):
                         mean_score = cv_scores.mean()
                         
                         # 输出当前参数组合的结果
-                        logging.info(f"Parameters: {params}")
-                        logging.info(f"CV AUC Score: {mean_score:.4f}")
+                        logger.info(f"Parameters: {params}")
+                        logger.info(f"CV AUC Score: {mean_score:.4f}")
                         
                         # 更新最优参数和模型
                         if mean_score > best_score:
@@ -70,9 +80,9 @@ class RandomForestModel(BaseModel):
                             best_model = RandomForestClassifier(**params)
                             best_model.fit(X, y)
         
-        logging.info(f"Grid search completed.")
-        logging.info(f"Best parameters: {best_params}")
-        logging.info(f"Best CV AUC score: {best_score:.4f}")
+        logger.info(f"Grid search completed.")
+        logger.info(f"Best parameters: {best_params}")
+        logger.info(f"Best CV AUC score: {best_score:.4f}")
         
         return best_model, best_params
 
@@ -84,13 +94,13 @@ class RandomForestModel(BaseModel):
             y_train: 训练集标签
         """
         # 输出训练开始的基本信息
-        logging.info("\n=== Random Forest Training Start ===")
-        logging.info(f"Model Configuration:")
-        logging.info(f"- Parameter tuning: {self.param_tuning}")
-        logging.info(f"- Training data shape: {X_train.shape}")
-        logging.info(f"Class Distribution in Training Set:")
-        logging.info(f"- Positive samples: {np.sum(y_train == 1)}")
-        logging.info(f"- Negative samples: {np.sum(y_train == 0)}")
+        logger.info("\n=== Random Forest Training Start ===")
+        logger.info(f"Model Configuration:")
+        logger.info(f"- Parameter tuning: {self.param_tuning}")
+        logger.info(f"- Training data shape: {X_train.shape}")
+        logger.info(f"Class Distribution in Training Set:")
+        logger.info(f"- Positive samples: {np.sum(y_train == 1)}")
+        logger.info(f"- Negative samples: {np.sum(y_train == 0)}")
         
         if self.param_tuning:
             # 定义参数网格
@@ -121,9 +131,9 @@ class RandomForestModel(BaseModel):
             self.model, X_train, y_train, 
             cv=5, scoring='roc_auc'
         )
-        logging.info("Cross-validation Results:")
-        logging.info(f"- Mean AUC: {cv_scores.mean():.4f}")
-        logging.info(f"- Standard deviation: {cv_scores.std() * 2:.4f}")
+        logger.info("Cross-validation Results:")
+        logger.info(f"- Mean AUC: {cv_scores.mean():.4f}")
+        logger.info(f"- Standard deviation: {cv_scores.std() * 2:.4f}")
 
     def predict(self, X_test):
         y_pred_proba = self.predict_proba(X_test)
@@ -145,22 +155,22 @@ class RandomForestModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logging.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold
 
     def evaluate_model(self, X_test, y_test):
         if self.model is None:
             raise ValueError("Error: Model not trained")
         
-        logging.info("\n=== Model Evaluation ===")
-        logging.info(f"Test Data Shape: {X_test.shape}")
+        logger.info("\n=== Model Evaluation ===")
+        logger.info(f"Test Data Shape: {X_test.shape}")
         
         # 获取预测结果
         y_pred_proba = self.predict_proba(X_test)
         
         # 找到最优阈值
         self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-        logging.info(f"Using threshold: {self.best_threshold}")
+        logger.info(f"Using threshold: {self.best_threshold}")
         
         # 使用最优阈值进行预测
         y_pred = (y_pred_proba > self.best_threshold).astype(int)
