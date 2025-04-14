@@ -14,7 +14,6 @@ class BaseExperiment:
     """基础实验类,包含所有实验共用的功能"""
     
     def __init__(self):
-        self.PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         self.models = {}
         self.metrics = ModelMetrics()
             
@@ -24,19 +23,14 @@ class BaseExperiment:
     def load_data(self):
         """加载数据"""
         try:
-            data_dir = os.path.join(self.PROJECT_ROOT, 'data', 'credit_card')
-        
+            data_dir = os.path.join(PROJECT_ROOT, 'data', 'credit_card')
             train_norm_path = os.path.join(data_dir, 'credit_card_train_normalized.csv')
-            test_norm_path = os.path.join(data_dir, 'credit_card_test_normalized.csv')
-            
+            test_norm_path = os.path.join(data_dir, 'credit_card_test_normalized.csv') 
             train_raw_path = os.path.join(data_dir, 'credit_card_train_raw.csv')
             test_raw_path = os.path.join(data_dir, 'credit_card_test_raw.csv')
-            
-
             train_norm_df = pd.read_csv(train_norm_path)
             test_norm_df = pd.read_csv(test_norm_path)
             
-            # 分离特征和目标变量
             X_train_norm = train_norm_df.drop('target', axis=1)
             y_train_norm = train_norm_df['target']
             X_test_norm = test_norm_df.drop('target', axis=1)

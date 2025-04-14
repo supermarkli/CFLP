@@ -13,19 +13,26 @@ logger = get_logger()
 
 class FederatedServer:
 
-    def __init__(self):
+    def __init__(self, test_data=None):
         self.clients = []
         self.global_model = None
         self.metrics = ModelMetrics()
         self.best_metrics = None
+        self.test_data = test_data
         
-    def add_client(self, model):
-        self.clients.append(model)
+    def add_client(self, client):
+        """添加联邦学习客户端
+        
+        Args:
+            client: FederatedClient实例
+        """
+        self.clients.append(client)
         if self.global_model is None:
-            self.global_model = model.get_parameters()
+            self.global_model = client.model
         
     def aggregate_parameters(self, client_parameters):
         if not client_parameters:
+            logger.warning("客户端参数为空,将返回当前全局模型")
             return self.global_model
         
         aggregated_params = {}
@@ -37,11 +44,10 @@ class FederatedServer:
                 param_sum = np.sum([params[key] for params in client_parameters if key in params], axis=0)
                 aggregated_params[key] = param_sum / num_clients
 
-        self.global_model = aggregated_params
         return aggregated_params
         
-    def train_round(self, round_idx):
-        logger.info(f"Federated Learning Round {round_idx + 1}")
+    def train_round(self, round_idx, total_rounds=None):
+        logger.info(f"\n=== {self.global_model.name} 联邦学习第 {round_idx + 1} 轮 ===")
         
         # 1. 在每个客户端上进行本地训练
         client_metrics = {}
@@ -55,26 +61,23 @@ class FederatedServer:
         
         # 3. 将聚合后的参数更新到所有客户端
         for client in self.clients:
-            client.set_parameters(global_parameters)
-            
-        return client_metrics 
+            client.model.set_parameters(global_parameters)
+        
+        # 4. 评估全局模型
+        self.global_model = self.clients[0].model
+        metrics = self.global_model.evaluate_model(self.test_data['X'], self.test_data['y'])
+        
+        # 根据是否是最后一轮决定日志前缀
+        prefix = "最终评估 - " if total_rounds and round_idx == total_rounds - 1 else ""
+        logger.info(f"{prefix}全局模型评估指标:")
+        logger.info(f"{prefix}Accuracy: {metrics['accuracy']:.4f}")
+        logger.info(f"{prefix}Precision: {metrics['precision']:.4f}")
+        logger.info(f"{prefix}Recall: {metrics['recall']:.4f}")
+        logger.info(f"{prefix}F1 Score: {metrics['f1']:.4f}")
+        logger.info(f"{prefix}AUC-ROC: {metrics['auc_roc']:.4f}")
+
+        return client_metrics
 
     def get_global_model(self):
         return self.global_model
 
-    def evaluate_global_model(self, test_data):
-        if self.global_model is None or not test_data:
-            print("Global model not available or no test data provided.")
-            return None
-        
-        if not self.clients:
-             print("No clients registered to perform evaluation.")
-             return None
-
-        eval_model = self.clients[0]
-        eval_model.set_parameters(self.global_model)
-        
-        metrics = eval_model.evaluate(test_data['X'], test_data['y'])
-        self.metrics.update(metrics)
-        print(f"Global model evaluation metrics: {metrics}")
-        return metrics 

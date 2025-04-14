@@ -73,14 +73,10 @@ class NeuralNetModel(BaseModel):
         self.metrics = ModelMetrics()
         self.best_threshold = 0.5
 
-    def train_model(self, X_train, y_train):
-        logger.info("\n=== Training Start ===")
-        logger.info(f"Training data size: {X_train.shape}")
-        
+    def train_model(self, X_train, y_train):        
         if self.network is None:
             input_dim = X_train.shape[1]
             self.network = NeuralNetwork(input_dim=input_dim).to(self.device)
-            logger.info(f"Initialized neural network with input dimension: {input_dim}")
         
         if hasattr(X_train, 'values'):
             X_train = X_train.values
@@ -90,9 +86,6 @@ class NeuralNetModel(BaseModel):
         # 打印类别分布
         pos_count = np.sum(y_train == 1)
         neg_count = np.sum(y_train == 0)
-        logger.info("Class distribution in training set:")
-        logger.info(f"  Positive samples: {pos_count}")
-        logger.info(f"  Negative samples: {neg_count}")
         
         # 转换为tensor并移动到正确的device
         X_train_tensor = torch.FloatTensor(X_train).to(self.device)
@@ -121,11 +114,9 @@ class NeuralNetModel(BaseModel):
                 optimizer.step()
                 total_loss += loss.item()
                 
-            # 计算平均损失
             avg_loss = total_loss / len(train_loader)
-            logger.info(f'Epoch [{epoch+1}/{self.epochs}], Loss: {avg_loss:.4f}')
+            # logger.info(f'Epoch [{epoch+1}/{self.epochs}], Loss: {avg_loss:.4f}')
         
-        logger.info("Model training completed")
 
     def predict(self, X_test):
         """预测类别"""
@@ -155,8 +146,6 @@ class NeuralNetModel(BaseModel):
         if self.network is None:
             raise ValueError("模型未训练")
         
-        logger.info("\n=== Model Evaluation ===")
-
         self.network.eval()
         X_test_tensor = torch.FloatTensor(X_test).to(self.device)
         
@@ -164,11 +153,8 @@ class NeuralNetModel(BaseModel):
             outputs = self.network(X_test_tensor)
             y_pred_proba = torch.sigmoid(outputs).cpu().numpy()
             
-            # 找到最优阈值
             self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-            logger.info(f"Using threshold: {self.best_threshold}")
             
-            # 使用最优阈值进行预测
             y_pred = (y_pred_proba > self.best_threshold).astype(int).reshape(-1)
         
         test_metrics = self.metrics.calculate_metrics(y_test, y_pred, y_pred_proba)
@@ -217,5 +203,5 @@ class NeuralNetModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        # logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold

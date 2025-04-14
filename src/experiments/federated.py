@@ -24,20 +24,15 @@ class FederatedExperiment(BaseExperiment):
         
     def _split_data_for_clients(self, X, y, n_clients):
         try:
-            
-            # 确保X和y是numpy数组
             X = np.asarray(X)
             y = np.asarray(y)
-            
-            # 随机打乱数据
+
             logger.info(f"开始数据分割,总样本数: {len(X)}, 客户端数: {n_clients}")
             indices = np.random.permutation(len(X))
             
-            # 计算每个客户端的数据量
             split_size = len(X) // n_clients
             logger.info(f"每个客户端平均数据量: {split_size}")
             
-            # 分割数据
             data_splits = []
             for i in range(n_clients):
                 start_idx = i * split_size
@@ -62,12 +57,8 @@ class FederatedExperiment(BaseExperiment):
             raise RuntimeError(f"数据分割过程中发生错误: {str(e)}")
             
     def setup_clients(self, model_template, data_splits):
-        """设置联邦学习客户端"""
         try:
-            self.fed_server = FederatedServer()
-            
             for i, data in enumerate(data_splits):
-                # 为每个客户端创建独立的模型实例
                 client_model = type(model_template)()
                 client = FederatedClient(
                     client_id=f"client_{i}",
@@ -85,14 +76,9 @@ class FederatedExperiment(BaseExperiment):
         try:
             client_metrics_history = []
             
-            # 使用tqdm显示训练轮次进度
             for round_idx in tqdm(range(n_rounds), desc="联邦学习训练"):
-                # 每轮训练
-                round_metrics = self.fed_server.train_round(round_idx=round_idx)
+                round_metrics = self.fed_server.train_round(round_idx=round_idx, total_rounds=n_rounds)
                 client_metrics_history.append(round_metrics)
-                
-                # 记录每轮的进度
-                logger.info(f"轮次 {round_idx + 1}/{n_rounds} 完成")
                     
             return client_metrics_history
             
@@ -130,77 +116,12 @@ class FederatedExperiment(BaseExperiment):
             logger.error(f"模型对比失败: {str(e)}")
             raise
             
-
-        """加载数据"""
-        try:
-            # 直接读取处理好的CSV文件
-            data_dir = os.path.join(self.PROJECT_ROOT, 'data', 'credit_card')
-            
-            # 读取标准化数据
-            train_norm_path = os.path.join(data_dir, 'credit_card_train_normalized.csv')
-            test_norm_path = os.path.join(data_dir, 'credit_card_test_normalized.csv')
-            
-            # 读取非标准化数据
-            train_raw_path = os.path.join(data_dir, 'credit_card_train_raw.csv')
-            test_raw_path = os.path.join(data_dir, 'credit_card_test_raw.csv')
-            
-            # 检查文件是否存在
-            if not os.path.exists(train_norm_path) or not os.path.exists(test_norm_path):
-                logger.warning("标准化数据文件不存在")
-                X_train_norm = None
-                X_test_norm = None
-                y_train_norm = None
-                y_test_norm = None
-            else:
-                # 读取标准化训练集和测试集
-                train_norm_df = pd.read_csv(train_norm_path)
-                test_norm_df = pd.read_csv(test_norm_path)
-                
-                # 分离特征和目标变量
-                X_train_norm = train_norm_df.drop('target', axis=1)
-                y_train_norm = train_norm_df['target']
-                X_test_norm = test_norm_df.drop('target', axis=1)
-                y_test_norm = test_norm_df['target']
-                
-                logger.info(f"成功加载标准化数据: 训练集 {X_train_norm.shape}, 测试集 {X_test_norm.shape}")
-            
-            if not os.path.exists(train_raw_path) or not os.path.exists(test_raw_path):
-                logger.warning("非标准化数据文件不存在")
-                X_train_raw = None
-                X_test_raw = None
-                y_train_raw = None
-                y_test_raw = None
-            else:
-                # 读取非标准化训练集和测试集
-                train_raw_df = pd.read_csv(train_raw_path)
-                test_raw_df = pd.read_csv(test_raw_path)
-                
-                # 分离特征和目标变量
-                X_train_raw = train_raw_df.drop('target', axis=1)
-                y_train_raw = train_raw_df['target']
-                X_test_raw = test_raw_df.drop('target', axis=1)
-                y_test_raw = test_raw_df['target']
-                
-                logger.info(f"成功加载非标准化数据: 训练集 {X_train_raw.shape}, 测试集 {X_test_raw.shape}")
-            
-            # 检查是否至少有一套数据可用
-            if X_train_norm is None and X_train_raw is None:
-                raise FileNotFoundError("找不到处理好的数据文件，请先运行数据生成脚本")
-                
-            return X_train_norm, X_test_norm, y_train_norm, y_test_norm, X_train_raw, X_test_raw, y_train_raw, y_test_raw
-            
-        except Exception as e:
-            logger.error(f"加载数据失败: {str(e)}")
-            raise
-            
     def run(self, n_clients=3, n_rounds=10):
         """运行联邦学习实验"""
-        try:
-            
-            X_train_norm, X_test_norm, y_train_norm, y_test_norm, X_train_raw, X_test_raw, y_train_raw, y_test_raw = self.load_data()
-            
+        try:      
+            X_train_norm, X_test_norm, y_train_norm, y_test_norm, X_train_raw, X_test_raw, y_train_raw, y_test_raw = self.load_data()  
             federated_results = {}
-            
+
             for name, model_template in self.models.items():
                 logger.info(f"\n=== 开始 {name} 的联邦学习 ===")
                 
@@ -211,12 +132,9 @@ class FederatedExperiment(BaseExperiment):
                     X_train, X_test, y_train, y_test = X_train_norm, X_test_norm, y_train_norm, y_test_norm
                     logger.info(f"使用标准化数据训练模型 {name}")
                 else:
-                    if X_train_raw is None:
-                        logger.warning(f"模型 {name} 需要非标准化数据，但非标准化数据不可用，跳过该模型")
-                        continue
                     X_train, X_test, y_train, y_test = X_train_raw, X_test_raw, y_train_raw, y_test_raw
                     logger.info(f"使用非标准化数据训练模型 {name}")
-                
+
                 # 将DataFrame转换为NumPy数组
                 if isinstance(X_train, pd.DataFrame):
                     X_train = X_train.to_numpy()
@@ -226,6 +144,9 @@ class FederatedExperiment(BaseExperiment):
                     y_train = y_train.to_numpy()
                 if isinstance(y_test, pd.Series):
                     y_test = y_test.to_numpy()
+                    
+                test_data = {'X': X_test, 'y': y_test}
+                self.fed_server = FederatedServer(test_data=test_data)
                 
                 # 分割训练数据给客户端
                 data_splits = self._split_data_for_clients(X_train, y_train, n_clients)
@@ -235,9 +156,6 @@ class FederatedExperiment(BaseExperiment):
                 
                 # 训练联邦学习模型
                 client_metrics_history = self.train_federated(n_rounds)
-                
-                # 最终在测试集上评估
-                logger.info(f"\n{name} 在测试集上的最终评估:")
                 global_model = self.fed_server.clients[0].model
                 test_metrics = global_model.evaluate_model(X_test, y_test)
                 

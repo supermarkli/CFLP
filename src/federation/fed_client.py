@@ -43,10 +43,6 @@ class FederatedClient:
             self.model.epochs = epochs
         elif hasattr(self.model, 'max_iter'):  # 逻辑回归模型
             self.model.max_iter = epochs
-        elif hasattr(self.model, 'num_boost_round'):  # XGBoost模型
-            self.model.num_boost_round = epochs
-        elif hasattr(self.model, 'n_estimators'):  # 随机森林模型
-            self.model.n_estimators = epochs
 
         self.model.train_model(self.train_data['X'], self.train_data['y'])
         metrics = self.model.evaluate_model(self.test_data['X'], self.test_data['y'])

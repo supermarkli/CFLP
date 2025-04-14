@@ -48,8 +48,8 @@ def run_federated_experiment():
 
 def main():
         
-    # logger.info("\n=== 运行标准训练实验 ===")
-    # run_standard_experiment()
+    logger.info("\n=== 运行标准训练实验 ===")
+    run_standard_experiment()
     
     logger.info("\n=== 运行联邦学习实验 ===")
     run_federated_experiment()

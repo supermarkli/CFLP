@@ -66,12 +66,11 @@ class XGBoostModel(BaseModel):
         dtrain = xgb.DMatrix(X_train, label=y_train)
         evals = [(dtrain, 'train')]
         
-        logger.info("\n=== Training Start ===")
-        logger.info(f"Training data size: {X_train.shape}")
-        logger.info(f"Class distribution in training set:")
-        logger.info(f"  Positive samples: {np.sum(y_train == 1)}")
-        logger.info(f"  Negative samples: {np.sum(y_train == 0)}")
-        logger.info(f"  Scale pos weight: {self.params['scale_pos_weight']}")
+        logger.info(f"训练数据大小: {X_train.shape}")
+        logger.info(f"训练集中的类别分布:")
+        logger.info(f"  正样本数量: {np.sum(y_train == 1)}")
+        logger.info(f"  负样本数量: {np.sum(y_train == 0)}")
+        logger.info(f"  正样本权重: {self.params['scale_pos_weight']}")
         
         # 训练模型
         self.model = xgb.train(
@@ -83,7 +82,7 @@ class XGBoostModel(BaseModel):
         )
 
     def grid_search_cv(self, X, y, param_grid):
-        logger.info("Starting grid search...")
+        logger.info("开始网格搜索...")
         
         best_score = 0
         best_params = None
@@ -125,11 +124,11 @@ class XGBoostModel(BaseModel):
                                 best_score = mean_score
                                 best_params = params
                                 
-                            logger.info(f"Parameters: {params}")
-                            logger.info(f"Cross-validation score: {mean_score:.4f}")
+                            logger.info(f"参数: {params}")
+                            logger.info(f"交叉验证分数: {mean_score:.4f}")
         
-        logger.info(f"Grid search completed. Best parameters: {best_params}")
-        logger.info(f"Best cross-validation score: {best_score:.4f}")
+        logger.info(f"网格搜索完成。最佳参数: {best_params}")
+        logger.info(f"最佳交叉验证分数: {best_score:.4f}")
         
         return best_params
         
@@ -146,7 +145,7 @@ class XGBoostModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        # logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold
         
     def evaluate_model(self, X_test, y_test):
@@ -154,8 +153,8 @@ class XGBoostModel(BaseModel):
         if self.model is None:
             raise ValueError("Model not trained")
         
-        logger.info("\n=== Model Evaluation ===")
-        logger.info(f"Test data size: {X_test.shape}")
+        logger.info(f"\n=== {self.name}模型评估 ===")
+        logger.info(f"测试数据大小: {X_test.shape}")
         
         # 获取预测概率
         dtest = xgb.DMatrix(X_test)
@@ -163,7 +162,7 @@ class XGBoostModel(BaseModel):
         
         # 找到最优阈值
         self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-        logger.info(f"Using threshold: {self.best_threshold}")
+        logger.info(f"使用阈值: {self.best_threshold:.4f}")
         
         # 使用最优阈值进行预测
         y_pred = (y_pred_proba > self.best_threshold).astype(int)

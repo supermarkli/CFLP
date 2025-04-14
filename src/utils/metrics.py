@@ -19,16 +19,7 @@ class ModelMetrics:
             'recall': recall_score(y_true, y_pred),
             'f1': f1_score(y_true, y_pred),
             'auc_roc': roc_auc_score(y_true, y_pred_proba)
-        }
-        
-        # Add logging output
-        logger.info("Model evaluation metrics:")
-        logger.info(f"Accuracy: {metrics['accuracy']:.4f}")
-        logger.info(f"Precision: {metrics['precision']:.4f}")
-        logger.info(f"Recall: {metrics['recall']:.4f}")
-        logger.info(f"F1 Score: {metrics['f1']:.4f}")
-        logger.info(f"AUC-ROC: {metrics['auc_roc']:.4f}")
-        
+        }        
         return metrics
         
     def add_model_metrics(self, model_name, metrics):
@@ -43,6 +34,6 @@ class ModelMetrics:
         if not self.metrics_dict:
             return None, None
         results_df = self.compare_models()
-        best_model = results_df['f1'].idxmax()
-        best_score = results_df.loc[best_model, 'f1']
+        best_model = results_df['accuracy'].idxmax()
+        best_score = results_df.loc[best_model, 'accuracy']
         return best_model, best_score

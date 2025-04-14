@@ -1,29 +1,58 @@
 import logging
+import os
 from datetime import datetime
+from pathlib import Path
 
 def setup_logging():
-    """设置简单的控制台日志配置"""
+    """设置日志配置，包括控制台和文件输出
+    
+    配置两个处理器：
+    1. 控制台处理器：只显示 INFO 级别以上的简要信息
+    2. 文件处理器：记录 DEBUG 级别以上的详细信息
+    """
     # 创建logger
     logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.DEBUG)
     
     # 如果logger已经有处理器,不重复添加
     if logger.handlers:
         return logger
         
+    # 创建logs目录
+    log_dir = Path("logs")
+    log_dir.mkdir(exist_ok=True)
+    
+    # 生成日志文件名（使用时间戳）
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_file = log_dir / f"{timestamp}.log"
+    
     # 创建格式化器
-    formatter = logging.Formatter(
+    console_formatter = logging.Formatter(
         '%(asctime)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
     
-    # 创建控制台处理器
+    file_formatter = logging.Formatter(
+        '%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    
+    # 创建控制台处理器（只显示重要信息）
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-    console_handler.setFormatter(formatter)
+    console_handler.setFormatter(console_formatter)
+    
+    # 创建文件处理器（记录详细信息）
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(file_formatter)
     
     # 添加处理器到logger
     logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+    
+    # 记录初始信息
+    logger.info(f"日志文件已创建: {log_file}")
     
     return logger
 

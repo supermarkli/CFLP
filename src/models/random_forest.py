@@ -27,17 +27,7 @@ class RandomForestModel(BaseModel):
         self.best_threshold = 0.5
         
     def grid_search_cv(self, X, y, param_grid):
-        """网格搜索寻找最优参数
-        
-        Args:
-            X: 特征数据
-            y: 标签数据
-            param_grid: 参数网格,包含待搜索的参数值范围
-            
-        Returns:
-            tuple: (最优模型, 最优参数)
-        """
-        logger.info("\n=== Starting grid search ===")
+        logger.info("\n=== 开始网格搜索 ===")
         
         best_score = 0
         best_params = None
@@ -69,8 +59,8 @@ class RandomForestModel(BaseModel):
                         mean_score = cv_scores.mean()
                         
                         # 输出当前参数组合的结果
-                        logger.info(f"Parameters: {params}")
-                        logger.info(f"CV AUC Score: {mean_score:.4f}")
+                        logger.info(f"参数: {params}")
+                        logger.info(f"交叉验证AUC分数: {mean_score:.4f}")
                         
                         # 更新最优参数和模型
                         if mean_score > best_score:
@@ -80,27 +70,19 @@ class RandomForestModel(BaseModel):
                             best_model = RandomForestClassifier(**params)
                             best_model.fit(X, y)
         
-        logger.info(f"Grid search completed.")
-        logger.info(f"Best parameters: {best_params}")
-        logger.info(f"Best CV AUC score: {best_score:.4f}")
+        logger.info(f"网格搜索完成")
+        logger.info(f"最优参数: {best_params}")
+        logger.info(f"最优交叉验证AUC分数: {best_score:.4f}")
         
         return best_model, best_params
 
     def train_model(self, X_train, y_train):
-        """训练随机森林模型
-        
-        Args:
-            X_train: 训练集特征矩阵
-            y_train: 训练集标签
-        """
-        # 输出训练开始的基本信息
-        logger.info("\n=== Random Forest Training Start ===")
-        logger.info(f"Model Configuration:")
-        logger.info(f"- Parameter tuning: {self.param_tuning}")
-        logger.info(f"- Training data shape: {X_train.shape}")
-        logger.info(f"Class Distribution in Training Set:")
-        logger.info(f"- Positive samples: {np.sum(y_train == 1)}")
-        logger.info(f"- Negative samples: {np.sum(y_train == 0)}")
+        logger.info(f"模型配置:")
+        logger.info(f"- 参数调优: {self.param_tuning}")
+        logger.info(f"- 训练数据形状: {X_train.shape}")
+        logger.info(f"训练集类别分布:")
+        logger.info(f"- 正样本数量: {np.sum(y_train == 1)}")
+        logger.info(f"- 负样本数量: {np.sum(y_train == 0)}")
         
         if self.param_tuning:
             # 定义参数网格
@@ -131,9 +113,9 @@ class RandomForestModel(BaseModel):
             self.model, X_train, y_train, 
             cv=5, scoring='roc_auc'
         )
-        logger.info("Cross-validation Results:")
-        logger.info(f"- Mean AUC: {cv_scores.mean():.4f}")
-        logger.info(f"- Standard deviation: {cv_scores.std() * 2:.4f}")
+        logger.info("交叉验证结果:")
+        logger.info(f"- 平均AUC: {cv_scores.mean():.4f}")
+        logger.info(f"- 标准差: {cv_scores.std() * 2:.4f}")
 
     def predict(self, X_test):
         y_pred_proba = self.predict_proba(X_test)
@@ -155,22 +137,22 @@ class RandomForestModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        # logger.info(f"找到最优阈值: {best_threshold:.2f} (准确率: {best_accuracy:.4f})")
         return best_threshold
 
     def evaluate_model(self, X_test, y_test):
         if self.model is None:
-            raise ValueError("Error: Model not trained")
+            raise ValueError("错误：模型未训练")
         
-        logger.info("\n=== Model Evaluation ===")
-        logger.info(f"Test Data Shape: {X_test.shape}")
+        logger.info("\n=== 模型评估 ===")
+        logger.info(f"测试数据形状: {X_test.shape}")
         
         # 获取预测结果
         y_pred_proba = self.predict_proba(X_test)
         
         # 找到最优阈值
         self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-        logger.info(f"Using threshold: {self.best_threshold}")
+        logger.info(f"使用阈值: {self.best_threshold:.4f}")
         
         # 使用最优阈值进行预测
         y_pred = (y_pred_proba > self.best_threshold).astype(int)
@@ -183,7 +165,7 @@ class RandomForestModel(BaseModel):
     def get_parameters(self):
         """获取模型参数"""
         if self.model is None:
-            raise ValueError("Model not initialized")
+            raise ValueError("模型未初始化")
         
         return {
             'estimators': self.model.estimators_,
@@ -196,7 +178,7 @@ class RandomForestModel(BaseModel):
     def set_parameters(self, parameters):
         """设置模型参数"""
         if self.model is None:
-            raise ValueError("Model not initialized")
+            raise ValueError("模型未初始化")
         
         self.model.estimators_ = parameters['estimators']
         self.model.n_features_in_ = parameters['n_features']

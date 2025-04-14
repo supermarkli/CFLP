@@ -1,0 +1,866 @@
+2025-04-14 16:51:45 - INFO - [logging_config.py:55] - 日志文件已创建: logs\20250414_165145.log
+2025-04-14 16:51:47 - INFO - [main.py:54] - 
+=== 运行联邦学习实验 ===
+2025-04-14 16:51:47 - INFO - [main.py:41] - 添加逻辑回归模型...
+2025-04-14 16:51:47 - INFO - [main.py:44] - 添加神经网络模型...
+2025-04-14 16:51:47 - INFO - [base_experiment.py:39] - 成功加载标准化数据: 训练集 (24000, 26), 测试集 (6000, 26)
+2025-04-14 16:51:47 - INFO - [base_experiment.py:49] - 成功加载非标准化数据: 训练集 (24000, 23), 测试集 (6000, 23)
+2025-04-14 16:51:47 - INFO - [federated.py:126] - 
+=== 开始 logistic 的联邦学习 ===
+2025-04-14 16:51:47 - INFO - [federated.py:133] - 使用标准化数据训练模型 logistic
+2025-04-14 16:51:47 - INFO - [federated.py:30] - 开始数据分割,总样本数: 24000, 客户端数: 3
+2025-04-14 16:51:47 - INFO - [federated.py:34] - 每个客户端平均数据量: 8000
+2025-04-14 16:51:47 - INFO - [federated.py:48] - 客户端0数据量: 8000
+2025-04-14 16:51:47 - INFO - [federated.py:48] - 客户端1数据量: 8000
+2025-04-14 16:51:47 - INFO - [federated.py:48] - 客户端2数据量: 8000
+2025-04-14 16:51:47 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 1 轮 ===
+2025-04-14 16:51:48 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:48 - INFO - [fed_server.py:73] - Accuracy: 0.8177
+2025-04-14 16:51:48 - INFO - [fed_server.py:74] - Precision: 0.6315
+2025-04-14 16:51:48 - INFO - [fed_server.py:75] - Recall: 0.4006
+2025-04-14 16:51:48 - INFO - [fed_server.py:76] - F1 Score: 0.4902
+2025-04-14 16:51:48 - INFO - [fed_server.py:77] - AUC-ROC: 0.7642
+2025-04-14 16:51:48 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 2 轮 ===
+2025-04-14 16:51:48 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:48 - INFO - [fed_server.py:73] - Accuracy: 0.8177
+2025-04-14 16:51:48 - INFO - [fed_server.py:74] - Precision: 0.6315
+2025-04-14 16:51:48 - INFO - [fed_server.py:75] - Recall: 0.4006
+2025-04-14 16:51:48 - INFO - [fed_server.py:76] - F1 Score: 0.4902
+2025-04-14 16:51:48 - INFO - [fed_server.py:77] - AUC-ROC: 0.7640
+2025-04-14 16:51:48 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 3 轮 ===
+2025-04-14 16:51:48 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:48 - INFO - [fed_server.py:73] - Accuracy: 0.8178
+2025-04-14 16:51:48 - INFO - [fed_server.py:74] - Precision: 0.6325
+2025-04-14 16:51:48 - INFO - [fed_server.py:75] - Recall: 0.3998
+2025-04-14 16:51:48 - INFO - [fed_server.py:76] - F1 Score: 0.4900
+2025-04-14 16:51:48 - INFO - [fed_server.py:77] - AUC-ROC: 0.7640
+2025-04-14 16:51:48 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 4 轮 ===
+2025-04-14 16:51:48 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:48 - INFO - [fed_server.py:73] - Accuracy: 0.8177
+2025-04-14 16:51:48 - INFO - [fed_server.py:74] - Precision: 0.6315
+2025-04-14 16:51:48 - INFO - [fed_server.py:75] - Recall: 0.4006
+2025-04-14 16:51:48 - INFO - [fed_server.py:76] - F1 Score: 0.4902
+2025-04-14 16:51:48 - INFO - [fed_server.py:77] - AUC-ROC: 0.7642
+2025-04-14 16:51:48 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 5 轮 ===
+2025-04-14 16:51:48 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:48 - INFO - [fed_server.py:73] - Accuracy: 0.8177
+2025-04-14 16:51:48 - INFO - [fed_server.py:74] - Precision: 0.6315
+2025-04-14 16:51:48 - INFO - [fed_server.py:75] - Recall: 0.4006
+2025-04-14 16:51:48 - INFO - [fed_server.py:76] - F1 Score: 0.4902
+2025-04-14 16:51:48 - INFO - [fed_server.py:77] - AUC-ROC: 0.7640
+2025-04-14 16:51:48 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 6 轮 ===
+2025-04-14 16:51:48 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:48 - INFO - [fed_server.py:73] - Accuracy: 0.8175
+2025-04-14 16:51:48 - INFO - [fed_server.py:74] - Precision: 0.6307
+2025-04-14 16:51:48 - INFO - [fed_server.py:75] - Recall: 0.4006
+2025-04-14 16:51:48 - INFO - [fed_server.py:76] - F1 Score: 0.4900
+2025-04-14 16:51:48 - INFO - [fed_server.py:77] - AUC-ROC: 0.7640
+2025-04-14 16:51:48 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 7 轮 ===
+2025-04-14 16:51:49 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:49 - INFO - [fed_server.py:73] - Accuracy: 0.8178
+2025-04-14 16:51:49 - INFO - [fed_server.py:74] - Precision: 0.6325
+2025-04-14 16:51:49 - INFO - [fed_server.py:75] - Recall: 0.3998
+2025-04-14 16:51:49 - INFO - [fed_server.py:76] - F1 Score: 0.4900
+2025-04-14 16:51:49 - INFO - [fed_server.py:77] - AUC-ROC: 0.7640
+2025-04-14 16:51:49 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 8 轮 ===
+2025-04-14 16:51:49 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:49 - INFO - [fed_server.py:73] - Accuracy: 0.8177
+2025-04-14 16:51:49 - INFO - [fed_server.py:74] - Precision: 0.6318
+2025-04-14 16:51:49 - INFO - [fed_server.py:75] - Recall: 0.3998
+2025-04-14 16:51:49 - INFO - [fed_server.py:76] - F1 Score: 0.4897
+2025-04-14 16:51:49 - INFO - [fed_server.py:77] - AUC-ROC: 0.7641
+2025-04-14 16:51:49 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 9 轮 ===
+2025-04-14 16:51:49 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:49 - INFO - [fed_server.py:73] - Accuracy: 0.8177
+2025-04-14 16:51:49 - INFO - [fed_server.py:74] - Precision: 0.6315
+2025-04-14 16:51:49 - INFO - [fed_server.py:75] - Recall: 0.4006
+2025-04-14 16:51:49 - INFO - [fed_server.py:76] - F1 Score: 0.4902
+2025-04-14 16:51:49 - INFO - [fed_server.py:77] - AUC-ROC: 0.7641
+2025-04-14 16:51:49 - INFO - [fed_server.py:50] - 
+=== LogisticRegression 联邦学习第 10 轮 ===
+2025-04-14 16:51:49 - INFO - [fed_server.py:72] - 最终评估 - 全局模型评估指标:
+2025-04-14 16:51:49 - INFO - [fed_server.py:73] - 最终评估 - Accuracy: 0.8177
+2025-04-14 16:51:49 - INFO - [fed_server.py:74] - 最终评估 - Precision: 0.6315
+2025-04-14 16:51:49 - INFO - [fed_server.py:75] - 最终评估 - Recall: 0.4006
+2025-04-14 16:51:49 - INFO - [fed_server.py:76] - 最终评估 - F1 Score: 0.4902
+2025-04-14 16:51:49 - INFO - [fed_server.py:77] - 最终评估 - AUC-ROC: 0.7641
+2025-04-14 16:51:49 - INFO - [federated.py:126] - 
+=== 开始 neural_net 的联邦学习 ===
+2025-04-14 16:51:49 - INFO - [federated.py:133] - 使用标准化数据训练模型 neural_net
+2025-04-14 16:51:49 - INFO - [federated.py:30] - 开始数据分割,总样本数: 24000, 客户端数: 3
+2025-04-14 16:51:49 - INFO - [federated.py:34] - 每个客户端平均数据量: 8000
+2025-04-14 16:51:49 - INFO - [federated.py:48] - 客户端0数据量: 8000
+2025-04-14 16:51:49 - INFO - [federated.py:48] - 客户端1数据量: 8000
+2025-04-14 16:51:49 - INFO - [federated.py:48] - 客户端2数据量: 8000
+2025-04-14 16:51:49 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 1 轮 ===
+2025-04-14 16:51:49 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:51:49 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:51:49 - INFO - [neural_net.py:83] - Initialized neural network with input dimension: 26
+2025-04-14 16:51:49 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:51:49 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:51:49 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:51:51 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 1.0019
+2025-04-14 16:51:51 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.9412
+2025-04-14 16:51:51 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.9170
+2025-04-14 16:51:51 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.9144
+2025-04-14 16:51:51 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8995
+2025-04-14 16:51:52 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8965
+2025-04-14 16:51:52 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8872
+2025-04-14 16:51:52 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8868
+2025-04-14 16:51:52 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8773
+2025-04-14 16:51:52 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8733
+2025-04-14 16:51:52 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:51:52 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:51:52 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8244)
+2025-04-14 16:51:52 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:51:52 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:51:52 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:51:52 - INFO - [neural_net.py:83] - Initialized neural network with input dimension: 26
+2025-04-14 16:51:52 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:51:52 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:51:52 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:51:52 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 1.0680
+2025-04-14 16:51:53 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.9860
+2025-04-14 16:51:53 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.9636
+2025-04-14 16:51:53 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.9514
+2025-04-14 16:51:53 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.9328
+2025-04-14 16:51:53 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.9267
+2025-04-14 16:51:53 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.9267
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.9168
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.9136
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.9015
+2025-04-14 16:51:54 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:51:54 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:51:54 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8150)
+2025-04-14 16:51:54 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:51:54 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:51:54 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:51:54 - INFO - [neural_net.py:83] - Initialized neural network with input dimension: 26
+2025-04-14 16:51:54 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:51:54 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:51:54 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 1.0374
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.9497
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.9308
+2025-04-14 16:51:54 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.9154
+2025-04-14 16:51:55 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8966
+2025-04-14 16:51:55 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8974
+2025-04-14 16:51:55 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8947
+2025-04-14 16:51:55 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8953
+2025-04-14 16:51:55 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8912
+2025-04-14 16:51:55 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8847
+2025-04-14 16:51:55 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:51:55 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:51:55 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8075)
+2025-04-14 16:51:55 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:51:55 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:51:55 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7815)
+2025-04-14 16:51:55 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:51:55 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:51:55 - INFO - [fed_server.py:73] - Accuracy: 0.7815
+2025-04-14 16:51:55 - INFO - [fed_server.py:74] - Precision: 0.6667
+2025-04-14 16:51:55 - INFO - [fed_server.py:75] - Recall: 0.0030
+2025-04-14 16:51:55 - INFO - [fed_server.py:76] - F1 Score: 0.0061
+2025-04-14 16:51:55 - INFO - [fed_server.py:77] - AUC-ROC: 0.6935
+2025-04-14 16:51:55 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 2 轮 ===
+2025-04-14 16:51:55 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:51:55 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:51:55 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:51:55 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:51:55 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:51:56 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.9232
+2025-04-14 16:51:56 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8822
+2025-04-14 16:51:56 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8727
+2025-04-14 16:51:56 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8696
+2025-04-14 16:51:56 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8600
+2025-04-14 16:51:56 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8623
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8537
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8566
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8525
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8534
+2025-04-14 16:51:57 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:51:57 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:51:57 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8256)
+2025-04-14 16:51:57 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:51:57 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:51:57 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:51:57 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:51:57 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:51:57 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.9045
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8874
+2025-04-14 16:51:57 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8932
+2025-04-14 16:51:58 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8881
+2025-04-14 16:51:58 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8857
+2025-04-14 16:51:58 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8849
+2025-04-14 16:51:58 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8815
+2025-04-14 16:51:58 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8820
+2025-04-14 16:51:58 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8765
+2025-04-14 16:51:59 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8756
+2025-04-14 16:51:59 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:51:59 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:51:59 - INFO - [neural_net.py:220] - Found best threshold: 0.70 (Accuracy: 0.8150)
+2025-04-14 16:51:59 - INFO - [neural_net.py:169] - Using threshold: 0.7000000000000002
+2025-04-14 16:51:59 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:51:59 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:51:59 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:51:59 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:51:59 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:51:59 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8841
+2025-04-14 16:51:59 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8750
+2025-04-14 16:51:59 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8694
+2025-04-14 16:51:59 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8673
+2025-04-14 16:51:59 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8652
+2025-04-14 16:52:00 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8657
+2025-04-14 16:52:00 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8637
+2025-04-14 16:52:00 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8559
+2025-04-14 16:52:00 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8637
+2025-04-14 16:52:00 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8578
+2025-04-14 16:52:00 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:00 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:00 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8013)
+2025-04-14 16:52:00 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:00 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:00 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8182)
+2025-04-14 16:52:00 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:00 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:00 - INFO - [fed_server.py:73] - Accuracy: 0.8182
+2025-04-14 16:52:00 - INFO - [fed_server.py:74] - Precision: 0.6476
+2025-04-14 16:52:00 - INFO - [fed_server.py:75] - Recall: 0.3709
+2025-04-14 16:52:00 - INFO - [fed_server.py:76] - F1 Score: 0.4717
+2025-04-14 16:52:00 - INFO - [fed_server.py:77] - AUC-ROC: 0.7709
+2025-04-14 16:52:00 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 3 轮 ===
+2025-04-14 16:52:00 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:00 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:00 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:00 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:00 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:00 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8625
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8517
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8483
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8462
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8512
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8403
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8388
+2025-04-14 16:52:01 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8416
+2025-04-14 16:52:02 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8301
+2025-04-14 16:52:02 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8346
+2025-04-14 16:52:02 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:02 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:02 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8275)
+2025-04-14 16:52:02 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:02 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:02 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:02 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:02 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:02 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:02 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8923
+2025-04-14 16:52:02 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8810
+2025-04-14 16:52:02 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8791
+2025-04-14 16:52:02 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8724
+2025-04-14 16:52:03 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8669
+2025-04-14 16:52:03 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8636
+2025-04-14 16:52:03 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8625
+2025-04-14 16:52:03 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8605
+2025-04-14 16:52:03 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8646
+2025-04-14 16:52:03 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8555
+2025-04-14 16:52:03 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:03 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:03 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8187)
+2025-04-14 16:52:03 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:03 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:03 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:03 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:03 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:03 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:04 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8750
+2025-04-14 16:52:04 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8610
+2025-04-14 16:52:04 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8595
+2025-04-14 16:52:04 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8650
+2025-04-14 16:52:04 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8498
+2025-04-14 16:52:04 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8553
+2025-04-14 16:52:05 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8502
+2025-04-14 16:52:05 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8448
+2025-04-14 16:52:05 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8536
+2025-04-14 16:52:05 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8464
+2025-04-14 16:52:05 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:05 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:05 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.7987)
+2025-04-14 16:52:05 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:05 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:05 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8187)
+2025-04-14 16:52:05 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:05 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:05 - INFO - [fed_server.py:73] - Accuracy: 0.8187
+2025-04-14 16:52:05 - INFO - [fed_server.py:74] - Precision: 0.6364
+2025-04-14 16:52:05 - INFO - [fed_server.py:75] - Recall: 0.3998
+2025-04-14 16:52:05 - INFO - [fed_server.py:76] - F1 Score: 0.4911
+2025-04-14 16:52:05 - INFO - [fed_server.py:77] - AUC-ROC: 0.7706
+2025-04-14 16:52:05 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 4 轮 ===
+2025-04-14 16:52:05 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:05 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:05 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:05 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:05 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:05 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8639
+2025-04-14 16:52:05 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8468
+2025-04-14 16:52:06 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8403
+2025-04-14 16:52:06 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8356
+2025-04-14 16:52:06 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8307
+2025-04-14 16:52:06 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8342
+2025-04-14 16:52:06 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8273
+2025-04-14 16:52:06 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8269
+2025-04-14 16:52:07 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8304
+2025-04-14 16:52:07 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8171
+2025-04-14 16:52:07 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:07 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:07 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8294)
+2025-04-14 16:52:07 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:07 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:07 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:07 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:07 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:07 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:07 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8851
+2025-04-14 16:52:07 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8650
+2025-04-14 16:52:07 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8613
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8643
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8592
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8561
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8606
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8500
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8498
+2025-04-14 16:52:08 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8469
+2025-04-14 16:52:08 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:08 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:08 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8219)
+2025-04-14 16:52:08 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:09 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:09 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:09 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:09 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:09 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:09 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8774
+2025-04-14 16:52:09 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8588
+2025-04-14 16:52:09 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8560
+2025-04-14 16:52:09 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8526
+2025-04-14 16:52:09 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8479
+2025-04-14 16:52:09 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8467
+2025-04-14 16:52:10 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8436
+2025-04-14 16:52:10 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8474
+2025-04-14 16:52:10 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8434
+2025-04-14 16:52:10 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8409
+2025-04-14 16:52:10 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:10 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:10 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.7963)
+2025-04-14 16:52:10 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:10 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:10 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8182)
+2025-04-14 16:52:10 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:10 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:10 - INFO - [fed_server.py:73] - Accuracy: 0.8182
+2025-04-14 16:52:10 - INFO - [fed_server.py:74] - Precision: 0.6516
+2025-04-14 16:52:10 - INFO - [fed_server.py:75] - Recall: 0.3633
+2025-04-14 16:52:10 - INFO - [fed_server.py:76] - F1 Score: 0.4665
+2025-04-14 16:52:10 - INFO - [fed_server.py:77] - AUC-ROC: 0.7700
+2025-04-14 16:52:10 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 5 轮 ===
+2025-04-14 16:52:10 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:10 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:10 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:10 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:10 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:10 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8520
+2025-04-14 16:52:11 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8365
+2025-04-14 16:52:11 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8394
+2025-04-14 16:52:11 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8318
+2025-04-14 16:52:11 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8284
+2025-04-14 16:52:11 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8214
+2025-04-14 16:52:11 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8246
+2025-04-14 16:52:12 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8195
+2025-04-14 16:52:12 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8192
+2025-04-14 16:52:12 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8140
+2025-04-14 16:52:12 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:12 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:12 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8237)
+2025-04-14 16:52:12 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:12 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:12 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:12 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:12 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:12 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:12 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8750
+2025-04-14 16:52:12 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8641
+2025-04-14 16:52:12 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8615
+2025-04-14 16:52:13 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8593
+2025-04-14 16:52:13 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8532
+2025-04-14 16:52:13 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8416
+2025-04-14 16:52:13 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8416
+2025-04-14 16:52:13 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8470
+2025-04-14 16:52:13 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8461
+2025-04-14 16:52:14 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8478
+2025-04-14 16:52:14 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:14 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:14 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8187)
+2025-04-14 16:52:14 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:14 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:14 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:14 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:14 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:14 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:14 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8671
+2025-04-14 16:52:14 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8607
+2025-04-14 16:52:14 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8517
+2025-04-14 16:52:14 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8445
+2025-04-14 16:52:14 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8468
+2025-04-14 16:52:15 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8348
+2025-04-14 16:52:15 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8371
+2025-04-14 16:52:15 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8420
+2025-04-14 16:52:15 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8388
+2025-04-14 16:52:15 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8342
+2025-04-14 16:52:15 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:15 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:15 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7963)
+2025-04-14 16:52:15 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:15 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:15 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8173)
+2025-04-14 16:52:15 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:15 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:15 - INFO - [fed_server.py:73] - Accuracy: 0.8173
+2025-04-14 16:52:15 - INFO - [fed_server.py:74] - Precision: 0.6382
+2025-04-14 16:52:15 - INFO - [fed_server.py:75] - Recall: 0.3816
+2025-04-14 16:52:15 - INFO - [fed_server.py:76] - F1 Score: 0.4776
+2025-04-14 16:52:15 - INFO - [fed_server.py:77] - AUC-ROC: 0.7687
+2025-04-14 16:52:15 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 6 轮 ===
+2025-04-14 16:52:15 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:15 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:15 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:15 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:15 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:16 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8547
+2025-04-14 16:52:16 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8407
+2025-04-14 16:52:16 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8347
+2025-04-14 16:52:16 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8325
+2025-04-14 16:52:16 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8263
+2025-04-14 16:52:16 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8201
+2025-04-14 16:52:17 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8203
+2025-04-14 16:52:17 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8114
+2025-04-14 16:52:17 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8214
+2025-04-14 16:52:17 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8033
+2025-04-14 16:52:17 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:17 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:17 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8269)
+2025-04-14 16:52:17 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:17 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:17 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:17 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:17 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:17 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:17 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8786
+2025-04-14 16:52:17 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8655
+2025-04-14 16:52:18 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8528
+2025-04-14 16:52:18 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8484
+2025-04-14 16:52:18 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8440
+2025-04-14 16:52:18 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8477
+2025-04-14 16:52:18 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8463
+2025-04-14 16:52:18 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8344
+2025-04-14 16:52:19 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8426
+2025-04-14 16:52:19 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8338
+2025-04-14 16:52:19 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:19 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:19 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8163)
+2025-04-14 16:52:19 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:19 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:19 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:19 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:19 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:19 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:19 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8639
+2025-04-14 16:52:19 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8572
+2025-04-14 16:52:19 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8435
+2025-04-14 16:52:19 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8451
+2025-04-14 16:52:20 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8442
+2025-04-14 16:52:20 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8390
+2025-04-14 16:52:20 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8432
+2025-04-14 16:52:20 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8319
+2025-04-14 16:52:20 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8237
+2025-04-14 16:52:21 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8254
+2025-04-14 16:52:21 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:21 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:21 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7969)
+2025-04-14 16:52:21 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:21 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:21 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8183)
+2025-04-14 16:52:21 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:21 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:21 - INFO - [fed_server.py:73] - Accuracy: 0.8183
+2025-04-14 16:52:21 - INFO - [fed_server.py:74] - Precision: 0.6342
+2025-04-14 16:52:21 - INFO - [fed_server.py:75] - Recall: 0.4014
+2025-04-14 16:52:21 - INFO - [fed_server.py:76] - F1 Score: 0.4916
+2025-04-14 16:52:21 - INFO - [fed_server.py:77] - AUC-ROC: 0.7671
+2025-04-14 16:52:21 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 7 轮 ===
+2025-04-14 16:52:21 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:21 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:21 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:21 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:21 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:21 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8569
+2025-04-14 16:52:21 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8283
+2025-04-14 16:52:21 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8294
+2025-04-14 16:52:21 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8281
+2025-04-14 16:52:22 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8238
+2025-04-14 16:52:22 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8180
+2025-04-14 16:52:22 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8148
+2025-04-14 16:52:22 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.7997
+2025-04-14 16:52:22 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8023
+2025-04-14 16:52:22 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8062
+2025-04-14 16:52:22 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:22 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:22 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8269)
+2025-04-14 16:52:22 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:22 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:22 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:22 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:22 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:22 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:23 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8732
+2025-04-14 16:52:23 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8578
+2025-04-14 16:52:23 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8518
+2025-04-14 16:52:23 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8484
+2025-04-14 16:52:23 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8378
+2025-04-14 16:52:23 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8367
+2025-04-14 16:52:24 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8337
+2025-04-14 16:52:24 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8305
+2025-04-14 16:52:24 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8314
+2025-04-14 16:52:24 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8280
+2025-04-14 16:52:24 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:24 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:24 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8150)
+2025-04-14 16:52:24 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:24 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:24 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:24 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:24 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:24 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:24 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8648
+2025-04-14 16:52:25 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8401
+2025-04-14 16:52:25 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8398
+2025-04-14 16:52:25 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8348
+2025-04-14 16:52:25 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8316
+2025-04-14 16:52:25 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8368
+2025-04-14 16:52:25 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8323
+2025-04-14 16:52:26 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8222
+2025-04-14 16:52:26 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8242
+2025-04-14 16:52:26 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8249
+2025-04-14 16:52:26 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:26 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:26 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7937)
+2025-04-14 16:52:26 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:26 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:26 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8168)
+2025-04-14 16:52:26 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:26 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:26 - INFO - [fed_server.py:73] - Accuracy: 0.8168
+2025-04-14 16:52:26 - INFO - [fed_server.py:74] - Precision: 0.6308
+2025-04-14 16:52:26 - INFO - [fed_server.py:75] - Recall: 0.3930
+2025-04-14 16:52:26 - INFO - [fed_server.py:76] - F1 Score: 0.4843
+2025-04-14 16:52:26 - INFO - [fed_server.py:77] - AUC-ROC: 0.7679
+2025-04-14 16:52:26 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 8 轮 ===
+2025-04-14 16:52:26 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:26 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:26 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:26 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:26 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:26 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8561
+2025-04-14 16:52:26 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8321
+2025-04-14 16:52:27 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8234
+2025-04-14 16:52:27 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8282
+2025-04-14 16:52:27 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8112
+2025-04-14 16:52:27 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8164
+2025-04-14 16:52:27 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8103
+2025-04-14 16:52:27 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8075
+2025-04-14 16:52:28 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8008
+2025-04-14 16:52:28 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.7987
+2025-04-14 16:52:28 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:28 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:28 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8206)
+2025-04-14 16:52:28 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:28 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:28 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:28 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:28 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:28 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:28 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8728
+2025-04-14 16:52:28 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8521
+2025-04-14 16:52:28 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8427
+2025-04-14 16:52:29 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8423
+2025-04-14 16:52:29 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8313
+2025-04-14 16:52:29 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8394
+2025-04-14 16:52:29 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8242
+2025-04-14 16:52:29 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8266
+2025-04-14 16:52:29 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8263
+2025-04-14 16:52:30 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8268
+2025-04-14 16:52:30 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:30 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:30 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8163)
+2025-04-14 16:52:30 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:30 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:30 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:30 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:30 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:30 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:30 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8683
+2025-04-14 16:52:30 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8444
+2025-04-14 16:52:30 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8280
+2025-04-14 16:52:30 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8372
+2025-04-14 16:52:30 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8268
+2025-04-14 16:52:31 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8175
+2025-04-14 16:52:31 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8212
+2025-04-14 16:52:31 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8279
+2025-04-14 16:52:31 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8243
+2025-04-14 16:52:31 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8187
+2025-04-14 16:52:31 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:31 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:31 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7950)
+2025-04-14 16:52:31 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:31 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:31 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8158)
+2025-04-14 16:52:31 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:31 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:31 - INFO - [fed_server.py:73] - Accuracy: 0.8158
+2025-04-14 16:52:31 - INFO - [fed_server.py:74] - Precision: 0.6503
+2025-04-14 16:52:31 - INFO - [fed_server.py:75] - Recall: 0.3427
+2025-04-14 16:52:31 - INFO - [fed_server.py:76] - F1 Score: 0.4489
+2025-04-14 16:52:31 - INFO - [fed_server.py:77] - AUC-ROC: 0.7678
+2025-04-14 16:52:31 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 9 轮 ===
+2025-04-14 16:52:31 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:31 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:31 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:31 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:31 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:32 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8414
+2025-04-14 16:52:32 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8292
+2025-04-14 16:52:32 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8227
+2025-04-14 16:52:32 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8230
+2025-04-14 16:52:32 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8102
+2025-04-14 16:52:33 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8067
+2025-04-14 16:52:33 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8054
+2025-04-14 16:52:33 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8059
+2025-04-14 16:52:33 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.7934
+2025-04-14 16:52:33 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.7952
+2025-04-14 16:52:33 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:33 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:33 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8244)
+2025-04-14 16:52:33 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:33 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:33 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:33 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:33 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:33 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:34 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8686
+2025-04-14 16:52:34 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8507
+2025-04-14 16:52:34 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8459
+2025-04-14 16:52:34 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8345
+2025-04-14 16:52:34 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8442
+2025-04-14 16:52:35 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8311
+2025-04-14 16:52:35 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8302
+2025-04-14 16:52:35 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8280
+2025-04-14 16:52:35 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8160
+2025-04-14 16:52:35 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8149
+2025-04-14 16:52:35 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:35 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:35 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8137)
+2025-04-14 16:52:35 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:35 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:35 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:35 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:35 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:35 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:36 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8608
+2025-04-14 16:52:36 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8359
+2025-04-14 16:52:36 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8357
+2025-04-14 16:52:36 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8326
+2025-04-14 16:52:36 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8371
+2025-04-14 16:52:36 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8225
+2025-04-14 16:52:37 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8253
+2025-04-14 16:52:37 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8324
+2025-04-14 16:52:37 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8162
+2025-04-14 16:52:37 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8151
+2025-04-14 16:52:37 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:37 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:37 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7981)
+2025-04-14 16:52:37 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:37 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:37 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.8183)
+2025-04-14 16:52:37 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:37 - INFO - [fed_server.py:72] - 全局模型评估指标:
+2025-04-14 16:52:37 - INFO - [fed_server.py:73] - Accuracy: 0.8183
+2025-04-14 16:52:37 - INFO - [fed_server.py:74] - Precision: 0.6493
+2025-04-14 16:52:37 - INFO - [fed_server.py:75] - Recall: 0.3694
+2025-04-14 16:52:37 - INFO - [fed_server.py:76] - F1 Score: 0.4709
+2025-04-14 16:52:37 - INFO - [fed_server.py:77] - AUC-ROC: 0.7702
+2025-04-14 16:52:37 - INFO - [fed_server.py:50] - 
+=== NeuralNet 联邦学习第 10 轮 ===
+2025-04-14 16:52:37 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:37 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:37 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:37 - INFO - [neural_net.py:94] -   Positive samples: 1427
+2025-04-14 16:52:37 - INFO - [neural_net.py:95] -   Negative samples: 4973
+2025-04-14 16:52:37 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8457
+2025-04-14 16:52:38 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8252
+2025-04-14 16:52:38 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8158
+2025-04-14 16:52:38 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8126
+2025-04-14 16:52:38 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8052
+2025-04-14 16:52:38 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8068
+2025-04-14 16:52:38 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.7973
+2025-04-14 16:52:39 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.7968
+2025-04-14 16:52:39 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.7923
+2025-04-14 16:52:39 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.7851
+2025-04-14 16:52:39 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:39 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:39 - INFO - [neural_net.py:220] - Found best threshold: 0.85 (Accuracy: 0.8213)
+2025-04-14 16:52:39 - INFO - [neural_net.py:169] - Using threshold: 0.8500000000000002
+2025-04-14 16:52:39 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:39 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:39 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:39 - INFO - [neural_net.py:94] -   Positive samples: 1409
+2025-04-14 16:52:39 - INFO - [neural_net.py:95] -   Negative samples: 4991
+2025-04-14 16:52:39 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8660
+2025-04-14 16:52:39 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8416
+2025-04-14 16:52:40 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8389
+2025-04-14 16:52:40 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8430
+2025-04-14 16:52:40 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8284
+2025-04-14 16:52:40 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8320
+2025-04-14 16:52:40 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8239
+2025-04-14 16:52:40 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8253
+2025-04-14 16:52:41 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8126
+2025-04-14 16:52:41 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8070
+2025-04-14 16:52:41 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:41 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:41 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8150)
+2025-04-14 16:52:41 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:41 - INFO - [neural_net.py:77] - 
+=== Training Start ===
+2025-04-14 16:52:41 - INFO - [neural_net.py:78] - Training data size: (6400, 26)
+2025-04-14 16:52:41 - INFO - [neural_net.py:93] - Class distribution in training set:
+2025-04-14 16:52:41 - INFO - [neural_net.py:94] -   Positive samples: 1417
+2025-04-14 16:52:41 - INFO - [neural_net.py:95] -   Negative samples: 4983
+2025-04-14 16:52:41 - INFO - [neural_net.py:126] - Epoch [1/10], Loss: 0.8582
+2025-04-14 16:52:41 - INFO - [neural_net.py:126] - Epoch [2/10], Loss: 0.8386
+2025-04-14 16:52:41 - INFO - [neural_net.py:126] - Epoch [3/10], Loss: 0.8310
+2025-04-14 16:52:41 - INFO - [neural_net.py:126] - Epoch [4/10], Loss: 0.8350
+2025-04-14 16:52:42 - INFO - [neural_net.py:126] - Epoch [5/10], Loss: 0.8191
+2025-04-14 16:52:42 - INFO - [neural_net.py:126] - Epoch [6/10], Loss: 0.8220
+2025-04-14 16:52:42 - INFO - [neural_net.py:126] - Epoch [7/10], Loss: 0.8156
+2025-04-14 16:52:42 - INFO - [neural_net.py:126] - Epoch [8/10], Loss: 0.8151
+2025-04-14 16:52:42 - INFO - [neural_net.py:126] - Epoch [9/10], Loss: 0.8120
+2025-04-14 16:52:43 - INFO - [neural_net.py:126] - Epoch [10/10], Loss: 0.8071
+2025-04-14 16:52:43 - INFO - [neural_net.py:128] - Model training completed
+2025-04-14 16:52:43 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:43 - INFO - [neural_net.py:220] - Found best threshold: 0.75 (Accuracy: 0.7969)
+2025-04-14 16:52:43 - INFO - [neural_net.py:169] - Using threshold: 0.7500000000000002
+2025-04-14 16:52:43 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:43 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8152)
+2025-04-14 16:52:43 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:43 - INFO - [fed_server.py:72] - 最终评估 - 全局模型评估指标:
+2025-04-14 16:52:43 - INFO - [fed_server.py:73] - 最终评估 - Accuracy: 0.8152
+2025-04-14 16:52:43 - INFO - [fed_server.py:74] - 最终评估 - Precision: 0.6491
+2025-04-14 16:52:43 - INFO - [fed_server.py:75] - 最终评估 - Recall: 0.3382
+2025-04-14 16:52:43 - INFO - [fed_server.py:76] - 最终评估 - F1 Score: 0.4447
+2025-04-14 16:52:43 - INFO - [fed_server.py:77] - 最终评估 - AUC-ROC: 0.7684
+2025-04-14 16:52:43 - INFO - [neural_net.py:158] - 
+=== Model Evaluation ===
+2025-04-14 16:52:43 - INFO - [neural_net.py:220] - Found best threshold: 0.80 (Accuracy: 0.8152)
+2025-04-14 16:52:43 - INFO - [neural_net.py:169] - Using threshold: 0.8000000000000002
+2025-04-14 16:52:43 - INFO - [federated.py:110] - 
+=== 联邦学习模型性能对比 ===
+2025-04-14 16:52:43 - INFO - [federated.py:111] - 
+            accuracy  precision    recall        f1   auc_roc
+logistic    0.817667   0.631453  0.400609  0.490214  0.764097
+neural_net  0.815167   0.649123  0.338157  0.444667  0.768365

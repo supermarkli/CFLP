@@ -49,28 +49,14 @@ class LogisticRegressionModel(BaseModel):
             best_params = self.grid_search_cv(X_train, y_train, param_grid)
             self.model = SGDClassifier(loss='log_loss', **best_params)
         
-        logger.info("\n=== Training Start ===")
-        logger.info(f"Original training data size: {X_train.shape}")
-        logger.info(f"Original class distribution:")
-        logger.info(f"  Positive samples: {np.sum(y_train == 1)}")
-        logger.info(f"  Negative samples: {np.sum(y_train == 0)}")
-        
-        # 应用SMOTE进行过采样
         if self.use_smote:
             smote = SMOTE(random_state=42)
             X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
             
-            logger.info(f"After SMOTE - training data size: {X_train_resampled.shape}")
-            logger.info(f"After SMOTE - class distribution:")
-            logger.info(f"  Positive samples: {np.sum(y_train_resampled == 1)}")
-            logger.info(f"  Negative samples: {np.sum(y_train_resampled == 0)}")
-            
-            # 使用重采样后的数据训练模型
             self.model.fit(X_train_resampled, y_train_resampled)
         else:
             self.model.fit(X_train, y_train)
             
-        logger.info("Model training completed")
         
     def grid_search_cv(self, X, y, param_grid):
         """网格搜索寻找最优参数"""
@@ -129,7 +115,7 @@ class LogisticRegressionModel(BaseModel):
                 best_accuracy = accuracy
                 best_threshold = threshold
         
-        logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
+        # logger.info(f"Found best threshold: {best_threshold:.2f} (Accuracy: {best_accuracy:.4f})")
         return best_threshold
 
     def evaluate_model(self, X_test, y_test):
@@ -137,14 +123,12 @@ class LogisticRegressionModel(BaseModel):
         if self.model is None:
             raise ValueError("Model not trained")
             
-        logger.info("\n=== Model Evaluation ===")
         
         # 获取预测概率
         y_pred_proba = self.model.predict_proba(X_test)[:, 1]
         
         # 找到最优阈值
         self.best_threshold = self.find_best_threshold(y_test, y_pred_proba)
-        logger.info(f"Using threshold: {self.best_threshold}")
         
         # 使用最优阈值进行预测
         y_pred = (y_pred_proba > self.best_threshold).astype(int)
