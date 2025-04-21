@@ -27,6 +27,7 @@ class LogisticRegressionModel(BaseModel):
         self.best_threshold = 0.5
         self.use_smote = False
         
+        # 初始化模型
         self.model = SGDClassifier(
             loss='log_loss',
             eta0=0.1,
@@ -34,8 +35,8 @@ class LogisticRegressionModel(BaseModel):
             max_iter=1000,
             class_weight='balanced'
         )
-        self.model.coef_ = np.zeros((1, 26))  
-        self.model.intercept_ = np.zeros(1)
+        
+        self.model.fit(np.zeros((2, 26)), np.array([0, 1]))
         
     def train_model(self, X_train, y_train):
         """训练逻辑回归模型"""
@@ -48,11 +49,11 @@ class LogisticRegressionModel(BaseModel):
             }
             best_params = self.grid_search_cv(X_train, y_train, param_grid)
             self.model = SGDClassifier(loss='log_loss', **best_params)
+
         
         if self.use_smote:
             smote = SMOTE(random_state=42)
             X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
-            
             self.model.fit(X_train_resampled, y_train_resampled)
         else:
             self.model.fit(X_train, y_train)

@@ -23,11 +23,16 @@ RUN apt-get update && apt-get install -y \
 # 配置pip使用国内镜像源
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
-# 复制整个项目根目录
+# 首先只复制依赖文件
+COPY docker_federated/requirements.txt requirements.txt
+
+# 安装Python依赖并删除requirements.txt
+RUN pip install -r requirements.txt && rm requirements.txt
+
+# 然后再复制其余代码
 COPY ../.. .
 
-# RUN pip install --no-cache-dir -r docker-federated/requirements.txt
-RUN pip install -r docker-federated/requirements.txt
+EXPOSE 50051
 
 # 设置启动命令
-CMD ["python", "docker-federated/grpc/client_grpc.py"] 
+CMD ["python", "docker_federated/grpc/client_grpc.py"] 

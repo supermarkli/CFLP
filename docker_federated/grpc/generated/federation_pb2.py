@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66\x65\x64\x65ration.proto\x12\nfederation\"\x85\x01\n\x0fModelParameters\x12?\n\nparameters\x18\x01 \x03(\x0b\x32+.federation.ModelParameters.ParametersEntry\x1a\x31\n\x0fParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c:\x02\x38\x01\"c\n\x0fTrainingMetrics\x12\x10\n\x08\x61\x63\x63uracy\x18\x01 \x01(\x02\x12\x11\n\tprecision\x18\x02 \x01(\x02\x12\x0e\n\x06recall\x18\x03 \x01(\x02\x12\n\n\x02\x66\x31\x18\x04 \x01(\x02\x12\x0f\n\x07\x61uc_roc\x18\x05 \x01(\x02\"F\n\nClientInfo\x12\x11\n\tclient_id\x18\x01 \x01(\t\x12\x12\n\nmodel_type\x18\x02 \x01(\t\x12\x11\n\tdata_size\x18\x03 \x01(\x05\"4\n\x10RegisterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x87\x01\n\x13ParameterSubmission\x12\x11\n\tclient_id\x18\x01 \x01(\t\x12/\n\nparameters\x18\x02 \x01(\x0b\x32\x1b.federation.ModelParameters\x12,\n\x07metrics\x18\x03 \x01(\x0b\x32\x1b.federation.TrainingMetrics\"5\n\x11ParameterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"%\n\x10ParameterRequest\x12\x11\n\tclient_id\x18\x01 \x01(\t\"T\n\x11MetricsSubmission\x12\x11\n\tclient_id\x18\x01 \x01(\t\x12,\n\x07metrics\x18\x02 \x01(\x0b\x32\x1b.federation.TrainingMetrics\"3\n\x0fMetricsResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2\xd6\x02\n\x11\x46\x65\x64\x65ratedLearning\x12H\n\x0eRegisterClient\x12\x16.federation.ClientInfo\x1a\x1c.federation.RegisterResponse\"\x00\x12T\n\x10SubmitParameters\x12\x1f.federation.ParameterSubmission\x1a\x1d.federation.ParameterResponse\"\x00\x12R\n\x13GetGlobalParameters\x12\x1c.federation.ParameterRequest\x1a\x1b.federation.ModelParameters\"\x00\x12M\n\rSubmitMetrics\x12\x1d.federation.MetricsSubmission\x1a\x1b.federation.MetricsResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x66\x65\x64\x65ration.proto\x12\nfederation\"8\n\nNumpyArray\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12\r\n\x05shape\x18\x02 \x03(\x03\x12\r\n\x05\x64type\x18\x03 \x01(\t\"\x9d\x01\n\x0fModelParameters\x12?\n\nparameters\x18\x01 \x03(\x0b\x32+.federation.ModelParameters.ParametersEntry\x1aI\n\x0fParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12%\n\x05value\x18\x02 \x01(\x0b\x32\x16.federation.NumpyArray:\x02\x38\x01\"c\n\x0fTrainingMetrics\x12\x10\n\x08\x61\x63\x63uracy\x18\x01 \x01(\x02\x12\x11\n\tprecision\x18\x02 \x01(\x02\x12\x0e\n\x06recall\x18\x03 \x01(\x02\x12\n\n\x02\x66\x31\x18\x04 \x01(\x02\x12\x0f\n\x07\x61uc_roc\x18\x05 \x01(\x02\"F\n\nClientInfo\x12\x11\n\tclient_id\x18\x01 \x01(\t\x12\x12\n\nmodel_type\x18\x02 \x01(\t\x12\x11\n\tdata_size\x18\x03 \x01(\x03\"u\n\x14ParametersAndMetrics\x12/\n\nparameters\x18\x01 \x01(\x0b\x32\x1b.federation.ModelParameters\x12,\n\x07metrics\x18\x02 \x01(\x0b\x32\x1b.federation.TrainingMetrics\"b\n\x10RegisterResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12/\n\nparameters\x18\x02 \x01(\x0b\x32\x1b.federation.ModelParameters\x12\x0f\n\x07message\x18\x03 \x01(\t\"*\n\x15TrainingStatusRequest\x12\x11\n\tclient_id\x18\x01 \x01(\t\"j\n\x16TrainingStatusResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x1a\n\x12registered_clients\x18\x03 \x01(\x03\x12\x15\n\rtotal_clients\x18\x04 \x01(\x03\"r\n\x0c\x43lientUpdate\x12\x11\n\tclient_id\x18\x01 \x01(\t\x12\r\n\x05round\x18\x02 \x01(\x03\x12@\n\x16parameters_and_metrics\x18\x03 \x01(\x0b\x32 .federation.ParametersAndMetrics\"\x93\x01\n\x0cServerUpdate\x12\x15\n\rcurrent_round\x18\x01 \x01(\x03\x12\x15\n\rtotal_clients\x18\x02 \x01(\x03\x12\x36\n\x0cglobal_model\x18\x03 \x01(\x0b\x32 .federation.ParametersAndMetrics\x12\x0f\n\x07message\x18\x04 \x01(\t\x12\x0c\n\x04\x63ode\x18\x05 \x01(\x03\"3\n\x0fGetModelRequest\x12\x11\n\tclient_id\x18\x01 \x01(\t\x12\r\n\x05round\x18\x02 \x01(\x03\x32\xc8\x02\n\x11\x46\x65\x64\x65ratedLearning\x12@\n\x08Register\x12\x16.federation.ClientInfo\x1a\x1c.federation.RegisterResponse\x12\\\n\x13\x43heckTrainingStatus\x12!.federation.TrainingStatusRequest\x1a\".federation.TrainingStatusResponse\x12\x42\n\x0cSubmitUpdate\x12\x18.federation.ClientUpdate\x1a\x18.federation.ServerUpdate\x12O\n\x0eGetGlobalModel\x12\x1b.federation.GetModelRequest\x1a .federation.ParametersAndMetricsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,26 +33,30 @@ if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_MODELPARAMETERS_PARAMETERSENTRY']._loaded_options = None
   _globals['_MODELPARAMETERS_PARAMETERSENTRY']._serialized_options = b'8\001'
-  _globals['_MODELPARAMETERS']._serialized_start=33
-  _globals['_MODELPARAMETERS']._serialized_end=166
-  _globals['_MODELPARAMETERS_PARAMETERSENTRY']._serialized_start=117
-  _globals['_MODELPARAMETERS_PARAMETERSENTRY']._serialized_end=166
-  _globals['_TRAININGMETRICS']._serialized_start=168
-  _globals['_TRAININGMETRICS']._serialized_end=267
-  _globals['_CLIENTINFO']._serialized_start=269
-  _globals['_CLIENTINFO']._serialized_end=339
-  _globals['_REGISTERRESPONSE']._serialized_start=341
-  _globals['_REGISTERRESPONSE']._serialized_end=393
-  _globals['_PARAMETERSUBMISSION']._serialized_start=396
-  _globals['_PARAMETERSUBMISSION']._serialized_end=531
-  _globals['_PARAMETERRESPONSE']._serialized_start=533
-  _globals['_PARAMETERRESPONSE']._serialized_end=586
-  _globals['_PARAMETERREQUEST']._serialized_start=588
-  _globals['_PARAMETERREQUEST']._serialized_end=625
-  _globals['_METRICSSUBMISSION']._serialized_start=627
-  _globals['_METRICSSUBMISSION']._serialized_end=711
-  _globals['_METRICSRESPONSE']._serialized_start=713
-  _globals['_METRICSRESPONSE']._serialized_end=764
-  _globals['_FEDERATEDLEARNING']._serialized_start=767
-  _globals['_FEDERATEDLEARNING']._serialized_end=1109
+  _globals['_NUMPYARRAY']._serialized_start=32
+  _globals['_NUMPYARRAY']._serialized_end=88
+  _globals['_MODELPARAMETERS']._serialized_start=91
+  _globals['_MODELPARAMETERS']._serialized_end=248
+  _globals['_MODELPARAMETERS_PARAMETERSENTRY']._serialized_start=175
+  _globals['_MODELPARAMETERS_PARAMETERSENTRY']._serialized_end=248
+  _globals['_TRAININGMETRICS']._serialized_start=250
+  _globals['_TRAININGMETRICS']._serialized_end=349
+  _globals['_CLIENTINFO']._serialized_start=351
+  _globals['_CLIENTINFO']._serialized_end=421
+  _globals['_PARAMETERSANDMETRICS']._serialized_start=423
+  _globals['_PARAMETERSANDMETRICS']._serialized_end=540
+  _globals['_REGISTERRESPONSE']._serialized_start=542
+  _globals['_REGISTERRESPONSE']._serialized_end=640
+  _globals['_TRAININGSTATUSREQUEST']._serialized_start=642
+  _globals['_TRAININGSTATUSREQUEST']._serialized_end=684
+  _globals['_TRAININGSTATUSRESPONSE']._serialized_start=686
+  _globals['_TRAININGSTATUSRESPONSE']._serialized_end=792
+  _globals['_CLIENTUPDATE']._serialized_start=794
+  _globals['_CLIENTUPDATE']._serialized_end=908
+  _globals['_SERVERUPDATE']._serialized_start=911
+  _globals['_SERVERUPDATE']._serialized_end=1058
+  _globals['_GETMODELREQUEST']._serialized_start=1060
+  _globals['_GETMODELREQUEST']._serialized_end=1111
+  _globals['_FEDERATEDLEARNING']._serialized_start=1114
+  _globals['_FEDERATEDLEARNING']._serialized_end=1442
 # @@protoc_insertion_point(module_scope)

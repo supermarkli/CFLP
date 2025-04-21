@@ -7,7 +7,7 @@ sys.path.append(PROJECT_ROOT)
 import numpy as np
 from src.utils.metrics import ModelMetrics
 from src.utils.logging_config import get_logger
-
+from src.models.logistic_regression import LogisticRegressionModel
 
 logger = get_logger()
 
@@ -15,7 +15,7 @@ class FederatedServer:
 
     def __init__(self, test_data=None):
         self.clients = []
-        self.global_model = None
+        self.global_model = LogisticRegressionModel()
         self.metrics = ModelMetrics()
         self.best_metrics = None
         self.test_data = test_data
@@ -27,8 +27,6 @@ class FederatedServer:
             client: FederatedClient实例
         """
         self.clients.append(client)
-        if self.global_model is None:
-            self.global_model = client.model
         
     def aggregate_parameters(self, client_parameters):
         if not client_parameters:

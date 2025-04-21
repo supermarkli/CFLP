@@ -4,9 +4,10 @@ version: '3'
 
 services:
   server:
+    container_name: fl-server
     build:
       context: ../..
-      dockerfile: docker-federated/docker/Dockerfile.server
+      dockerfile: docker_federated/docker/Dockerfile.server
     ports:
       - "50051:50051"
     environment:
@@ -17,9 +18,10 @@ services:
       - federated-network
 
   client1:
+    container_name: fl-client-1
     build:
       context: ../..
-      dockerfile: docker-federated/docker/Dockerfile.client
+      dockerfile: docker_federated/docker/Dockerfile.client
     environment:
       - CLIENT_ID=1
       - GRPC_SERVER_HOST=server
@@ -32,9 +34,10 @@ services:
       - federated-network
 
   client2:
+    container_name: fl-client-2
     build:
       context: ../..
-      dockerfile: docker-federated/docker/Dockerfile.client
+      dockerfile: docker_federated/docker/Dockerfile.client
     environment:
       - CLIENT_ID=2
       - GRPC_SERVER_HOST=server
@@ -47,9 +50,10 @@ services:
       - federated-network
 
   client3:
+    container_name: fl-client-3
     build:
       context: ../..
-      dockerfile: docker-federated/docker/Dockerfile.client
+      dockerfile: docker_federated/docker/Dockerfile.client
     environment:
       - CLIENT_ID=3
       - GRPC_SERVER_HOST=server

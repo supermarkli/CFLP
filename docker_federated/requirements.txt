@@ -11,9 +11,9 @@ joblib==1.2.0
 imbalanced-learn==0.12.3
 
 # gRPC 相关依赖
-grpcio==1.54.0
-grpcio-tools==1.54.0
-protobuf==4.22.3
+grpcio>=1.71.0
+grpcio-tools>=1.71.0
+protobuf>=4.23.0
 
 # 网络通信相关
 requests==2.31.0
