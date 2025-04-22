@@ -14,6 +14,8 @@ services:
       - GRPC_SERVER_PORT=50051
     volumes:
       - ../../data/credit_card:/app/data
+      - ../certs/server:/app/certs:ro
+      - ../../src/logs:/app/logs
     networks:
       - federated-network
 
@@ -28,6 +30,8 @@ services:
       - GRPC_SERVER_PORT=50051
     volumes:
       - ../../data/client1:/app/data
+      - ../certs/client:/app/certs:ro
+      - ../../src/logs:/app/logs
     depends_on:
       - server
     networks:
@@ -44,6 +48,8 @@ services:
       - GRPC_SERVER_PORT=50051
     volumes:
       - ../../data/client2:/app/data
+      - ../certs/client:/app/certs:ro
+      - ../../src/logs:/app/logs
     depends_on:
       - server
     networks:
@@ -60,6 +66,8 @@ services:
       - GRPC_SERVER_PORT=50051
     volumes:
       - ../../data/client3:/app/data
+      - ../certs/client:/app/certs:ro
+      - ../../src/logs:/app/logs
     depends_on:
       - server
     networks:

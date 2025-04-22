@@ -31,6 +31,27 @@ class FederatedLearningClient:
         self._init_data(data)
         
         try:
+            # 尝试读取CA证书
+            with open('/app/certs/ca.crt', 'rb') as f:
+                ca_cert = f.read()
+            
+            # 创建安全凭证
+            credentials = grpc.ssl_channel_credentials(root_certificates=ca_cert)
+            
+            # 创建安全通道
+            self.channel = grpc.secure_channel(
+                f"{self.server_host}:{self.server_port}",
+                credentials,
+                options=[
+                    ('grpc.max_send_message_length', 50 * 1024 * 1024),
+                    ('grpc.max_receive_message_length', 50 * 1024 * 1024)
+                ]
+            )
+            logger.info("使用安全通道(SSL/TLS)连接服务器")
+            
+        except FileNotFoundError:
+            # 如果找不到证书文件，使用不安全通道
+            logger.warning("未找到CA证书文件: /app/certs/ca.crt，将使用不安全通道")
             self.channel = grpc.insecure_channel(
                 f"{self.server_host}:{self.server_port}",
                 options=[
@@ -38,15 +59,19 @@ class FederatedLearningClient:
                     ('grpc.max_receive_message_length', 50 * 1024 * 1024)
                 ]
             )
-            self.stub = federation_pb2_grpc.FederatedLearningStub(self.channel)
-            logger.info(f"客户端 {self.client_id} 初始化完成，数据集大小: {self.data_size}")
+            logger.info("使用不安全通道连接服务器")
+            
         except Exception as e:
+            # 其他错误继续抛出
             logger.error(f"gRPC连接初始化失败: {str(e)}")
             raise
+        
+        # 创建存根
+        self.stub = federation_pb2_grpc.FederatedLearningStub(self.channel)
+        logger.info(f"客户端 {self.client_id} 初始化完成，数据集大小: {self.data_size}")
 
     def _init_data(self, data):
         """初始化训练和测试数据"""
-        logger.info("开始初始化训练和测试数据...")
         if data is not None:
             X_train, X_test, y_train, y_test = train_test_split(
                 data['X'], data['y'], test_size=0.2, random_state=42
@@ -64,7 +89,6 @@ class FederatedLearningClient:
 
     def _serialize_parameters(self, parameters):
         """序列化模型参数"""
-        logger.debug("开始序列化模型参数...")
         try:
             serialized = {}
             param_mapping = {
@@ -88,7 +112,6 @@ class FederatedLearningClient:
                         dtype=str(arr.dtype)
                     )
                     serialized[mapped_key] = numpy_array
-            logger.debug(f"参数序列化完成，参数数量: {len(serialized)}")
             return serialized
         except Exception as e:
             logger.error(f"参数序列化失败: {str(e)}")
@@ -97,7 +120,6 @@ class FederatedLearningClient:
     def _deserialize_parameters(self, parameters):
         """反序列化模型参数"""
         deserialized = {}
-        # 将proto定义的参数名映射回LogisticRegression的参数名
         param_mapping = {
             'weights': 'coef_',
             'bias': 'intercept_'
@@ -117,7 +139,6 @@ class FederatedLearningClient:
 
     def train(self, epochs=10):
         """本地训练模型"""
-        logger.info(f"开始本地训练，轮次: {epochs}")
         if self.train_data is None:
             logger.warning(f"客户端 {self.client_id}: 没有可用的训练数据")
             return None
@@ -262,7 +283,6 @@ def main():
     if client_data:
         client = FederatedLearningClient(data=client_data)
         try:
-            # 参与联邦学习训练（默认10轮，每轮5个epoch）
             client.participate_in_training(n_rounds=10)
         except KeyboardInterrupt:
             logger.info("训练被用户中断")

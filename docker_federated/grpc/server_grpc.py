@@ -68,7 +68,6 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                 
             # 获取参数字典的结构
             param_structure = parameters_list[0]
-            logger.info(f"参数结构包含 {len(param_structure)} 个键")
             aggregated = {}
             
             # 获取当前轮次参与的客户端ID
@@ -77,22 +76,18 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
             
             # 只计算活跃客户端的权重
             active_clients = {cid: self.clients[cid] for cid in active_client_ids if cid in self.clients}
-            logger.info(f"找到 {len(active_clients)} 个有效的活跃客户端")
             total_data_size = sum(client.data_size for client in active_clients.values())
             client_weights = [client.data_size / total_data_size for client in active_clients.values()]
             logger.info(f"计算客户端权重完成: {client_weights}")
             
             # 对每个参数进行加权平均
             for i, param_name in enumerate(param_structure.keys()):
-                logger.info(f"处理参数 [{i+1}/{len(param_structure)}]: {param_name}")
-                # 确保所有客户端都有该参数
                 if not all(param_name in params for params in parameters_list):
                     raise ValueError(f"参数 {param_name} 在某些客户端中缺失")
                 
                 # 获取参数的形状和类型
                 param_shape = parameters_list[0][param_name].shape
                 param_dtype = parameters_list[0][param_name].dtype
-                logger.info(f"参数 {param_name} 形状: {param_shape}, 类型: {param_dtype}")
                 
                 # 初始化聚合参数
                 aggregated[param_name] = np.zeros(param_shape, dtype=param_dtype)
@@ -104,10 +99,6 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                     if param_value.shape != param_shape:
                         raise ValueError(f"参数 {param_name} 的形状不一致")
                     aggregated[param_name] += weight * param_value
-                logger.info(f"参数 {param_name} 聚合完成")
-                    
-            logger.info(f"参数聚合完成，活跃客户端数: {len(active_client_ids)}")
-            logger.debug(f"参数聚合详情: 客户端数量={len(parameters_list)}, 客户端权重={client_weights}")
             return aggregated
             
         except Exception as e:
@@ -174,7 +165,6 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
 
     def CheckTrainingStatus(self, request, context):
         client_id = request.client_id
-        
         with self.lock:
             logger.info(f"客户端 {client_id} 检查训练状态，当前next_step={self.next_step}, count={self.count}")
             if self.next_step:
@@ -234,7 +224,7 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                 logger.info(f"存储客户端 {client_id} 参数更新，当前轮次 {round_num+1} 已提交 {len(self.client_parameters[round_num])}/{self.expected_clients}个客户端")
                 submitted_clients = len(self.client_parameters[round_num])
                 if submitted_clients >= self.expected_clients:
-                    logger.info(f"轮次 {round_num+1} 所有客户端参数已收集完毕，开始处理轮次完成")
+                    logger.info(f"轮次 {round_num+1} 所有客户端参数已收集完毕，开始聚合")
                     self._process_round_completion()
                     self.current_round += 1
                     self.next_step = True
@@ -296,13 +286,9 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
     def _process_round_completion(self):
         """处理轮次完成，聚合参数并更新全局模型"""
         try:
-            logger.info(f"开始处理轮次 {self.current_round+1} 完成流程")
             parameters_list = list(self.client_parameters[self.current_round].values())
-            
-            logger.info(f"聚合轮次 {self.current_round+1} 的参数，客户端数: {len(parameters_list)}")
             try:
                 aggregated_params = self.aggregate_parameters(parameters_list)
-                logger.info(f"参数聚合成功，开始更新全局模型")
                 self.global_model.set_parameters(aggregated_params)
                 logger.info(f"全局模型参数更新完成")
             except Exception as e:
@@ -311,7 +297,6 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                 raise
             
             try:
-                logger.info(f"开始评估全局模型性能")
                 metrics = self.global_model.evaluate_model(self.test_data['X'], self.test_data['y'])
                 logger.info(f"全局模型在轮次 {self.current_round+1} 的性能: {metrics}")
             except Exception as e:
@@ -326,6 +311,7 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
 
 def serve():
     """启动gRPC服务器"""
+    # 创建服务器
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=10),
         options=[
@@ -333,14 +319,42 @@ def serve():
             ('grpc.max_receive_message_length', 100 * 1024 * 1024)
         ]
     )
+    
+    # 添加服务
     federation_pb2_grpc.add_FederatedLearningServicer_to_server(
         FederatedLearningServicer(), server
     )
     
     port = os.environ.get("GRPC_SERVER_PORT", "50051")
-    server.add_insecure_port(f"[::]:{port}")
     
-    logger.info(f"联邦学习服务器正在启动，监听端口: {port}")
+    try:
+        # 尝试读取服务器证书和私钥
+        with open('/app/certs/server.key', 'rb') as f:
+            private_key = f.read()
+        with open('/app/certs/server.crt', 'rb') as f:
+            certificate_chain = f.read()
+            
+        # 创建服务器安全凭证
+        server_credentials = grpc.ssl_server_credentials(
+            [(private_key, certificate_chain)]
+        )
+        
+        # 使用安全端口
+        server.add_secure_port(f"[::]:{port}", server_credentials)
+        logger.info(f"联邦学习安全服务器正在启动，监听端口: {port}")
+        
+    except FileNotFoundError as e:
+        # 如果找不到证书文件，使用不安全端口
+        logger.warning(f"未找到证书文件: {str(e)}，将使用不安全端口")
+        server.add_insecure_port(f"[::]:{port}")
+        logger.info(f"联邦学习服务器（不安全模式）正在启动，监听端口: {port}")
+        
+    except Exception as e:
+        # 其他错误继续抛出
+        logger.error(f"服务器启动失败: {str(e)}")
+        raise
+    
+    # 启动服务器
     server.start()
     server.wait_for_termination()
 
