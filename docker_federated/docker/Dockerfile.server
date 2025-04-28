@@ -22,14 +22,11 @@ RUN apt-get update && apt-get install -y \
 # 配置pip使用国内镜像源
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
-# 首先只复制依赖文件
+# 只复制必要的文件
 COPY docker_federated/requirements.txt requirements.txt
-
-# 安装Python依赖并删除requirements.txt
 RUN pip install -r requirements.txt && rm requirements.txt
-
-# 然后再复制其余代码
-COPY . .
+COPY docker_federated/grpc docker_federated/grpc
+COPY src src
 
 # 暴露gRPC端口
 EXPOSE 50051

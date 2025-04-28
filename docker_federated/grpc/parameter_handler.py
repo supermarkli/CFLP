@@ -2,206 +2,279 @@ import numpy as np
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from typing import Dict, Any, Tuple, Optional
+from typing import Dict, Any, Tuple, Optional, Union, List
 from abc import ABC, abstractmethod
 import pickle
-
-try:
-    from phe import paillier
-    HAS_PHE = True
-except ImportError:
-    HAS_PHE = False
-
+from phe import paillier
+from docker_federated.grpc.generated import federation_pb2
 from src.utils.logging_config import get_logger
 
 logger = get_logger()
 
-class ParameterHandler(ABC):
-    """参数处理的抽象基类"""
+class ParameterHandler:
+    """统一的参数处理器"""
     
-    @abstractmethod
-    def serialize_parameters(self, parameters: Dict[str, np.ndarray]) -> Dict[str, Any]:
-        """序列化参数"""
-        pass
+    def __init__(self, is_client: bool = False, use_encryption: bool = False):
+        self.is_client = is_client
+        self.use_encryption = use_encryption
+        self.SCALE_FACTOR = 1e6
         
-    @abstractmethod
-    def deserialize_parameters(self, parameters: Dict[str, Any]) -> Dict[str, np.ndarray]:
-        """反序列化参数"""
-        pass
-        
-    @abstractmethod
-    def aggregate_parameters(self, parameters_list: list, weights: list) -> Dict[str, np.ndarray]:
-        """聚合参数"""
-        pass
-
-class PlainParameterHandler(ParameterHandler):
-    """普通参数处理类"""
-    
-    def serialize_parameters(self, parameters: Dict[str, np.ndarray]) -> Dict[str, Any]:
-        """直接序列化参数"""
-        serialized = {}
-        for key, value in parameters.items():
-            if isinstance(value, np.ndarray):
-                serialized[key] = {
-                    'data': value.tobytes(),
-                    'shape': list(value.shape),
-                    'dtype': str(value.dtype)
-                }
-            else:
-                arr = np.array([value])
-                serialized[key] = {
-                    'data': arr.tobytes(),
-                    'shape': [1],
-                    'dtype': str(arr.dtype)
-                }
-        return serialized
-        
-    def deserialize_parameters(self, parameters: Dict[str, Any]) -> Dict[str, np.ndarray]:
-        """直接反序列化参数"""
-        deserialized = {}
-        for key, value in parameters.items():
-            try:
-                dtype = np.dtype(value['dtype'])
-                arr = np.frombuffer(value['data'], dtype=dtype).reshape(value['shape'])
-                deserialized[key] = arr[0] if len(value['shape']) == 1 and value['shape'][0] == 1 else arr
-            except Exception as e:
-                logger.error(f"参数反序列化失败 {key}: {str(e)}")
-                raise
-        return deserialized
-        
-    def aggregate_parameters(self, parameters_list: list, weights: list) -> Dict[str, np.ndarray]:
-        """直接聚合参数"""
-        if not parameters_list or not weights:
-            raise ValueError("参数列表或权重为空")
+        if use_encryption:
+            self._load_keys()
             
-        aggregated = {}
-        for key in parameters_list[0].keys():
-            aggregated[key] = sum(p[key] * w for p, w in zip(parameters_list, weights))
-        return aggregated
-
-class HomomorphicParameterHandler(ParameterHandler):
-    """同态加密参数处理类"""
-    
-    def __init__(self):
-        if not HAS_PHE:
-            raise ImportError("未安装phe库,无法使用同态加密功能")
-            
-        self.public_key = None
-        self.private_key = None
-        self._load_or_generate_keys()
-        
-    def _load_or_generate_keys(self):
-        """加载或生成密钥对"""
+    def _load_keys(self):
+        """加载密钥"""
         try:
-            # 尝试从文件加载密钥
-            key_dir = "/app/certs"
-            public_key_path = f"{key_dir}/public_key.pkl"
-            private_key_path = f"{key_dir}/private_key.pkl"
-            
-            if os.path.exists(public_key_path) and os.path.exists(private_key_path):
-                with open(public_key_path, 'rb') as f:
-                    self.public_key = pickle.load(f)
-                with open(private_key_path, 'rb') as f:
+            if not self.is_client:
+                # 服务器加载私钥
+                with open('/app/certs/private_key.pkl', 'rb') as f:
                     self.private_key = pickle.load(f)
-                logger.info("已加载现有密钥对")
+                logger.info("服务器已加载私钥")
             else:
-                # 生成新密钥对
-                self.public_key, self.private_key = paillier.generate_paillier_keypair()
-                
-                # 保存密钥
-                os.makedirs(key_dir, exist_ok=True)
-                with open(public_key_path, 'wb') as f:
-                    pickle.dump(self.public_key, f)
-                with open(private_key_path, 'wb') as f:
-                    pickle.dump(self.private_key, f)
-                logger.info("已生成并保存新密钥对")
-                
+                # 客户端加载公钥
+                with open('/app/certs/public_key.pkl', 'rb') as f:
+                    self.public_key = pickle.load(f)
+                logger.info("客户端已加载公钥")
         except Exception as e:
-            logger.error(f"密钥处理失败: {str(e)}")
+            logger.error(f"密钥加载失败: {str(e)}")
             raise
             
-    def serialize_parameters(self, parameters: Dict[str, np.ndarray]) -> Dict[str, Any]:
-        """加密并序列化参数"""
+    def serialize_plain_parameters(self, parameters: dict) -> dict:
         serialized = {}
         for key, value in parameters.items():
             if isinstance(value, np.ndarray):
-                # 将浮点数转换为整数进行加密
-                scale = 1e6  # 保留6位小数
-                value_int = (value * scale).astype(np.int64)
-                encrypted = [self.public_key.encrypt(x) for x in value_int.flatten()]
-                serialized[key] = {
-                    'encrypted_data': pickle.dumps(encrypted),
-                    'scale': scale,
-                    'shape': list(value.shape),
-                    'dtype': str(value.dtype)
-                }
+                numpy_array = federation_pb2.NumpyArray(
+                    data=value.tobytes(),
+                    shape=list(value.shape),
+                    dtype=str(value.dtype)
+                )
+                serialized[key] = numpy_array
             else:
                 arr = np.array([value])
-                scale = 1e6
-                value_int = (arr * scale).astype(np.int64)
-                encrypted = [self.public_key.encrypt(x) for x in value_int]
-                serialized[key] = {
-                    'encrypted_data': pickle.dumps(encrypted),
-                    'scale': scale,
-                    'shape': [1],
-                    'dtype': str(arr.dtype)
-                }
+                numpy_array = federation_pb2.NumpyArray(
+                    data=arr.tobytes(),
+                    shape=[1],
+                    dtype=str(arr.dtype)
+                )
+                serialized[key] = numpy_array
         return serialized
-        
-    def deserialize_parameters(self, parameters: Dict[str, Any]) -> Dict[str, np.ndarray]:
-        """解密并反序列化参数"""
-        deserialized = {}
-        for key, value in parameters.items():
-            try:
-                encrypted = pickle.loads(value['encrypted_data'])
-                decrypted = [self.private_key.decrypt(x) for x in encrypted]
-                dtype = np.dtype(value['dtype'])
-                # 还原浮点数
-                arr = (np.array(decrypted) / value['scale']).astype(dtype).reshape(value['shape'])
-                deserialized[key] = arr[0] if len(value['shape']) == 1 and value['shape'][0] == 1 else arr
-            except Exception as e:
-                logger.error(f"参数解密失败 {key}: {str(e)}")
-                raise
-        return deserialized
-        
-    def aggregate_parameters(self, parameters_list: list, weights: list) -> Dict[str, np.ndarray]:
-        """聚合加密参数"""
-        if not parameters_list or not weights:
-            raise ValueError("参数列表或权重为空")
-            
-        aggregated = {}
-        for key in parameters_list[0].keys():
-            # 对加密数据进行加权求和
-            encrypted_sum = None
-            scale = parameters_list[0][key]['scale']
-            shape = parameters_list[0][key]['shape']
-            dtype = parameters_list[0][key]['dtype']
-            
-            for params, weight in zip(parameters_list, weights):
-                encrypted = pickle.loads(params[key]['encrypted_data'])
-                weight_int = int(weight * 1e6)  # 将权重转换为整数
-                if encrypted_sum is None:
-                    encrypted_sum = [x * weight_int for x in encrypted]
-                else:
-                    encrypted_sum = [sum + (x * weight_int) for sum, x in zip(encrypted_sum, encrypted)]
-            
-            # 解密结果
-            decrypted = [self.private_key.decrypt(x) for x in encrypted_sum]
-            # 还原浮点数
-            arr = (np.array(decrypted) / (scale * 1e6)).astype(np.dtype(dtype)).reshape(shape)
-            aggregated[key] = arr
-            
-        return aggregated
 
-def create_parameter_handler(use_encryption: bool = False) -> ParameterHandler:
-    """创建参数处理器"""
-    if use_encryption:
-        if not HAS_PHE:
-            logger.warning("未安装phe库,将使用普通模式")
-            return PlainParameterHandler()
+    def serialize_encrypted_parameters(self, parameters: dict) -> dict:
+        """
+        加密序列化：输入dict[str, np.ndarray/int/float/标量]，输出dict[str, NumpyArray]（dtype='encrypted'）
+        """
+        result = {}
+        for key, value in parameters.items():
+            logger.debug(f"[serialize_encrypted_parameters] key={key}, original type={type(value)}, value={value}")
+            value = np.array(value, dtype=np.float64)
+            if value.ndim == 0:
+                value = value.reshape(1)
+            logger.debug(f"[serialize_encrypted_parameters] key={key}, after np.array: type={type(value)}, dtype={value.dtype}, shape={value.shape}, value={value}")
+            value_int = (value * self.SCALE_FACTOR).astype(np.int64)
+            encrypted = [self.public_key.encrypt(x) for x in value_int.flatten()]
+            numpy_array = federation_pb2.NumpyArray(
+                data=pickle.dumps(encrypted),
+                shape=list(value.shape),
+                dtype="encrypted"
+            )
+            result[key] = numpy_array
+        return result
+
+    def deserialize_plain_parameters(self, parameters: dict) -> dict:
+        """
+        明文反序列化：输入dict[str, NumpyArray]，输出dict[str, np.ndarray]
+        """
+        result = {}
+        param_mapping = {
+            'weights': 'coef_',
+            'bias': 'intercept_'
+        }
+        for key, value in parameters.items():
+            mapped_key = param_mapping.get(key, key)
+            dtype = np.dtype(value.dtype)
+            arr = np.frombuffer(value.data, dtype=dtype).reshape(list(value.shape))
+            result[mapped_key] = arr
+        return result
+
+    def deserialize_encrypted_parameters(self, parameters: dict) -> dict:
+        """
+        加密反序列化：输入dict[str, NumpyArray]，输出dict[str, np.ndarray]
+        """
+        result = {}
+        for key, value in parameters.items():
+            encrypted = pickle.loads(value.data)
+            decrypted = [self.private_key.decrypt(x) for x in encrypted]
+            arr = (np.array(decrypted) / self.SCALE_FACTOR).astype(np.float64)
+            arr = arr.reshape(list(value.shape))
+            result[key] = arr
+        return result
+
+    def encrypt(self, value: Union[float, np.ndarray]) -> bytes:
+        """加密单个值或数组"""
+        if not self.is_client:
+            raise ValueError("只有客户端可以加密数据")
+            
+        if not isinstance(value, np.ndarray):
+            value = np.array([value])
+            
+        value_int = (value * self.SCALE_FACTOR).astype(np.int64)
+        encrypted = [self.public_key.encrypt(x) for x in value_int.flatten()]
+        return pickle.dumps(encrypted)
+        
+    def decrypt(self, encrypted_data: bytes, shape: tuple, dtype: str, scale: float) -> np.ndarray:
+        """解密数据"""
+        if self.is_client:
+            raise ValueError("只有服务器可以解密数据")
+            
         try:
-            return HomomorphicParameterHandler()
+            encrypted = pickle.loads(encrypted_data)
+            decrypted = [self.private_key.decrypt(x) for x in encrypted]
+            arr = (np.array(decrypted) / scale).astype(np.dtype(dtype))
+            return arr.reshape(shape)
         except Exception as e:
-            logger.error(f"创建加密处理器失败: {str(e)}, 将使用普通模式")
-            return PlainParameterHandler()
-    return PlainParameterHandler() 
+            logger.error(f"解密失败: {str(e)}")
+            raise
+
+    def aggregate_parameters(self, parameters_list: List[Dict[str, Any]], weights: List[float] = None) -> Dict[str, np.ndarray]:
+        """聚合参数列表
+        
+        Args:
+            parameters_list: 参数列表，每个元素是一个参数字典
+            weights: 权重列表，用于加权平均
+            
+        Returns:
+            聚合后的参数字典
+        """
+        try:
+            if not parameters_list:
+                raise ValueError("参数列表为空")
+            
+            if weights is None:
+                weights = [1.0 / len(parameters_list)] * len(parameters_list)
+            
+            if len(weights) != len(parameters_list):
+                raise ValueError("权重列表长度与参数列表长度不匹配")
+            
+            if not self.use_encryption:
+                return self._aggregate_plain(parameters_list, weights)
+            else:
+                return self._aggregate_encrypted(parameters_list, weights)
+            
+        except Exception as e:
+            logger.error(f"参数聚合失败: {str(e)}")
+            raise
+
+    def _aggregate_plain(self, parameters_list: List[Dict[str, Any]], weights: List[float]) -> Dict[str, np.ndarray]:
+        """聚合普通参数"""
+        try:
+            aggregated = {}
+            # 获取所有参数的键
+            keys = set()
+            for params in parameters_list:
+                keys.update(params.keys())
+            
+            # 对每个参数进行加权平均
+            for key in keys:
+                # 收集所有参数值
+                values = []
+                for params in parameters_list:
+                    if key in params:
+                        values.append(params[key])
+                
+                if not values:
+                    continue
+                
+                # 确保所有值都是numpy数组
+                values = [np.array(v) if not isinstance(v, np.ndarray) else v for v in values]
+                
+                # 检查形状是否一致
+                shapes = [v.shape for v in values]
+                if not all(s == shapes[0] for s in shapes):
+                    raise ValueError(f"参数 {key} 的形状不一致")
+                
+                # 加权平均
+                weighted_sum = np.zeros_like(values[0])
+                for v, w in zip(values, weights):
+                    weighted_sum += v * w
+                
+                aggregated[key] = weighted_sum
+            
+            return aggregated
+        
+        except Exception as e:
+            logger.error(f"普通参数聚合失败: {str(e)}")
+            raise
+
+    def _aggregate_encrypted(self, parameters_list: List[Dict[str, Any]], weights: List[float]) -> Dict[str, np.ndarray]:
+        """聚合加密参数"""
+        try:
+            if self.is_client:
+                raise ValueError("客户端不能聚合加密参数")
+            
+            aggregated = {}
+            # 获取所有参数的键
+            keys = set()
+            for params in parameters_list:
+                keys.update(params.keys())
+            
+            # 对每个参数进行加权求和
+            for key in keys:
+                # 收集所有加密参数
+                encrypted_values = []
+                scales = []
+                shapes = []
+            
+                for params in parameters_list:
+                    if key in params:
+                        value = params[key]
+                        if 'encrypted_data' not in value:
+                            raise ValueError(f"参数 {key} 不是加密参数")
+                        
+                        encrypted_values.append(pickle.loads(value['encrypted_data']))
+                        scales.append(value['scale'])
+                        shapes.append(value['shape'])
+                
+                if not encrypted_values:
+                    continue
+                
+                # 检查形状是否一致
+                if not all(s == shapes[0] for s in shapes):
+                    raise ValueError(f"参数 {key} 的形状不一致")
+                
+                # 检查缩放因子是否一致
+                if not all(s == scales[0] for s in scales):
+                    raise ValueError(f"参数 {key} 的缩放因子不一致")
+                
+                # 加权求和
+                weighted_sum = []
+                for i, encrypted in enumerate(encrypted_values):
+                    for j, val in enumerate(encrypted):
+                        if i == 0:
+                            weighted_sum.append(val * weights[i])
+                        else:
+                            weighted_sum[j] += val * weights[i]
+                
+                # 解密并还原
+                decrypted = [self.private_key.decrypt(x) for x in weighted_sum]
+                arr = np.array(decrypted) / scales[0]
+                arr = arr.reshape(shapes[0])
+                
+                aggregated[key] = arr
+            
+            return aggregated
+        
+        except Exception as e:
+            logger.error(f"加密参数聚合失败: {str(e)}")
+            raise
+
+def create_parameter_handler(use_encryption: bool = False, is_client: bool = True) -> ParameterHandler:
+    """创建参数处理器
+    
+    Args:
+        use_encryption: 是否使用加密
+        is_client: 是否为客户端，客户端只需要公钥，服务端需要私钥
+        
+    Returns:
+        ParameterHandler: 参数处理器实例
+    """
+    return ParameterHandler(is_client, use_encryption)

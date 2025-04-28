@@ -149,7 +149,6 @@ class LogisticRegressionModel(BaseModel):
     def get_parameters(self):
         """获取模型参数"""
         if not hasattr(self.model, 'coef_'):
-            # 如果模型还没有参数，返回初始化的零参数
             return {
                 'coef': np.zeros((1, 26)),
                 'intercept': np.zeros(1)

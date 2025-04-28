@@ -1,0 +1,1277 @@
+2025-04-28 15:25:47 - INFO - [logging_config.py:55] - 日志文件已创建: logs/20250428_152547.log
+2025-04-28 15:25:47 - INFO - [logging_config.py:55] - 日志文件已创建: logs/20250428_152547.log
+2025-04-28 15:25:47 - INFO - [logging_config.py:55] - 日志文件已创建: logs/20250428_152547.log
+2025-04-28 15:25:47 - INFO - [logging_config.py:55] - 日志文件已创建: logs/20250428_152547.log
+2025-04-28 15:25:47 - INFO - [client_grpc.py:385] - 成功加载客户端数据: /app/data/credit_card_train_normalized.csv, 形状: X=(8000, 26), y=(8000,)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:385] - 成功加载客户端数据: /app/data/credit_card_train_normalized.csv, 形状: X=(8000, 26), y=(8000,)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:385] - 成功加载客户端数据: /app/data/credit_card_train_normalized.csv, 形状: X=(8000, 26), y=(8000,)
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:85] - 数据集划分完成 - 训练集: (6400, 26), 测试集: (1600, 26)
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:85] - 数据集划分完成 - 训练集: (6400, 26), 测试集: (1600, 26)
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:85] - 数据集划分完成 - 训练集: (6400, 26), 测试集: (1600, 26)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:92] - 数据初始化完成，训练数据大小: 6400
+2025-04-28 15:25:47 - INFO - [client_grpc.py:92] - 数据初始化完成，训练数据大小: 6400
+2025-04-28 15:25:47 - INFO - [client_grpc.py:92] - 数据初始化完成，训练数据大小: 6400
+2025-04-28 15:25:47 - INFO - [server_grpc.py:67] - 服务器初始化完成，等待 3 个客户端注册，计划训练 10 轮
+2025-04-28 15:25:47 - INFO - [client_grpc.py:54] - 使用安全通道(SSL/TLS)连接服务器
+2025-04-28 15:25:47 - INFO - [client_grpc.py:54] - 使用安全通道(SSL/TLS)连接服务器
+2025-04-28 15:25:47 - INFO - [client_grpc.py:54] - 使用安全通道(SSL/TLS)连接服务器
+2025-04-28 15:25:47 - INFO - [client_grpc.py:75] - 客户端 1 初始化完成，数据集大小: 6400
+2025-04-28 15:25:47 - INFO - [server_grpc.py:316] - 联邦学习安全服务器正在启动，监听端口: 50051
+2025-04-28 15:25:47 - INFO - [client_grpc.py:75] - 客户端 3 初始化完成，数据集大小: 6400
+2025-04-28 15:25:47 - INFO - [client_grpc.py:278] - 开始注册客户端: 1
+2025-04-28 15:25:47 - INFO - [client_grpc.py:75] - 客户端 2 初始化完成，数据集大小: 6400
+2025-04-28 15:25:47 - INFO - [client_grpc.py:278] - 开始注册客户端: 3
+2025-04-28 15:25:47 - INFO - [client_grpc.py:278] - 开始注册客户端: 2
+2025-04-28 15:25:47 - INFO - [server_grpc.py:115] - 接收到客户端 1 的注册请求
+2025-04-28 15:25:47 - INFO - [server_grpc.py:115] - 接收到客户端 2 的注册请求
+2025-04-28 15:25:47 - INFO - [server_grpc.py:126] - 客户端 1 注册成功，当前 1/3 个客户端
+2025-04-28 15:25:47 - INFO - [server_grpc.py:126] - 客户端 2 注册成功，当前 2/3 个客户端
+2025-04-28 15:25:47 - INFO - [server_grpc.py:115] - 接收到客户端 3 的注册请求
+2025-04-28 15:25:47 - INFO - [client_grpc.py:280] - 客户端注册完成: 响应码=200, 消息=注册成功
+2025-04-28 15:25:47 - INFO - [client_grpc.py:280] - 客户端注册完成: 响应码=200, 消息=注册成功
+2025-04-28 15:25:47 - INFO - [server_grpc.py:126] - 客户端 3 注册成功，当前 3/3 个客户端
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:283] - 收到初始模型参数, 大小: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:283] - 收到初始模型参数, 大小: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:162] - [client] _deserialize_parameters input size: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:162] - [client] _deserialize_parameters input size: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:168] - [client] 开始反序列化参数
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:168] - [client] 开始反序列化参数
+2025-04-28 15:25:47 - INFO - [client_grpc.py:280] - 客户端注册完成: 响应码=200, 消息=注册成功
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:283] - 收到初始模型参数, 大小: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:174] - [client] deserialized param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+  0. 0.]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:174] - [client] deserialized param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+  0. 0.]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:162] - [client] _deserialize_parameters input size: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:168] - [client] 开始反序列化参数
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:174] - [client] deserialized param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[0.00015712]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:174] - [client] deserialized param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[0.00015712]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:183] - [client] mapped (final) param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+  0. 0.]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:183] - [client] mapped (final) param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+  0. 0.]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:174] - [client] deserialized param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+  0. 0.]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:183] - [client] mapped (final) param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[0.00015712]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:183] - [client] mapped (final) param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[0.00015712]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:174] - [client] deserialized param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[0.00015712]
+2025-04-28 15:25:47 - INFO - [client_grpc.py:286] - 已设置初始模型参数
+2025-04-28 15:25:47 - INFO - [client_grpc.py:286] - 已设置初始模型参数
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:183] - [client] mapped (final) param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+  0. 0.]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:183] - [client] mapped (final) param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[0.00015712]
+2025-04-28 15:25:47 - INFO - [client_grpc.py:286] - 已设置初始模型参数
+2025-04-28 15:25:47 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=True, count=0
+2025-04-28 15:25:47 - INFO - [server_grpc.py:146] - 客户端 2 获得训练许可，count增加到 1/3
+2025-04-28 15:25:47 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=True, count=1
+2025-04-28 15:25:47 - INFO - [client_grpc.py:299] - 所有客户端已就绪，开始训练
+2025-04-28 15:25:47 - INFO - [server_grpc.py:146] - 客户端 1 获得训练许可，count增加到 2/3
+2025-04-28 15:25:47 - INFO - [client_grpc.py:305] - 开始第 1 轮训练
+2025-04-28 15:25:47 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=True, count=2
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:205] - 开始训练模型，训练数据形状: X=(6400, 26), y=(6400,)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:299] - 所有客户端已就绪，开始训练
+2025-04-28 15:25:47 - INFO - [server_grpc.py:146] - 客户端 3 获得训练许可，count增加到 3/3
+2025-04-28 15:25:47 - INFO - [client_grpc.py:305] - 开始第 1 轮训练
+2025-04-28 15:25:47 - INFO - [server_grpc.py:150] - 所有客户端已获得训练许可，重置next_step=False, count=0
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:205] - 开始训练模型，训练数据形状: X=(6400, 26), y=(6400,)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:299] - 所有客户端已就绪，开始训练
+2025-04-28 15:25:47 - INFO - [client_grpc.py:305] - 开始第 1 轮训练
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:205] - 开始训练模型，训练数据形状: X=(6400, 26), y=(6400,)
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:208] - 训练完成，开始评估模型，测试数据形状: X=(1600, 26), y=(1600,)
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:208] - 训练完成，开始评估模型，测试数据形状: X=(1600, 26), y=(1600,)
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:208] - 训练完成，开始评估模型，测试数据形状: X=(1600, 26), y=(1600,)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:211] - 本地训练完成，评估指标: {'accuracy': 0.824375, 'precision': 0.6613756613756614, 'recall': 0.3654970760233918, 'f1': 0.4708097928436912, 'auc_roc': 0.728634981730957}
+2025-04-28 15:25:47 - INFO - [client_grpc.py:308] - 开始创建第 1 轮参数更新消息
+2025-04-28 15:25:47 - INFO - [client_grpc.py:222] - 开始创建参数更新消息: 客户端=2, 轮次=0
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:226] - 获取到模型参数，键值: ['coef', 'intercept']
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:238] - 开始序列化模型参数
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:97] - [client] model.get_parameters() output: {'coef': array([[-0.2356199 ,  0.01719229,  0.75297592,  0.05400499,  0.03498885,
+         0.22473459, -0.03539794,  0.12476138, -0.00109266,  0.09915935,
+         0.09516088, -0.20614866,  0.03318543, -0.05132622, -0.16382238,
+        -0.09404289, -0.03513797,  0.03442516,  0.04972104, -0.06388626,
+        -0.26580716,  0.88132437,  0.95469542,  0.89634176, -0.06054481,
+        -0.14988354]]), 'intercept': array([-0.84923514])}
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:101] - [client] model param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[-0.2356199   0.01719229  0.75297592  0.05400499  0.03498885  0.22473459
+  -0.03539794  0.12476138 -0.00109266  0.09915935  0.09516088 -0.20614866
+   0.03318543 -0.05132622 -0.16382238 -0.09404289 -0.03513797  0.03442516
+   0.04972104 -0.06388626 -0.26580716  0.88132437  0.95469542  0.89634176
+  -0.06054481 -0.14988354]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:101] - [client] model param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[-0.84923514]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:114] - [client] mapped param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[-0.2356199   0.01719229  0.75297592  0.05400499  0.03498885  0.22473459
+  -0.03539794  0.12476138 -0.00109266  0.09915935  0.09516088 -0.20614866
+   0.03318543 -0.05132622 -0.16382238 -0.09404289 -0.03513797  0.03442516
+   0.04972104 -0.06388626 -0.26580716  0.88132437  0.95469542  0.89634176
+  -0.06054481 -0.14988354]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:114] - [client] mapped param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[-0.84923514]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:127] - 转换NumPy float数组为Python float数组: coef
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:127] - 转换NumPy float数组为Python float数组: intercept
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:136] - [client] 参数类型转换完成
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:138] - [client] converted param: key=coef, type=<class 'list'>
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:140] - [client] first element type: <class 'list'>
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:138] - [client] converted param: key=intercept, type=<class 'list'>
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:140] - [client] first element type: <class 'float'>
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:146] - [client] 使用明文方式序列化参数
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:149] - [client] 参数序列化完成，结果大小: 2 字节
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:251] - 创建完成参数和指标消息
+2025-04-28 15:25:47 - INFO - [client_grpc.py:260] - 参数更新消息创建完成
+2025-04-28 15:25:47 - INFO - [client_grpc.py:311] - 提交第 1 轮参数更新
+2025-04-28 15:25:47 - INFO - [server_grpc.py:169] - 接收到客户端 2 的参数更新，轮次: 1
+2025-04-28 15:25:47 - ERROR - [server_grpc.py:214] - 处理客户端更新时出错: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:47 - ERROR - [server_grpc.py:215] - cannot reshape array of size 26 into shape (1,)
+Traceback (most recent call last):
+  File "/app/docker_federated/grpc/server_grpc.py", line 182, in SubmitUpdate
+    parameters = self._deserialize_parameters(request.parameters_and_metrics.parameters.parameters)
+  File "/app/docker_federated/grpc/server_grpc.py", line 109, in _deserialize_parameters
+    deserialized = self.parameter_handler.deserialize_plain_parameters(parameters)
+  File "/app/docker_federated/grpc/parameter_handler.py", line 95, in deserialize_plain_parameters
+    arr = np.frombuffer(value.data, dtype=dtype).reshape(list(value.shape))
+ValueError: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:313] - 参数更新提交完成: 响应码=500, 消息=服务器错误: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:47 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:47 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:47 - INFO - [client_grpc.py:211] - 本地训练完成，评估指标: {'accuracy': 0.82625, 'precision': 0.6302521008403361, 'recall': 0.4411764705882353, 'f1': 0.5190311418685122, 'auc_roc': 0.746031746031746}
+2025-04-28 15:25:47 - INFO - [client_grpc.py:308] - 开始创建第 1 轮参数更新消息
+2025-04-28 15:25:47 - INFO - [client_grpc.py:222] - 开始创建参数更新消息: 客户端=3, 轮次=0
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:226] - 获取到模型参数，键值: ['coef', 'intercept']
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:238] - 开始序列化模型参数
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:97] - [client] model.get_parameters() output: {'coef': array([[-0.14312286,  0.05699158,  0.66215708,  0.04161768,  0.20721521,
+        -0.00361317,  0.10404999,  0.11093026, -0.45652099,  0.50885153,
+        -0.04847449,  0.27752856, -0.29923594,  0.05080317, -0.28210845,
+        -0.09912   , -0.08039935, -0.05009069,  0.02042016, -0.05770099,
+        -0.12786261,  0.77556126,  0.65535705,  0.76057283,  0.11519517,
+        -0.16432162]]), 'intercept': array([-0.77658311])}
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:101] - [client] model param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[-0.14312286  0.05699158  0.66215708  0.04161768  0.20721521 -0.00361317
+   0.10404999  0.11093026 -0.45652099  0.50885153 -0.04847449  0.27752856
+  -0.29923594  0.05080317 -0.28210845 -0.09912    -0.08039935 -0.05009069
+   0.02042016 -0.05770099 -0.12786261  0.77556126  0.65535705  0.76057283
+   0.11519517 -0.16432162]]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:101] - [client] model param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[-0.77658311]
+2025-04-28 15:25:47 - DEBUG - [client_grpc.py:114] - [client] mapped param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[-0.14312286  0.05699158  0.66215708  0.04161768  0.20721521 -0.00361317
+   0.10404999  0.11093026 -0.45652099  0.50885153 -0.04847449  0.27752856
+  -0.29923594  0.05080317 -0.28210845 -0.09912    -0.08039935 -0.05009069
+   0.02042016 -0.05770099 -0.12786261  0.77556126  0.65535705  0.76057283
+   0.11519517 -0.16432162]]
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:114] - [client] mapped param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[-0.77658311]
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:127] - 转换NumPy float数组为Python float数组: coef
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:127] - 转换NumPy float数组为Python float数组: intercept
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:136] - [client] 参数类型转换完成
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:138] - [client] converted param: key=coef, type=<class 'list'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:140] - [client] first element type: <class 'list'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:138] - [client] converted param: key=intercept, type=<class 'list'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:140] - [client] first element type: <class 'float'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:146] - [client] 使用明文方式序列化参数
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:149] - [client] 参数序列化完成，结果大小: 2 字节
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:251] - 创建完成参数和指标消息
+2025-04-28 15:25:48 - INFO - [client_grpc.py:260] - 参数更新消息创建完成
+2025-04-28 15:25:48 - INFO - [client_grpc.py:311] - 提交第 1 轮参数更新
+2025-04-28 15:25:48 - INFO - [client_grpc.py:211] - 本地训练完成，评估指标: {'accuracy': 0.831875, 'precision': 0.6927374301675978, 'recall': 0.3668639053254438, 'f1': 0.4796905222437137, 'auc_roc': 0.7445493674921934}
+2025-04-28 15:25:48 - INFO - [server_grpc.py:169] - 接收到客户端 3 的参数更新，轮次: 1
+2025-04-28 15:25:48 - INFO - [client_grpc.py:308] - 开始创建第 1 轮参数更新消息
+2025-04-28 15:25:48 - ERROR - [server_grpc.py:214] - 处理客户端更新时出错: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:48 - INFO - [client_grpc.py:222] - 开始创建参数更新消息: 客户端=1, 轮次=0
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:226] - 获取到模型参数，键值: ['coef', 'intercept']
+2025-04-28 15:25:48 - ERROR - [server_grpc.py:215] - cannot reshape array of size 26 into shape (1,)
+Traceback (most recent call last):
+  File "/app/docker_federated/grpc/server_grpc.py", line 182, in SubmitUpdate
+    parameters = self._deserialize_parameters(request.parameters_and_metrics.parameters.parameters)
+  File "/app/docker_federated/grpc/server_grpc.py", line 109, in _deserialize_parameters
+    deserialized = self.parameter_handler.deserialize_plain_parameters(parameters)
+  File "/app/docker_federated/grpc/parameter_handler.py", line 95, in deserialize_plain_parameters
+    arr = np.frombuffer(value.data, dtype=dtype).reshape(list(value.shape))
+ValueError: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:238] - 开始序列化模型参数
+2025-04-28 15:25:48 - INFO - [client_grpc.py:313] - 参数更新提交完成: 响应码=500, 消息=服务器错误: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:97] - [client] model.get_parameters() output: {'coef': array([[-0.19325481, -0.01120979,  0.69865793,  0.11036719,  0.0414095 ,
+         0.07638504,  0.08792422,  0.19460637, -0.07155843, -0.00170835,
+         0.22149847, -0.086467  ,  0.20479928, -0.22789263, -0.00897347,
+        -0.2471405 , -0.03081049, -0.10284889, -0.00790224, -0.0221157 ,
+        -0.16688867,  1.02369818,  1.08574294,  1.05825338, -0.0139263 ,
+        -0.22664049]]), 'intercept': array([-1.02325125])}
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:101] - [client] model param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[-0.19325481 -0.01120979  0.69865793  0.11036719  0.0414095   0.07638504
+   0.08792422  0.19460637 -0.07155843 -0.00170835  0.22149847 -0.086467
+   0.20479928 -0.22789263 -0.00897347 -0.2471405  -0.03081049 -0.10284889
+  -0.00790224 -0.0221157  -0.16688867  1.02369818  1.08574294  1.05825338
+  -0.0139263  -0.22664049]]
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:101] - [client] model param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[-1.02325125]
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:114] - [client] mapped param: key=coef, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1, 26), value=[[-0.19325481 -0.01120979  0.69865793  0.11036719  0.0414095   0.07638504
+   0.08792422  0.19460637 -0.07155843 -0.00170835  0.22149847 -0.086467
+   0.20479928 -0.22789263 -0.00897347 -0.2471405  -0.03081049 -0.10284889
+  -0.00790224 -0.0221157  -0.16688867  1.02369818  1.08574294  1.05825338
+  -0.0139263  -0.22664049]]
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:114] - [client] mapped param: key=intercept, type=<class 'numpy.ndarray'>, dtype=float64, shape=(1,), value=[-1.02325125]
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:127] - 转换NumPy float数组为Python float数组: coef
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:127] - 转换NumPy float数组为Python float数组: intercept
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:136] - [client] 参数类型转换完成
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:138] - [client] converted param: key=coef, type=<class 'list'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:140] - [client] first element type: <class 'list'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:138] - [client] converted param: key=intercept, type=<class 'list'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:140] - [client] first element type: <class 'float'>
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:146] - [client] 使用明文方式序列化参数
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:149] - [client] 参数序列化完成，结果大小: 2 字节
+2025-04-28 15:25:48 - DEBUG - [client_grpc.py:251] - 创建完成参数和指标消息
+2025-04-28 15:25:48 - INFO - [client_grpc.py:260] - 参数更新消息创建完成
+2025-04-28 15:25:48 - INFO - [client_grpc.py:311] - 提交第 1 轮参数更新
+2025-04-28 15:25:48 - INFO - [server_grpc.py:169] - 接收到客户端 1 的参数更新，轮次: 1
+2025-04-28 15:25:48 - ERROR - [server_grpc.py:214] - 处理客户端更新时出错: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:48 - ERROR - [server_grpc.py:215] - cannot reshape array of size 26 into shape (1,)
+Traceback (most recent call last):
+  File "/app/docker_federated/grpc/server_grpc.py", line 182, in SubmitUpdate
+    parameters = self._deserialize_parameters(request.parameters_and_metrics.parameters.parameters)
+  File "/app/docker_federated/grpc/server_grpc.py", line 109, in _deserialize_parameters
+    deserialized = self.parameter_handler.deserialize_plain_parameters(parameters)
+  File "/app/docker_federated/grpc/parameter_handler.py", line 95, in deserialize_plain_parameters
+    arr = np.frombuffer(value.data, dtype=dtype).reshape(list(value.shape))
+ValueError: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:48 - INFO - [client_grpc.py:313] - 参数更新提交完成: 响应码=500, 消息=服务器错误: cannot reshape array of size 26 into shape (1,)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:48 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:48 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:49 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:49 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:50 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:51 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:52 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:52 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:53 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:54 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:55 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:55 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:56 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:56 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:57 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:57 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:58 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:25:59 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:25:59 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:00 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:00 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:01 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:01 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:02 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:02 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:03 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:03 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:04 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:04 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 1 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 2 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
+2025-04-28 15:26:05 - INFO - [server_grpc.py:141] - 客户端 3 检查训练状态，当前next_step=False, count=0
+2025-04-28 15:26:05 - INFO - [client_grpc.py:322] - 等待其他客户端提交参数 (3/3)
