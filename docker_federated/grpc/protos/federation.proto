@@ -75,10 +75,31 @@ message GetModelRequest {
     int64 round = 2;              // 客户端当前轮次
 }
 
+message EncryptedNumpyArray {
+  repeated bytes data = 1;
+  repeated int32 shape = 2;
+}
+
+message EncryptedModelParameters {
+  map<string, EncryptedNumpyArray> parameters = 1;
+}
+
+message EncryptedParametersAndMetrics {
+  EncryptedModelParameters parameters = 1;
+  TrainingMetrics metrics = 2;
+}
+
+message EncryptedClientUpdate {
+  string client_id = 1;
+  int32 round = 2;
+  EncryptedParametersAndMetrics parameters_and_metrics = 3;
+}
+
 // 联邦学习服务
 service FederatedLearning {
     rpc Register(ClientInfo) returns (RegisterResponse);
     rpc CheckTrainingStatus(TrainingStatusRequest) returns (TrainingStatusResponse);  // 新增RPC方法
     rpc SubmitUpdate(ClientUpdate) returns (ServerUpdate);
     rpc GetGlobalModel(GetModelRequest) returns (ParametersAndMetrics);
+    rpc SubmitEncryptedUpdate(EncryptedClientUpdate) returns (ServerUpdate);
 } 

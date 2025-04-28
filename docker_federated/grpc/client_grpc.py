@@ -5,11 +5,10 @@ import uuid
 import pandas as pd
 import numpy as np
 import time
-from typing import Dict, Any
+import pickle
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from src.models.base_model import BaseModel
 from src.utils.logging_config import get_logger
 from src.utils.metrics import ModelMetrics
 from src.models.logistic_regression import LogisticRegressionModel
@@ -17,11 +16,12 @@ from src.models.logistic_regression import LogisticRegressionModel
 from docker_federated.grpc.generated import federation_pb2
 from docker_federated.grpc.generated import federation_pb2_grpc
 from sklearn.model_selection import train_test_split
+from docker_federated.grpc.parameter_utils import serialize_parameters, deserialize_parameters
 
 logger = get_logger()
 
 class FederatedLearningClient:
-    def __init__(self, data=None):
+    def __init__(self, data=None, use_homomorphic_encryption=False):
         self.client_id = os.environ.get("CLIENT_ID", str(uuid.uuid4()))
         self.model = LogisticRegressionModel()
         self.metrics = ModelMetrics()
@@ -29,7 +29,21 @@ class FederatedLearningClient:
         self.server_host = os.environ.get("GRPC_SERVER_HOST", "localhost")
         self.server_port = os.environ.get("GRPC_SERVER_PORT", "50051")
         self._init_data(data)
-        
+        # 是否启用同态加密
+        self.use_homomorphic_encryption = use_homomorphic_encryption
+        logger.info(f"同态加密状态: {'启用' if self.use_homomorphic_encryption else '未启用'}")
+        if self.use_homomorphic_encryption:
+            try:
+                import pickle
+                with open('/app/certs/public_key.pkl', 'rb') as f:
+                    self.public_key = pickle.load(f)
+                logger.info("成功加载同态加密公钥")
+            except FileNotFoundError:
+                logger.error("未找到同态加密公钥文件: /app/certs/public_key.pkl")
+                raise
+            except Exception as e:
+                logger.error(f"加载同态加密公钥失败: {str(e)}")
+                raise
         try:
             # 尝试读取CA证书
             with open('/app/certs/ca.crt', 'rb') as f:
@@ -87,56 +101,6 @@ class FederatedLearningClient:
         self.data_size = len(self.train_data["X"]) if self.train_data else 0
         logger.info(f"数据初始化完成，训练数据大小: {self.data_size}")
 
-    def _serialize_parameters(self, parameters):
-        """序列化模型参数"""
-        try:
-            serialized = {}
-            param_mapping = {
-                'coef_': 'weights',
-                'intercept_': 'bias'
-            }
-            for key, value in parameters.items():
-                mapped_key = param_mapping.get(key, key)
-                if isinstance(value, np.ndarray):
-                    numpy_array = federation_pb2.NumpyArray(
-                        data=value.tobytes(),
-                        shape=list(value.shape),
-                        dtype=str(value.dtype)
-                    )
-                    serialized[mapped_key] = numpy_array
-                else:
-                    arr = np.array([value])
-                    numpy_array = federation_pb2.NumpyArray(
-                        data=arr.tobytes(),
-                        shape=[1],
-                        dtype=str(arr.dtype)
-                    )
-                    serialized[mapped_key] = numpy_array
-            return serialized
-        except Exception as e:
-            logger.error(f"参数序列化失败: {str(e)}")
-            raise
-        
-    def _deserialize_parameters(self, parameters):
-        """反序列化模型参数"""
-        deserialized = {}
-        param_mapping = {
-            'weights': 'coef_',
-            'bias': 'intercept_'
-        }
-        
-        for key, value in parameters.items():
-            try:
-                # 使用映射后的参数名
-                mapped_key = param_mapping.get(key, key)
-                dtype = np.dtype(value.dtype)
-                arr = np.frombuffer(value.data, dtype=dtype).reshape(value.shape)
-                deserialized[mapped_key] = arr[0] if len(value.shape) == 1 and value.shape[0] == 1 else arr
-            except (ValueError, TypeError) as e:
-                logger.error(f"客户端 {self.client_id} Error deserializing parameter {key}: {str(e)}")
-                raise ValueError(f"客户端 {self.client_id} Failed to deserialize parameter {key}: {str(e)}")
-        return deserialized
-
     def train(self, epochs=10):
         """本地训练模型"""
         if self.train_data is None:
@@ -157,10 +121,9 @@ class FederatedLearningClient:
             raise
 
     def _create_parameter_update_message(self, metrics):
-        """创建参数更新消息"""
+        """创建参数更新消息（明文）"""
         parameters = self.model.get_parameters()
-        
-        # 创建TrainingMetrics消息
+        serialized_params = serialize_parameters(parameters)
         training_metrics = federation_pb2.TrainingMetrics(
             accuracy=metrics.get('accuracy', 0.0),
             precision=metrics.get('precision', 0.0),
@@ -168,21 +131,58 @@ class FederatedLearningClient:
             f1=metrics.get('f1', 0.0),
             auc_roc=metrics.get('auc_roc', 0.0)
         )
-        
-        # 创建ModelParameters消息
         model_parameters = federation_pb2.ModelParameters(
-            parameters=self._serialize_parameters(parameters)
+            parameters=serialized_params
         )
-        
-        # 创建ParametersAndMetrics消息
         params_and_metrics = federation_pb2.ParametersAndMetrics(
             parameters=model_parameters,
             metrics=training_metrics
         )
-        
         return federation_pb2.ClientUpdate(
             client_id=self.client_id,
             round=self.current_round,  
+            parameters_and_metrics=params_and_metrics
+        )
+
+    def _create_encrypted_parameter_update_message(self, metrics):
+        """创建参数更新消息（密文）"""
+        
+        parameters = self.model.get_parameters()
+        encrypted_parameters = {}
+        for key, value in parameters.items():
+            if isinstance(value, np.ndarray):
+                flat = value.flatten()
+                encrypted_bytes = [pickle.dumps(self.public_key.encrypt(v)) for v in flat]
+                encrypted_parameters[key] = {
+                    'data': encrypted_bytes,
+                    'shape': list(value.shape)
+                }
+            else:
+                encrypted_bytes = [pickle.dumps(self.public_key.encrypt(value))]
+                encrypted_parameters[key] = {
+                    'data': encrypted_bytes,
+                    'shape': [1]
+                }
+        proto_params = {}
+        for k, v in encrypted_parameters.items():
+            proto_params[k] = federation_pb2.EncryptedNumpyArray(
+                data=v['data'],
+                shape=v['shape']
+            )
+        model_parameters = federation_pb2.EncryptedModelParameters(parameters=proto_params)
+        params_and_metrics = federation_pb2.EncryptedParametersAndMetrics(
+            parameters=model_parameters,
+            metrics=federation_pb2.TrainingMetrics(
+                accuracy=metrics.get('accuracy', 0.0),
+                precision=metrics.get('precision', 0.0),
+                recall=metrics.get('recall', 0.0),
+                f1=metrics.get('f1', 0.0),
+                auc_roc=metrics.get('auc_roc', 0.0)
+            )
+        )
+        return federation_pb2.EncryptedClientUpdate(
+            client_id=self.client_id,
+            round=self.current_round,
             parameters_and_metrics=params_and_metrics
         )
 
@@ -196,7 +196,7 @@ class FederatedLearningClient:
         register_response = self.stub.Register(register_request)
 
         if register_response.parameters and register_response.parameters.parameters:
-            initial_params = self._deserialize_parameters(register_response.parameters.parameters)
+            initial_params = deserialize_parameters(register_response.parameters.parameters)
             self.model.set_parameters(initial_params)
             logger.info("已设置初始模型参数")
         
@@ -216,9 +216,14 @@ class FederatedLearningClient:
         while self.current_round < n_rounds:
             logger.info(f"开始第 {self.current_round + 1} 轮训练")
             metrics = self.train()
-            parameter_update = self._create_parameter_update_message(metrics)
-            self.stub.SubmitUpdate(parameter_update)
-            logger.info(f"客户端 {self.client_id} 提交轮次 {self.current_round+1} 的参数更新")
+            if self.use_homomorphic_encryption:
+                parameter_update = self._create_encrypted_parameter_update_message(metrics)
+                self.stub.SubmitEncryptedUpdate(parameter_update)
+                logger.info(f"客户端 {self.client_id} 提交轮次 {self.current_round+1} 的密文参数更新")
+            else:
+                parameter_update = self._create_parameter_update_message(metrics)
+                self.stub.SubmitUpdate(parameter_update)
+                logger.info(f"客户端 {self.client_id} 提交轮次 {self.current_round+1} 的参数更新")
             
             while True:
                 status_request = federation_pb2.ClientInfo(
@@ -242,7 +247,7 @@ class FederatedLearningClient:
             )
             global_model_response = self.stub.GetGlobalModel(global_model_request)
             logger.info(f"客户端 {self.client_id} 请求第 {self.current_round+1} 轮的全局模型")
-            self.model.set_parameters(self._deserialize_parameters(global_model_response.parameters.parameters))
+            self.model.set_parameters(deserialize_parameters(global_model_response.parameters.parameters))
             
             metrics = global_model_response.metrics
             logger.info(f"全局模型指标 - 准确率: {metrics.accuracy:.4f}, 精确率: {metrics.precision:.4f}, "
@@ -281,7 +286,7 @@ def load_client_data():
 def main():
     client_data = load_client_data()
     if client_data:
-        client = FederatedLearningClient(data=client_data)
+        client = FederatedLearningClient(data=client_data,use_homomorphic_encryption=True)
         try:
             client.participate_in_training(n_rounds=10)
         except KeyboardInterrupt:
@@ -293,4 +298,3 @@ def main():
 
 if __name__ == "__main__":
     main() 
-        

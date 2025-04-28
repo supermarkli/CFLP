@@ -59,6 +59,11 @@ class FederatedLearningStub(object):
                 request_serializer=federation__pb2.GetModelRequest.SerializeToString,
                 response_deserializer=federation__pb2.ParametersAndMetrics.FromString,
                 _registered_method=True)
+        self.SubmitEncryptedUpdate = channel.unary_unary(
+                '/federation.FederatedLearning/SubmitEncryptedUpdate',
+                request_serializer=federation__pb2.EncryptedClientUpdate.SerializeToString,
+                response_deserializer=federation__pb2.ServerUpdate.FromString,
+                _registered_method=True)
 
 
 class FederatedLearningServicer(object):
@@ -90,6 +95,12 @@ class FederatedLearningServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SubmitEncryptedUpdate(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FederatedLearningServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -112,6 +123,11 @@ def add_FederatedLearningServicer_to_server(servicer, server):
                     servicer.GetGlobalModel,
                     request_deserializer=federation__pb2.GetModelRequest.FromString,
                     response_serializer=federation__pb2.ParametersAndMetrics.SerializeToString,
+            ),
+            'SubmitEncryptedUpdate': grpc.unary_unary_rpc_method_handler(
+                    servicer.SubmitEncryptedUpdate,
+                    request_deserializer=federation__pb2.EncryptedClientUpdate.FromString,
+                    response_serializer=federation__pb2.ServerUpdate.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -223,6 +239,33 @@ class FederatedLearning(object):
             '/federation.FederatedLearning/GetGlobalModel',
             federation__pb2.GetModelRequest.SerializeToString,
             federation__pb2.ParametersAndMetrics.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SubmitEncryptedUpdate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/federation.FederatedLearning/SubmitEncryptedUpdate',
+            federation__pb2.EncryptedClientUpdate.SerializeToString,
+            federation__pb2.ServerUpdate.FromString,
             options,
             channel_credentials,
             insecure,
