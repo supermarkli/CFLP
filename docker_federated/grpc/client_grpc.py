@@ -286,7 +286,7 @@ def load_client_data():
 def main():
     client_data = load_client_data()
     if client_data:
-        client = FederatedLearningClient(data=client_data,use_homomorphic_encryption=True)
+        client = FederatedLearningClient(data=client_data,use_homomorphic_encryption=False)
         try:
             client.participate_in_training(n_rounds=10)
         except KeyboardInterrupt:

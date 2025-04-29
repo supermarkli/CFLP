@@ -8,6 +8,7 @@ import numpy as np
 from collections import defaultdict
 import pandas as pd
 import threading
+import time
 
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -60,6 +61,8 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
         self.max_rounds = int(os.environ.get("MAX_ROUNDS", "10"))  # 最大训练轮次
         # 是否启用同态加密
         self.use_homomorphic_encryption = use_homomorphic_encryption or os.environ.get("USE_HOMOMORPHIC_ENCRYPTION", "False").lower() == "true"
+        self.start_time = None  # 计时开始时间
+        self.end_time = None    # 计时结束时间
         logger.info(f"同态加密状态: {'启用' if self.use_homomorphic_encryption else '未启用'}")
         if self.use_homomorphic_encryption:
             try:
@@ -128,6 +131,10 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
         logger.info(f"接收到客户端 {client_id} 的注册请求")
         
         with self.lock:
+            # 只在第一个客户端注册时记录开始时间
+            if self.start_time is None:
+                self.start_time = time.time()
+                logger.info("联邦学习流程计时开始")
             self.clients[client_id] = ClientState(
                 client_id=client_id,
                 model_type=request.model_type,
@@ -211,6 +218,10 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                     self.next_step = True
                     if self.current_round >= self.max_rounds:
                         logger.info(f"达到最大轮次 {self.max_rounds}，结束训练")
+                        self.end_time = time.time()
+                        elapsed = self.end_time - self.start_time if self.start_time else None
+                        if elapsed is not None:
+                            logger.info(f"联邦学习流程总耗时: {elapsed:.2f} 秒")
                 
                 return federation_pb2.ServerUpdate(
                     code=200,
@@ -273,6 +284,11 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                     self.next_step = True
                     if self.current_round >= self.max_rounds:
                         logger.info(f"达到最大轮次 {self.max_rounds}，结束训练")
+                        self.end_time = time.time()
+                        elapsed = self.end_time - self.start_time if self.start_time else None
+                        if elapsed is not None:
+                            logger.info(f"联邦学习流程总耗时: {elapsed:.2f} 秒")
+
                 return federation_pb2.ServerUpdate(
                     code=200,
                     current_round=self.current_round,
@@ -372,7 +388,7 @@ class FederatedLearningServicer(federation_pb2_grpc.FederatedLearningServicer):
                 logger.info(f"全局模型在轮次 {self.current_round+1} 的性能: {metrics}")
             except Exception as e:
                 logger.error(f"评估模型时出错: {str(e)}")
-                logger.exception(e)
+                logger.exception(e)              
             logger.info(f"轮次 {self.current_round+1} 处理完成")
         except Exception as e:
             logger.error(f"处理轮次完成时出错: {str(e)}")
@@ -391,7 +407,7 @@ def serve():
     
     # 添加服务
     federation_pb2_grpc.add_FederatedLearningServicer_to_server(
-        FederatedLearningServicer(use_homomorphic_encryption=True), server
+        FederatedLearningServicer(use_homomorphic_encryption=False), server
     )
     
     port = os.environ.get("GRPC_SERVER_PORT", "50051")
