@@ -5,8 +5,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from docker_federated.grpc.generated import federation_pb2
 
-
-def serialize_parameters(parameters, param_mapping=None):
+def serialize_parameters(parameters):
     """
     将模型参数序列化为 protobuf NumpyArray 字典。
     """

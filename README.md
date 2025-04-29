@@ -34,23 +34,27 @@ CFLP/
 │   ├── visualization/                      # 可视化模块
 │   │   └── plot_utils.py                  # 绘图工具
 │   └── main.py                            # 主程序入口
-├── docker_federated/                       # 联邦学习Docker配置
-│   ├── docker/                            # Docker配置文件
-│   │   ├── docker-compose.yml             # 容器编排配置
-│   │   ├── Dockerfile.client              # 客户端Docker镜像配置
-│   │   └── Dockerfile.server              # 服务端Docker镜像配置
-│   ├── grpc/                              # gRPC通信模块
-│   │   ├── client_grpc.py                 # 客户端gRPC实现
-│   │   ├── server_grpc.py                 # 服务端gRPC实现
-│   │   ├── parameter_handler.py           # 参数处理工具
-│   │   ├── protos/                        # 协议缓冲定义
+├── docker_federated/                       # 联邦学习Docker配置与实现
+│   ├── docker/                            # Docker相关配置
+│   │   ├── docker-compose.yml             # 多容器编排配置
+│   │   ├── Dockerfile.client              # 客户端镜像构建文件
+│   │   └── Dockerfile.server              # 服务端镜像构建文件
+│   ├── grpc/                              # gRPC通信与协议实现
+│   │   ├── client_grpc.py                 # 客户端gRPC主程序
+│   │   ├── server_grpc.py                 # 服务端gRPC主程序
+│   │   ├── parameter_utils.py             # 参数序列化/反序列化工具
+│   │   ├── protos/                        # gRPC协议定义
 │   │   │   └── federation.proto           # 联邦学习通信协议定义
 │   │   └── generated/                     # 自动生成的gRPC代码
-│   ├── certs/                             # SSL/TLS证书目录
-│   │   ├── client/                        # 客户端证书
-│   │   └── server/                        # 服务端证书
+│   │       ├── federation_pb2.py
+│   │       └── federation_pb2_grpc.py
+│   ├── certs/                             # 加密密钥与证书目录
+│   │   ├── client/                        # 客户端公钥/证书
+│   │   ├── server/                        # 服务端私钥/证书
+│   │   └── backup/                        # 密钥备份
 │   ├── scripts/                           # 辅助脚本
-│   │   └── generate_grpc.py              # 生成gRPC代码的脚本
+│   │   ├── generate_grpc.py               # gRPC代码生成脚本
+│   │   └── generate_keys.py               # 同态加密密钥生成与备份脚本
 │   └── requirements.txt                   # 联邦学习环境依赖
 └── README.md                              # 项目文档
 ```
@@ -144,20 +148,36 @@ CFLP/
 ### 4. 基于Docker的联邦学习部署
 - 容器化架构
   * 独立的服务端和客户端容器
-  * 基于Docker Compose的多容器编排
-  * 灵活的环境变量配置
+  * 基于Docker Compose的多容器编排（支持灵活扩展客户端数量，详见docker_federated/docker/docker-compose.yml）
+  * 灵活的环境变量配置（如CLIENT_ID、GRPC_SERVER_HOST/PORT等）
+  * 数据、证书、日志通过挂载卷隔离，提升安全性
 - 安全通信
-  * 基于gRPC的高效通信
-  * TLS加密传输
-  * 证书验证机制
+  * 基于gRPC的高效通信（协议定义见grpc/protos/federation.proto，自动生成代码位于grpc/generated/）
+  * TLS加密传输（支持SSL/TLS安全通道，CA证书路径/app/certs/ca.crt，找不到证书时自动降级为不安全通道）
+  * 证书验证机制（证书和密钥分别存储于certs/server/、certs/client/，权限严格控制）
+  * 支持同态加密（Paillier，服务端持有私钥，客户端持有公钥，密钥自动生成与备份，见scripts/generate_keys.py）
 - 参数序列化与传输
-  * 高效的NumPy数组序列化
-  * Protocol Buffers数据定义
-  * 自动化的参数编码与解码
+  * 高效的NumPy数组序列化（见grpc/parameter_utils.py）
+  * Protocol Buffers数据定义，自动化的参数编码与解码
+  * 支持明文与加密参数灵活切换
 - 分布式训练流程
-  * 客户端注册与发现
-  * 同步的模型参数更新
-  * 训练状态监控与恢复
+  * 客户端注册与发现（支持动态注册，服务端自动聚合参数）
+  * 同步的模型参数更新（支持训练状态同步、轮次控制、异常处理）
+  * 训练状态监控与恢复（训练完成后自动通知客户端退出）
+
+（常用辅助脚本：scripts/generate_grpc.py用于gRPC代码生成，scripts/generate_keys.py用于同态加密密钥生成与备份）
+
+（常见问题：gRPC代码未生成或导入错误请先运行generate_grpc.py，证书/密钥丢失请重新运行generate_keys.py，容器间网络不通请检查docker网络配置和端口映射，数据未挂载请确保data/目录结构与compose文件一致）
+
+---
+
+### 实现细节补充
+- gRPC通信支持注册、状态检查、参数提交、全局模型下发等多种消息类型
+- 自动生成的gRPC代码位于grpc/generated/，如协议变更需重新生成
+- 训练流程支持客户端动态注册、轮次同步、异常处理、训练完成自动退出
+- 详细实现可参考grpc/server_grpc.py和client_grpc.py源码及注释
+
+如需更详细的用法、参数说明或遇到具体问题，可查阅相关源码或协议定义。
 
 ## 系统架构与工作流程
 
@@ -207,53 +227,7 @@ python src/main.py
 # 使用Docker Compose运行联邦学习实验
 cd docker_federated/docker
 docker-compose up --build
-
-# 查看训练日志
-docker logs -f fl-server
-docker logs -f fl-client-1
 ```
-
-### 准备联邦学习环境
-```bash
-# 生成gRPC代码
-cd docker_federated
-python scripts/generate_grpc.py
-
-# 创建客户端数据
-python src/data_process/generate_credit_card_data.py
-python -c "from src.data_process.generate_credit_card_data import split_data_for_federation; split_data_for_federation(num_clients=3)"
-```
-
-## 配置选项
-
-系统提供了多种配置选项以优化模型训练和评估过程:
-
-### 数据处理配置
-- `normalize`: 是否对特征进行标准化
-- `test_size`: 测试集比例
-- `random_seed`: 随机种子
-
-### 模型训练配置
-- `param_tuning`: 是否进行参数调优
-- `use_smote`: 是否使用SMOTE过采样处理类别不平衡
-- `class_weight`: 类别权重设置
-
-### 联邦学习配置
-- `n_clients`: 客户端数量
-- `n_rounds`: 联邦学习轮数
-- `local_epochs`: 本地训练轮次
-
-### Docker联邦学习配置
-- 服务端配置
-  * `GRPC_SERVER_PORT`: gRPC服务端口
-  * `CERT_PATH`: TLS证书路径
-  * `REQUIRED_CLIENTS`: 所需客户端数量
-  * `MAX_ROUNDS`: 最大训练轮次
-- 客户端配置
-  * `CLIENT_ID`: 客户端标识
-  * `GRPC_SERVER_HOST`: 服务端主机名
-  * `GRPC_SERVER_PORT`: 服务端端口
-  * `MODEL_TYPE`: 使用的模型类型
 
 ## 性能对比
 
